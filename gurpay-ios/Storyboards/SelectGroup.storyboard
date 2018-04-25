@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="19k-UI-yyh">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="VerdanaBold.ttf">
+            <string>Verdana-Bold</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Select Group View Controller-->
+        <scene sceneID="6vR-K2-CDW">
+            <objects>
+                <viewController id="19k-UI-yyh" customClass="SelectGroupViewController" customModule="gurpay_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ULz-mx-u1a">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="SHP-tV-Rv8" userLabel="Join Group Stack View">
+                                <rect key="frame" x="47" y="207" width="281" height="274"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Join a group!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITm-6Z-DZH">
+                                        <rect key="frame" x="0.0" y="0.0" width="281" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iXT-Lp-b21" userLabel="Your Name Label">
+                                        <rect key="frame" x="0.0" y="38" width="281" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Joe" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BVs-5u-4Zg" userLabel="Your name">
+                                        <rect key="frame" x="0.0" y="66.5" width="281" height="31"/>
+                                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ORx-id-xzY" userLabel="Group Code Label">
+                                        <rect key="frame" x="0.0" y="105.5" width="281" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="15963" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XMi-TV-Dca">
+                                        <rect key="frame" x="0.0" y="134" width="281" height="30"/>
+                                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pto-ZO-eNF">
+                                        <rect key="frame" x="0.0" y="172" width="281" height="34"/>
+                                        <color key="backgroundColor" red="0.98713118649999998" green="0.41699226410000001" blue="0.20704654650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="5" maxX="0.0" maxY="5"/>
+                                        <state key="normal" title="Join!">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="joinJoinButtonClicked:" destination="19k-UI-yyh" eventType="touchUpInside" id="RfN-xP-ihb"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqm-yS-h7n">
+                                        <rect key="frame" x="0.0" y="214" width="281" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="656-bQ-C5k">
+                                        <rect key="frame" x="0.0" y="242.5" width="281" height="31"/>
+                                        <color key="backgroundColor" red="0.98713118654822329" green="0.41699226414477786" blue="0.20704654647958426" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="5" maxX="0.0" maxY="5"/>
+                                        <state key="normal" title="Create a Group!">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="joinCreateGroupButtonClicked:" destination="19k-UI-yyh" eventType="touchUpInside" id="ZX7-qd-E5U"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="LJK-bd-HHW" userLabel="Create Group Stack View">
+                                <rect key="frame" x="47" y="208" width="281" height="273"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a group!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gwo-U4-tTu">
+                                        <rect key="frame" x="0.0" y="0.0" width="281" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iL0-N7-8vX" userLabel="Your Name Label">
+                                        <rect key="frame" x="0.0" y="37" width="281" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Joe" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EMA-PA-bhG" userLabel="Your name">
+                                        <rect key="frame" x="0.0" y="65.5" width="281" height="31"/>
+                                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sUq-9L-i7J" userLabel="Group Name Label">
+                                        <rect key="frame" x="0.0" y="104.5" width="281" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Joe's Group" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GXy-c7-O4A">
+                                        <rect key="frame" x="0.0" y="133" width="281" height="31"/>
+                                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kVj-BG-LgE">
+                                        <rect key="frame" x="0.0" y="172" width="281" height="34"/>
+                                        <color key="backgroundColor" red="0.98713118649999998" green="0.41699226410000001" blue="0.20704654650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="5" maxX="0.0" maxY="5"/>
+                                        <state key="normal" title="Create!">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="createCreateButtonClicked:" destination="19k-UI-yyh" eventType="touchUpInside" id="zAW-RK-HMF"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gvn-2z-5V9">
+                                        <rect key="frame" x="0.0" y="214" width="281" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uo2-wb-F3T">
+                                        <rect key="frame" x="0.0" y="242.5" width="281" height="31"/>
+                                        <color key="backgroundColor" red="0.98713118649999998" green="0.41699226410000001" blue="0.20704654650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="5" maxX="0.0" maxY="5"/>
+                                        <state key="normal" title="Join a group!">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="createJoinButtonClicked:" destination="19k-UI-yyh" eventType="touchUpInside" id="TLO-IO-uxG"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GUR PAY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YFB-tP-p3n">
+                                <rect key="frame" x="120" y="77" width="135" height="33"/>
+                                <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="27"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rEu-fW-C74">
+                                <rect key="frame" x="8" y="546.5" width="359" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.70447335025380708" green="0.080107642960686551" blue="0.018675974094213961" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.14117647058823529" green="0.77647058823529413" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="SHP-tV-Rv8" firstAttribute="centerY" secondItem="O3m-C1-1tV" secondAttribute="centerY" id="3h5-xy-GUD"/>
+                            <constraint firstItem="O3m-C1-1tV" firstAttribute="bottom" secondItem="rEu-fW-C74" secondAttribute="bottom" constant="100" id="FE8-z7-Jnc"/>
+                            <constraint firstItem="LJK-bd-HHW" firstAttribute="width" secondItem="ULz-mx-u1a" secondAttribute="width" multiplier="3:4" id="FzX-fn-HfT"/>
+                            <constraint firstItem="SHP-tV-Rv8" firstAttribute="width" secondItem="ULz-mx-u1a" secondAttribute="width" multiplier="3:4" id="LKb-6P-zzL"/>
+                            <constraint firstItem="YFB-tP-p3n" firstAttribute="centerY" secondItem="O3m-C1-1tV" secondAttribute="centerY" constant="-250" id="QzQ-ww-bcb"/>
+                            <constraint firstItem="LJK-bd-HHW" firstAttribute="centerY" secondItem="O3m-C1-1tV" secondAttribute="centerY" id="S6k-G9-P7N"/>
+                            <constraint firstItem="O3m-C1-1tV" firstAttribute="trailing" secondItem="rEu-fW-C74" secondAttribute="trailing" constant="8" id="Tmj-G5-szX"/>
+                            <constraint firstItem="rEu-fW-C74" firstAttribute="leading" secondItem="O3m-C1-1tV" secondAttribute="leading" constant="8" id="XbW-Ay-f3x"/>
+                            <constraint firstItem="YFB-tP-p3n" firstAttribute="centerX" secondItem="O3m-C1-1tV" secondAttribute="centerX" id="drL-mY-Y4a"/>
+                            <constraint firstItem="LJK-bd-HHW" firstAttribute="centerX" secondItem="O3m-C1-1tV" secondAttribute="centerX" id="qHE-t8-OLM"/>
+                            <constraint firstItem="SHP-tV-Rv8" firstAttribute="centerX" secondItem="O3m-C1-1tV" secondAttribute="centerX" id="uUj-bA-Kjb"/>
+                            <constraint firstItem="rEu-fW-C74" firstAttribute="centerX" secondItem="O3m-C1-1tV" secondAttribute="centerX" id="uiV-zm-Ili"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="O3m-C1-1tV"/>
+                    </view>
+                    <connections>
+                        <outlet property="createCreateGroupButton" destination="kVj-BG-LgE" id="n3T-D0-8Vd"/>
+                        <outlet property="createGroupNameTextField" destination="GXy-c7-O4A" id="IwI-Qb-OUj"/>
+                        <outlet property="createJoinGroupButton" destination="uo2-wb-F3T" id="KVj-wj-DDJ"/>
+                        <outlet property="createStackView" destination="LJK-bd-HHW" id="loR-55-mkA"/>
+                        <outlet property="createYourNameTextField" destination="EMA-PA-bhG" id="JYU-bp-8px"/>
+                        <outlet property="errorLabel" destination="rEu-fW-C74" id="iTU-ii-0fE"/>
+                        <outlet property="joinCreateGroupButton" destination="656-bQ-C5k" id="Uiv-Qz-Cwv"/>
+                        <outlet property="joinGroupCodeTextField" destination="XMi-TV-Dca" id="yuf-Xb-lLc"/>
+                        <outlet property="joinJoinGroupButton" destination="pto-ZO-eNF" id="OZT-NO-bK5"/>
+                        <outlet property="joinStackView" destination="SHP-tV-Rv8" id="EZX-fg-Voz"/>
+                        <outlet property="joinYourNameTextField" destination="BVs-5u-4Zg" id="1K9-aR-OEL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n4c-uV-XbO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="112.8" y="-187.55622188905548"/>
+        </scene>
+    </scenes>
+</document>

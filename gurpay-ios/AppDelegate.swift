@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "SelectGroup", bundle: nil)
         let exampleViewController: UIViewController = mainStoryboard.instantiateInitialViewController()!
         
         self.window?.rootViewController = exampleViewController
@@ -27,8 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
         
-        
-        return true
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

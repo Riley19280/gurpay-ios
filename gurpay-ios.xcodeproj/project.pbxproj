@@ -17,6 +17,26 @@
 		E53FFE852090CA8D00D365A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E53FFE832090CA8D00D365A3 /* LaunchScreen.storyboard */; };
 		E53FFE902090CA8E00D365A3 /* gurpay_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53FFE8F2090CA8E00D365A3 /* gurpay_iosTests.swift */; };
 		E53FFE9B2090CA8E00D365A3 /* gurpay_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53FFE9A2090CA8E00D365A3 /* gurpay_iosUITests.swift */; };
+		E53FFEAD2090D91D00D365A3 /* SelectGroup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E53FFEAC2090D91D00D365A3 /* SelectGroup.storyboard */; };
+		E53FFEAF2090D94700D365A3 /* SelectGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53FFEAE2090D94700D365A3 /* SelectGroupViewController.swift */; };
+		E53FFEB42090EE8600D365A3 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53FFEB32090EE8600D365A3 /* Group.swift */; };
+		E53FFEB62090EE9600D365A3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53FFEB52090EE9600D365A3 /* User.swift */; };
+		E53FFEB82090EEA200D365A3 /* Bill.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53FFEB72090EEA200D365A3 /* Bill.swift */; };
+		E53FFEBA2090F37E00D365A3 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E53FFEB92090F37E00D365A3 /* Dashboard.storyboard */; };
+		E53FFEBC2090F39200D365A3 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53FFEBB2090F39200D365A3 /* DashboardViewController.swift */; };
+		E53FFEBE2090F5ED00D365A3 /* UserEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E53FFEBD2090F5ED00D365A3 /* UserEdit.storyboard */; };
+		E53FFEC02090F60100D365A3 /* UserEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53FFEBF2090F60100D365A3 /* UserEditViewController.swift */; };
+		E53FFEC22090F63C00D365A3 /* GroupEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E53FFEC12090F63C00D365A3 /* GroupEdit.storyboard */; };
+		E53FFEC42090F65900D365A3 /* GroupEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53FFEC32090F65900D365A3 /* GroupEditViewController.swift */; };
+		E53FFEC62090F68300D365A3 /* BillNew.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E53FFEC52090F68300D365A3 /* BillNew.storyboard */; };
+		E53FFEC82090F69C00D365A3 /* BillView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E53FFEC72090F69C00D365A3 /* BillView.storyboard */; };
+		E53FFECA2090F6A900D365A3 /* BillListView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E53FFEC92090F6A900D365A3 /* BillListView.storyboard */; };
+		E53FFECC2090F6DA00D365A3 /* UserListView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E53FFECB2090F6DA00D365A3 /* UserListView.storyboard */; };
+		E53FFECE2090F6EB00D365A3 /* BillNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53FFECD2090F6EB00D365A3 /* BillNewViewController.swift */; };
+		E53FFED02090F6F700D365A3 /* BillViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53FFECF2090F6F700D365A3 /* BillViewViewController.swift */; };
+		E53FFED22090F72D00D365A3 /* BillListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53FFED12090F72D00D365A3 /* BillListTableViewController.swift */; };
+		E53FFED42090F74300D365A3 /* UserListViewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53FFED32090F74300D365A3 /* UserListViewTableViewController.swift */; };
+		E53FFED62090FC8800D365A3 /* ServiceBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53FFED52090FC8800D365A3 /* ServiceBase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +79,26 @@
 		E53FFE962090CA8E00D365A3 /* gurpay-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "gurpay-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E53FFE9A2090CA8E00D365A3 /* gurpay_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gurpay_iosUITests.swift; sourceTree = "<group>"; };
 		E53FFE9C2090CA8E00D365A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E53FFEAC2090D91D00D365A3 /* SelectGroup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelectGroup.storyboard; sourceTree = "<group>"; };
+		E53FFEAE2090D94700D365A3 /* SelectGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGroupViewController.swift; sourceTree = "<group>"; };
+		E53FFEB32090EE8600D365A3 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		E53FFEB52090EE9600D365A3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E53FFEB72090EEA200D365A3 /* Bill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bill.swift; sourceTree = "<group>"; };
+		E53FFEB92090F37E00D365A3 /* Dashboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
+		E53FFEBB2090F39200D365A3 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		E53FFEBD2090F5ED00D365A3 /* UserEdit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserEdit.storyboard; sourceTree = "<group>"; };
+		E53FFEBF2090F60100D365A3 /* UserEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditViewController.swift; sourceTree = "<group>"; };
+		E53FFEC12090F63C00D365A3 /* GroupEdit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GroupEdit.storyboard; sourceTree = "<group>"; };
+		E53FFEC32090F65900D365A3 /* GroupEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupEditViewController.swift; sourceTree = "<group>"; };
+		E53FFEC52090F68300D365A3 /* BillNew.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BillNew.storyboard; sourceTree = "<group>"; };
+		E53FFEC72090F69C00D365A3 /* BillView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BillView.storyboard; sourceTree = "<group>"; };
+		E53FFEC92090F6A900D365A3 /* BillListView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BillListView.storyboard; sourceTree = "<group>"; };
+		E53FFECB2090F6DA00D365A3 /* UserListView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserListView.storyboard; sourceTree = "<group>"; };
+		E53FFECD2090F6EB00D365A3 /* BillNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillNewViewController.swift; sourceTree = "<group>"; };
+		E53FFECF2090F6F700D365A3 /* BillViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillViewViewController.swift; sourceTree = "<group>"; };
+		E53FFED12090F72D00D365A3 /* BillListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillListTableViewController.swift; sourceTree = "<group>"; };
+		E53FFED32090F74300D365A3 /* UserListViewTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewTableViewController.swift; sourceTree = "<group>"; };
+		E53FFED52090FC8800D365A3 /* ServiceBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceBase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,9 +181,9 @@
 				E53FFEAA2090D5B100D365A3 /* Storyboards */,
 				E53FFEA92090D5AA00D365A3 /* View Controllers */,
 				E53FFEAB2090D5C000D365A3 /* View Elements */,
+				E53FFEB02090E81A00D365A3 /* Network */,
 				E53FFE7A2090CA8D00D365A3 /* AppDelegate.swift */,
 				E53FFE7C2090CA8D00D365A3 /* ViewController.swift */,
-				E53FFE7E2090CA8D00D365A3 /* Main.storyboard */,
 				E53FFE812090CA8D00D365A3 /* Assets.xcassets */,
 				E53FFE832090CA8D00D365A3 /* LaunchScreen.storyboard */,
 				E53FFE862090CA8D00D365A3 /* Info.plist */,
@@ -172,6 +212,9 @@
 		E53FFEA82090D59B00D365A3 /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
+				E53FFEB32090EE8600D365A3 /* Group.swift */,
+				E53FFEB52090EE9600D365A3 /* User.swift */,
+				E53FFEB72090EEA200D365A3 /* Bill.swift */,
 			);
 			path = "Data Models";
 			sourceTree = "<group>";
@@ -179,6 +222,14 @@
 		E53FFEA92090D5AA00D365A3 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E53FFEAE2090D94700D365A3 /* SelectGroupViewController.swift */,
+				E53FFEBB2090F39200D365A3 /* DashboardViewController.swift */,
+				E53FFEBF2090F60100D365A3 /* UserEditViewController.swift */,
+				E53FFEC32090F65900D365A3 /* GroupEditViewController.swift */,
+				E53FFECD2090F6EB00D365A3 /* BillNewViewController.swift */,
+				E53FFECF2090F6F700D365A3 /* BillViewViewController.swift */,
+				E53FFED12090F72D00D365A3 /* BillListTableViewController.swift */,
+				E53FFED32090F74300D365A3 /* UserListViewTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -186,6 +237,15 @@
 		E53FFEAA2090D5B100D365A3 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				E53FFE7E2090CA8D00D365A3 /* Main.storyboard */,
+				E53FFEAC2090D91D00D365A3 /* SelectGroup.storyboard */,
+				E53FFEB92090F37E00D365A3 /* Dashboard.storyboard */,
+				E53FFEBD2090F5ED00D365A3 /* UserEdit.storyboard */,
+				E53FFEC12090F63C00D365A3 /* GroupEdit.storyboard */,
+				E53FFEC52090F68300D365A3 /* BillNew.storyboard */,
+				E53FFEC72090F69C00D365A3 /* BillView.storyboard */,
+				E53FFEC92090F6A900D365A3 /* BillListView.storyboard */,
+				E53FFECB2090F6DA00D365A3 /* UserListView.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -195,6 +255,14 @@
 			children = (
 			);
 			path = "View Elements";
+			sourceTree = "<group>";
+		};
+		E53FFEB02090E81A00D365A3 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				E53FFED52090FC8800D365A3 /* ServiceBase.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,8 +376,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E53FFECA2090F6A900D365A3 /* BillListView.storyboard in Resources */,
 				E53FFE852090CA8D00D365A3 /* LaunchScreen.storyboard in Resources */,
+				E53FFEC82090F69C00D365A3 /* BillView.storyboard in Resources */,
+				E53FFEBA2090F37E00D365A3 /* Dashboard.storyboard in Resources */,
+				E53FFECC2090F6DA00D365A3 /* UserListView.storyboard in Resources */,
 				E53FFE822090CA8D00D365A3 /* Assets.xcassets in Resources */,
+				E53FFEBE2090F5ED00D365A3 /* UserEdit.storyboard in Resources */,
+				E53FFEAD2090D91D00D365A3 /* SelectGroup.storyboard in Resources */,
+				E53FFEC22090F63C00D365A3 /* GroupEdit.storyboard in Resources */,
+				E53FFEC62090F68300D365A3 /* BillNew.storyboard in Resources */,
 				E53FFE802090CA8D00D365A3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -416,8 +492,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E53FFEC02090F60100D365A3 /* UserEditViewController.swift in Sources */,
+				E53FFEAF2090D94700D365A3 /* SelectGroupViewController.swift in Sources */,
 				E53FFE7D2090CA8D00D365A3 /* ViewController.swift in Sources */,
+				E53FFED42090F74300D365A3 /* UserListViewTableViewController.swift in Sources */,
+				E53FFEB62090EE9600D365A3 /* User.swift in Sources */,
 				E53FFE7B2090CA8D00D365A3 /* AppDelegate.swift in Sources */,
+				E53FFECE2090F6EB00D365A3 /* BillNewViewController.swift in Sources */,
+				E53FFEB82090EEA200D365A3 /* Bill.swift in Sources */,
+				E53FFED62090FC8800D365A3 /* ServiceBase.swift in Sources */,
+				E53FFEB42090EE8600D365A3 /* Group.swift in Sources */,
+				E53FFED02090F6F700D365A3 /* BillViewViewController.swift in Sources */,
+				E53FFEC42090F65900D365A3 /* GroupEditViewController.swift in Sources */,
+				E53FFEBC2090F39200D365A3 /* DashboardViewController.swift in Sources */,
+				E53FFED22090F72D00D365A3 /* BillListTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
