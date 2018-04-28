@@ -17,18 +17,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        let group = Group.getFromDisk();
+        var newvc: UIViewController;
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "SelectGroup", bundle: nil)
-        let exampleViewController: UIViewController = mainStoryboard.instantiateInitialViewController()!
         
-        self.window?.rootViewController = exampleViewController
+        if(group != nil)
+        {
+            newvc = UIStoryboard(name: "Dashboard", bundle: nil).instantiateInitialViewController()!
+        }
+        else {
+            newvc = UIStoryboard(name: "SelectGroup", bundle: nil).instantiateInitialViewController()!
+        }
         
+        self.window?.rootViewController = newvc
         self.window?.makeKeyAndVisible()
         
         return true
         
     }
 
+    func setRootViewController(controller: UIViewController) {
+        
+        self.window?.rootViewController = controller;
+        
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.

@@ -37,6 +37,10 @@
 		E53FFED22090F72D00D365A3 /* BillListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53FFED12090F72D00D365A3 /* BillListTableViewController.swift */; };
 		E53FFED42090F74300D365A3 /* UserListViewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53FFED32090F74300D365A3 /* UserListViewTableViewController.swift */; };
 		E53FFED62090FC8800D365A3 /* ServiceBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53FFED52090FC8800D365A3 /* ServiceBase.swift */; };
+		E5513C2E2094CB6B000574BE /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5513C2D2094CB6B000574BE /* ApiError.swift */; };
+		E5513C332094F88E000574BE /* BillTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5513C312094F88E000574BE /* BillTableViewCell.swift */; };
+		E5513C342094F88E000574BE /* BillTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5513C322094F88E000574BE /* BillTableViewCell.xib */; };
+		E5513C36209508F9000574BE /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5513C35209508F9000574BE /* Util.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +103,10 @@
 		E53FFED12090F72D00D365A3 /* BillListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillListTableViewController.swift; sourceTree = "<group>"; };
 		E53FFED32090F74300D365A3 /* UserListViewTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewTableViewController.swift; sourceTree = "<group>"; };
 		E53FFED52090FC8800D365A3 /* ServiceBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceBase.swift; sourceTree = "<group>"; };
+		E5513C2D2094CB6B000574BE /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
+		E5513C312094F88E000574BE /* BillTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillTableViewCell.swift; sourceTree = "<group>"; };
+		E5513C322094F88E000574BE /* BillTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BillTableViewCell.xib; sourceTree = "<group>"; };
+		E5513C35209508F9000574BE /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +223,7 @@
 				E53FFEB32090EE8600D365A3 /* Group.swift */,
 				E53FFEB52090EE9600D365A3 /* User.swift */,
 				E53FFEB72090EEA200D365A3 /* Bill.swift */,
+				E5513C2D2094CB6B000574BE /* ApiError.swift */,
 			);
 			path = "Data Models";
 			sourceTree = "<group>";
@@ -253,6 +262,8 @@
 		E53FFEAB2090D5C000D365A3 /* View Elements */ = {
 			isa = PBXGroup;
 			children = (
+				E5513C312094F88E000574BE /* BillTableViewCell.swift */,
+				E5513C322094F88E000574BE /* BillTableViewCell.xib */,
 			);
 			path = "View Elements";
 			sourceTree = "<group>";
@@ -261,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				E53FFED52090FC8800D365A3 /* ServiceBase.swift */,
+				E5513C35209508F9000574BE /* Util.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -384,6 +396,7 @@
 				E53FFE822090CA8D00D365A3 /* Assets.xcassets in Resources */,
 				E53FFEBE2090F5ED00D365A3 /* UserEdit.storyboard in Resources */,
 				E53FFEAD2090D91D00D365A3 /* SelectGroup.storyboard in Resources */,
+				E5513C342094F88E000574BE /* BillTableViewCell.xib in Resources */,
 				E53FFEC22090F63C00D365A3 /* GroupEdit.storyboard in Resources */,
 				E53FFEC62090F68300D365A3 /* BillNew.storyboard in Resources */,
 				E53FFE802090CA8D00D365A3 /* Main.storyboard in Resources */,
@@ -498,8 +511,11 @@
 				E53FFED42090F74300D365A3 /* UserListViewTableViewController.swift in Sources */,
 				E53FFEB62090EE9600D365A3 /* User.swift in Sources */,
 				E53FFE7B2090CA8D00D365A3 /* AppDelegate.swift in Sources */,
+				E5513C36209508F9000574BE /* Util.swift in Sources */,
 				E53FFECE2090F6EB00D365A3 /* BillNewViewController.swift in Sources */,
 				E53FFEB82090EEA200D365A3 /* Bill.swift in Sources */,
+				E5513C332094F88E000574BE /* BillTableViewCell.swift in Sources */,
+				E5513C2E2094CB6B000574BE /* ApiError.swift in Sources */,
 				E53FFED62090FC8800D365A3 /* ServiceBase.swift in Sources */,
 				E53FFEB42090EE8600D365A3 /* Group.swift in Sources */,
 				E53FFED02090F6F700D365A3 /* BillViewViewController.swift in Sources */,
@@ -673,7 +689,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "gurpay-ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Rileystech.gurpay-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -688,7 +706,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "gurpay-ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Rileystech.gurpay-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";

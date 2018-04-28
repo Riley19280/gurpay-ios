@@ -19,11 +19,11 @@ class ServiceBase {
     }
     
     //MARK: Properties
-    static let baseURL = "https://dev.gurpay.com/api/"
+    static let baseURL = "https://rileystech.com/gurpay/api/"
     
     static var headers: HTTPHeaders = [
         "group-code": getGroupCode(),
-        "device-id" : getDeviceId()
+        "device-id" : Util.getDeviceId()
     ];
     
     //MARK: Helper functions
@@ -35,43 +35,21 @@ class ServiceBase {
         }
         return group!.code;
     }
-    
-    private static func getDeviceId()->String{
-        return UIDevice.current.identifierForVendor!.uuidString;
-    }
-    
+
     private static func reloadHeaders() {
         headers = [
             "group-code": getGroupCode(),
-            "device-id" : getDeviceId()
+            "device-id" : Util.getDeviceId()
         ]
     }
     
-    public static func displayBasicMessage(title: String,message: String, button: String = "Dismiss") {
-        if let nav = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController {
-            let alertController = UIAlertController(
-                title: title,
-                message: message,
-                preferredStyle: UIAlertControllerStyle.alert
-            );
-    
-            alertController.addAction(
-                UIAlertAction(
-                title: button,
-                style: UIAlertActionStyle.default,
-                handler: {_ in
-                }
-            )
-        );
-    
-        nav.present(alertController, animated: true, completion: nil)
-        }
-    }
+
     
     //MARK:Handle Errors
     //TODO: make this method effective
     static func genericHandleErrorCodes(code :Int?)->Bool {
         if(code != nil) {
+            
             switch code! {
             case 401:
                 //redirecting the user to the login screen
@@ -94,7 +72,7 @@ class ServiceBase {
                         )
                     );
                     
-                    nav.present(alertController, animated: true, completion: nil)
+                    nav.visibleViewController?.present(alertController, animated: true, completion: nil)
                     return true;
                 }
                 
@@ -106,7 +84,7 @@ class ServiceBase {
         return false;
     }
     
-    static func executeRequest(route: String, method:HTTPMethod, params: Parameters, headers: HTTPHeaders = headers,success:@escaping (JSON) -> Void, error:@escaping (Error)->()){
+    static func executeRequest(route: String, method:HTTPMethod, params: Parameters, headers: HTTPHeaders = headers,success:@escaping (JSON) -> Void, error:@escaping (ApiError)->()){
         
         Alamofire.request(baseURL + route, method: method, parameters: params,  encoding: JSONEncoding.default, headers: headers)
             .validate(statusCode: 200..<300)
@@ -124,16 +102,39 @@ class ServiceBase {
                         success(JSON("[]"));
                     }
                     
-                case .failure(let err):
+                case .failure( _):
+                    print(String(data: response.data!, encoding: String.Encoding.utf8) as String!)
                     if(!genericHandleErrorCodes(code: response.response?.statusCode)){
-                        error(err);
+                        //TxhjRU
+                        guard let data = response.data else  { error(ApiError(string: "An unknown error occured")); return;  }
+                        
+                        var errorThrow = false;//stupid workaround var for the catch block
+                        
+                        do {
+                            let json = try JSON(data: data)
+                            if json != JSON.null {
+                                error(ApiError(json: json));
+                            }
+                            else
+                            {
+                                error(ApiError(string: "An unknown error occured"));
+                            }
+                        }
+                        catch {
+                            errorThrow = true;
+                        }
+                        
+                        if errorThrow {
+                             error(ApiError(string: "An unknown error occured"));
+                        }
+                    
                     }
                 }
-        }
+            }
         
     }
     
-    static func example(success:@escaping () -> Void, error:@escaping (Error)->()){
+    static func example(success:@escaping () -> Void, error:@escaping (ApiError)->()){
         executeRequest(
             route: "exroute",
             method: .post,
@@ -150,7 +151,12 @@ class ServiceBase {
         );
     }
 
-    static func JoinGroup(group_code: String,group_name: String, user_name: String, success:@escaping () -> Void, error:@escaping (Error)->()){
+    static func JoinGroup(group_code: String,group_name: String, user_name: String, success:@escaping () -> Void, error:@escaping (ApiError)->()){
+        
+        let customHeaders: HTTPHeaders = [
+            "device-id" : Util.getDeviceId()
+        ];
+        
         executeRequest(
             route: "group/join",
             method: .post,
@@ -159,15 +165,16 @@ class ServiceBase {
                 "user_name": user_name,
                 "group_code": group_code,
             ],
+            headers: customHeaders,
             success: { json in
                 let g = Group(name: json["name"].stringValue, code: json["code"].stringValue);
-                guard let gs = g else { error("There was a problem joing the group." as! Error); return; }
-                if gs.writeToDisk() {
+                guard let gs = g else { error(ApiError(string: "There was a problem joing the group.")); return; }
+                if Group.writeToDisk(group: gs) {
                     _ = reloadHeaders();
                     success();
                 }
                 else {
-                    error("There was a problem joing the group." as! Error)
+                    error(ApiError(string: "There was a problem joing the group."))
                 }
             },
                 error: { err in
@@ -176,6 +183,75 @@ class ServiceBase {
         );
     }
     
+    static func GetUser(user_id: String, success:@escaping (User) -> Void, error:@escaping (ApiError)->()){
+        executeRequest(
+            route: "user/" + user_id,
+            method: .get,
+            params: [:],
+            success: { json in
+                let user = User(id: json["id"].intValue, name: json["name"].stringValue, group_code: "NULL")
+                success(user);
+            },
+                error: { err in
+                    error(err);
+            }
+        );
+    }
+    
+    
+    static func UpdateUser(name: String, success:@escaping (User) -> Void, error:@escaping (ApiError)->()){
+        executeRequest(
+            route: "user/",
+            method: .put,
+            params: [
+                "name": name,
+                ],
+            success: { json in
+                let user = User(id: json["id"].intValue, name: json["name"].stringValue, group_code: "NULL")
+                success(user);
+            },
+            error: { err in
+                error(err);
+            }
+        );
+    }
+    
+    static func LeaveGroup(success:@escaping () -> Void, error:@escaping (ApiError)->()){
+        executeRequest(
+            route: "group/leave",
+            method: .post,
+            params: [
+                "param1": "data1",
+                "param2": "data2",
+                ],
+            success: { json in
+                success();
+            },
+            error: { err in
+                error(err);
+            }
+        );
+    }
+
+    static func GetBills(success:@escaping ([Bill]) -> Void, error:@escaping (ApiError)->()){
+        executeRequest(
+            route: "group/bills",
+            method: .get,
+            params: [:],
+            success: { json in
+                var bills: [Bill] = [];
+                
+                for (_, o) in json {
+                    bills.append(Bill(owner_id: o["owner_id"].intValue, name: o["name"].stringValue, total: Decimal(o["total"].doubleValue), date_assigned: o["date_assigned"].stringValue, date_paid: o["date_paid"].stringValue, date_due: o["date_due"].stringValue))
+                }
+                
+                success(bills);
+        },
+            error: { err in
+                error(err);
+        }
+        );
+    }
     
 }
 

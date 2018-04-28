@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BillCell" rowHeight="150" id="KGk-i7-Jjw" customClass="BillTableViewCell" customModule="gurpay_ios" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gSd-Xh-RMv" userLabel="Main Stack">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="db5-Fx-pJT" userLabel="Left Stack">
+                                <rect key="frame" x="0.0" y="0.0" width="225" height="150"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="THIS IS THE TITLE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DMp-Wz-8os" userLabel="Title Label">
+                                        <rect key="frame" x="0.0" y="0.0" width="225" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="np5-19-mYg" userLabel="Bottom Date Stack">
+                                        <rect key="frame" x="0.0" y="24" width="225" height="126"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Recieved\ndsa" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cvO-Cf-umX">
+                                                <rect key="frame" x="0.0" y="108" width="153" height="18"/>
+                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Due" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIg-m6-ZOg">
+                                                <rect key="frame" x="153" y="108" width="72" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.051777565097768097" green="0.83117861675126903" blue="0.063707712418729801" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.14117647059999999" green="0.77647058820000003" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bFa-QK-Sz7" userLabel="Right Stack">
+                                <rect key="frame" x="225" y="0.0" width="150" height="150"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="000.00/999.99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gN4-vO-2H5" userLabel="Top Label">
+                                        <rect key="frame" x="23" y="0.0" width="104" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IaB-KE-taS" userLabel="Status Image">
+                                        <rect key="frame" x="26" y="26" width="98" height="98"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="750" constant="50" id="Zo5-JT-1bJ"/>
+                                            <constraint firstAttribute="width" secondItem="IaB-KE-taS" secondAttribute="height" multiplier="1:1" id="uFz-JO-CFi"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Paid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4K-8o-8f0" userLabel="Bottom Label">
+                                        <rect key="frame" x="42" y="132" width="66" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="bFa-QK-Sz7" secondAttribute="height" multiplier="1:1" id="Jwl-uB-51z"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="bFa-QK-Sz7" firstAttribute="height" secondItem="gSd-Xh-RMv" secondAttribute="height" id="DsG-UR-od6"/>
+                            <constraint firstItem="db5-Fx-pJT" firstAttribute="leading" secondItem="gSd-Xh-RMv" secondAttribute="leading" id="WwN-sd-i3g"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.14901960784313725" green="0.74509803921568629" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="gSd-Xh-RMv" firstAttribute="centerY" secondItem="njF-e1-oar" secondAttribute="centerY" id="Av7-CJ-5na"/>
+                <constraint firstItem="gSd-Xh-RMv" firstAttribute="height" secondItem="KGk-i7-Jjw" secondAttribute="height" id="El1-ig-9m6"/>
+                <constraint firstItem="gSd-Xh-RMv" firstAttribute="centerX" secondItem="njF-e1-oar" secondAttribute="centerX" id="l2m-gt-wkY"/>
+                <constraint firstItem="gSd-Xh-RMv" firstAttribute="width" secondItem="KGk-i7-Jjw" secondAttribute="width" id="nRS-We-V92"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="costAllocationLabel" destination="gN4-vO-2H5" id="WMV-ZQ-a4M"/>
+                <outlet property="dateDueLabel" destination="uIg-m6-ZOg" id="9d9-CF-bfn"/>
+                <outlet property="datePaidLabel" destination="O4K-8o-8f0" id="PSa-em-pwM"/>
+                <outlet property="dateReceivedLabel" destination="cvO-Cf-umX" id="TD9-Km-drg"/>
+                <outlet property="statusImageView" destination="IaB-KE-taS" id="kut-9W-Aln"/>
+                <outlet property="titleLabel" destination="DMp-Wz-8os" id="Viv-e4-3Uv"/>
+            </connections>
+            <point key="canvasLocation" x="52.5" y="105"/>
+        </tableViewCell>
+    </objects>
+</document>

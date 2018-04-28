@@ -25,7 +25,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="SHP-tV-Rv8" userLabel="Join Group Stack View">
-                                <rect key="frame" x="47" y="207" width="281" height="274"/>
+                                <rect key="frame" x="47" y="207.5" width="281" height="273.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Join a group!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITm-6Z-DZH">
                                         <rect key="frame" x="0.0" y="0.0" width="281" height="30"/>
@@ -90,7 +90,7 @@
                                 </subviews>
                             </stackView>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="LJK-bd-HHW" userLabel="Create Group Stack View">
-                                <rect key="frame" x="47" y="208" width="281" height="273"/>
+                                <rect key="frame" x="47" y="207" width="281" height="273.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a group!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gwo-U4-tTu">
                                         <rect key="frame" x="0.0" y="0.0" width="281" height="29"/>
@@ -196,11 +196,20 @@
                         <outlet property="joinJoinGroupButton" destination="pto-ZO-eNF" id="OZT-NO-bK5"/>
                         <outlet property="joinStackView" destination="SHP-tV-Rv8" id="EZX-fg-Voz"/>
                         <outlet property="joinYourNameTextField" destination="BVs-5u-4Zg" id="1K9-aR-OEL"/>
+                        <segue destination="CgH-kx-PZn" kind="show" identifier="toDashboard" id="CkL-kO-cwB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n4c-uV-XbO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="112.8" y="-187.55622188905548"/>
+        </scene>
+        <!--Dashboard-->
+        <scene sceneID="KGc-xl-x0x">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Dashboard" id="CgH-kx-PZn" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IEM-pi-hcq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="728" y="-188"/>
         </scene>
     </scenes>
 </document>

@@ -71,7 +71,8 @@ class SelectGroupViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    //create view stuff
+    //MARK: Create view stuff
+    
     @IBAction func createCreateButtonClicked(_ sender: Any) {
         //called when the user creates a new group
         ServiceBase.JoinGroup(group_code: "", group_name: createGroupNameTextField.text!, user_name: createYourNameTextField.text!,
@@ -87,21 +88,28 @@ class SelectGroupViewController: UIViewController {
         state = .join;
     }
     
-    //join view stuff
+    //MARK: Join view stuff
     
     @IBAction func joinJoinButtonClicked(_ sender: Any) {
         //called when the user wants to join an existing group
         ServiceBase.JoinGroup(group_code: joinGroupCodeTextField.text!,group_name: "", user_name: joinYourNameTextField.text!,
             success: {
-                let storyboard: UIStoryboard = UIStoryboard(name: "Dashboard", bundle: nil)
-                let newViewController = storyboard.instantiateInitialViewController();
+                let newViewController = UIStoryboard(name: "Dashboard", bundle: nil).instantiateInitialViewController()!
+               
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.setRootViewController(controller: newViewController)
                 
-                let customViewControllersArray : NSArray = [newViewController as Any]
+                //self.performSegue(withIdentifier: "toDashboard", sender: self)
+                
+                //self.navigationController!.pushViewController(newViewController!, animated: true)
+                
+              /*  let customViewControllersArray : NSArray = [newViewController as Any]
                 self.navigationController?.viewControllers = customViewControllersArray as! [UIViewController]
-                self.navigationController?.popToRootViewController(animated: true)
+                self.navigationController?.popToRootViewController(animated: true)*/
             },
             error: { err in
-                ServiceBase.displayBasicMessage(title: "Error", message: "Unable to join the group at this time.")
+                //ServiceBase.displayBasicMessage(title: "Error", message: "Unable to join the group at this time.")
+                self.displayErrorMessage(msg: err.toString())
             }
         )
     }
@@ -109,6 +117,21 @@ class SelectGroupViewController: UIViewController {
     @IBAction func joinCreateGroupButtonClicked(_ sender: Any) {
         state = .create;
     }
+    
+    
+    //MARK: Helper functions
+    
+    private func displayErrorMessage(msg: String){
+        if(msg != ""){
+            errorLabel.text = msg;
+            errorLabel.isHidden = false
+        }
+        else {
+            errorLabel.isHidden = true;
+        }
+        
+    }
+    
     /*
     // MARK: - Navigation
 

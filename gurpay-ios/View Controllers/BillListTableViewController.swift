@@ -10,14 +10,34 @@ import UIKit
 
 class BillListTableViewController: UITableViewController {
 
+    var bills: [Bill] = [];
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        tableView.register(UINib(nibName: "BillTableViewCell", bundle: nil), forCellReuseIdentifier: "BillCell")
+        
+        ServiceBase.GetBills(
+            success: { bills in
+                self.bills = bills;
+                self.tableView.reloadData();
+            },
+            error: { err in
+                let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
+             
+                label.textAlignment = .center
+                label.text = "There was an error loading your groups bills."
+                self.view.addSubview(label)
+              
+                label.translatesAutoresizingMaskIntoConstraints = false
+                let horizontalConstraint = label.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
+                let verticalConstraint = label.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
+                let widthConstraint = label.widthAnchor.constraint(equalTo: self.view.widthAnchor)
+                let heightConstraint = label.heightAnchor.constraint(equalToConstant: 20)
+                NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
+            }
+        )
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,23 +49,26 @@ class BillListTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return bills.count;
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BillCell", for: indexPath) as! BillTableViewCell
+        
+        cell.bill = bills[indexPath.row];
 
         return cell
     }
-    */
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100;
+    }
 
     /*
     // Override to support conditional editing of the table view.

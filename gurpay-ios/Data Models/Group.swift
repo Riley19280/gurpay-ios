@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Group: Codable {
+class Group: NSObject, NSCoding {
     
     
     private static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -49,12 +49,22 @@ class Group: Codable {
     
     
     //these methods return a single instance of Group that should be the users current group AT ALL TIMES
-    public func writeToDisk()-> Bool {
-        return NSKeyedArchiver.archiveRootObject(self, toFile: Group.ArchiveURL.path)
+    public static func writeToDisk(group: Group)-> Bool {
+        return NSKeyedArchiver.archiveRootObject(group, toFile: Group.ArchiveURL.path)
     }
     
     public static func getFromDisk()-> Group? {
+        print(Group.ArchiveURL.path);
         return NSKeyedUnarchiver.unarchiveObject(withFile: Group.ArchiveURL.path) as? Group
+    }
+    
+    public static func deleteData()->Bool {
+        do {
+            try FileManager.default.removeItem(atPath: Group.ArchiveURL.path)
+            return true;
+        } catch {
+            return false;
+        }
     }
     
 }

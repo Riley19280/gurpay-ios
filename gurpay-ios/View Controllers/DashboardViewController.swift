@@ -10,10 +10,18 @@ import UIKit
 
 class DashboardViewController: UIViewController {
 
+    @IBOutlet weak var nameBarButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        let group = Group.getFromDisk()!
+        self.title = group.name;
+        
+        ServiceBase.GetUser(user_id: Util.getDeviceId(), success: {user in self.nameBarButton.title = user.name; }, error: { _ in self.nameBarButton.title = "You"; })
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,6 +29,11 @@ class DashboardViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.tintAdjustmentMode = .normal
+        self.navigationController?.navigationBar.tintAdjustmentMode = .automatic
+    }
 
     /*
     // MARK: - Navigation
