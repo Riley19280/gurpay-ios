@@ -25,6 +25,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="bC1-1O-QzH" kind="show" id="CRQ-xc-htU"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="8rO-Na-Nxp">
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
@@ -49,11 +52,33 @@
                             <outlet property="delegate" destination="waq-xb-N2u" id="P6Z-Qf-L3g"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Group Bills" id="ifT-IW-zH9"/>
+                    <navigationItem key="navigationItem" title="Group Bills" leftItemsSupplementBackButton="YES" id="ifT-IW-zH9">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="rlx-7Y-48C">
+                            <connections>
+                                <segue destination="zEv-0z-CCC" kind="show" id="ZL8-Fk-YNG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4QQ-sv-QV3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="141.59999999999999" y="182.15892053973016"/>
+        </scene>
+        <!--BillNew-->
+        <scene sceneID="68S-Kh-oQM">
+            <objects>
+                <viewControllerPlaceholder storyboardName="BillNew" id="zEv-0z-CCC" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bn6-db-nmr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="746" y="161"/>
+        </scene>
+        <!--BillView-->
+        <scene sceneID="amj-in-U1c">
+            <objects>
+                <viewControllerPlaceholder storyboardName="BillView" id="bC1-1O-QzH" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jn0-AT-wWf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="748" y="204"/>
         </scene>
     </scenes>
 </document>
