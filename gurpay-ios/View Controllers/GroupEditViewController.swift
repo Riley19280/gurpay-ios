@@ -10,10 +10,16 @@ import UIKit
 
 class GroupEditViewController: UIViewController {
 
+    @IBOutlet weak var groupCodeLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let group = Group.getFromDisk();
+        groupCodeLabel.text = "Group Code:" + (group?.code)!;
+        self.title = group?.name;
+        
     }
 
     override func didReceiveMemoryWarning() {

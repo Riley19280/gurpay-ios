@@ -10,6 +10,7 @@ import UIKit
 
 class BillListTableViewController: UITableViewController {
 
+   
     var bills: [Bill] = [];
     
     override func viewDidLoad() {
@@ -17,29 +18,42 @@ class BillListTableViewController: UITableViewController {
 
         tableView.register(UINib(nibName: "BillTableViewCell", bundle: nil), forCellReuseIdentifier: "BillCell")
         
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.addTarget(self, action: #selector(loadData), for: .valueChanged)
+        
+        
+
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        loadData();
+    }
+    
+    @objc func loadData(){
         ServiceBase.GetBills(
             success: { bills in
                 self.bills = bills;
                 self.tableView.reloadData();
+                self.refreshControl?.endRefreshing();
             },
             error: { err in
                 let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
-             
+                
                 label.textAlignment = .center
                 label.text = "There was an error loading your groups bills."
                 self.view.addSubview(label)
-              
+                
                 label.translatesAutoresizingMaskIntoConstraints = false
                 let horizontalConstraint = label.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
                 let verticalConstraint = label.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
                 let widthConstraint = label.widthAnchor.constraint(equalTo: self.view.widthAnchor)
                 let heightConstraint = label.heightAnchor.constraint(equalToConstant: 20)
                 NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
+                self.refreshControl?.endRefreshing();
             }
         )
-
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -68,6 +82,10 @@ class BillListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100;
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "ToBillView", sender: bills[indexPath.row]);
     }
 
     /*

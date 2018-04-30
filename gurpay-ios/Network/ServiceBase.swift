@@ -219,11 +219,8 @@ class ServiceBase {
     static func LeaveGroup(success:@escaping () -> Void, error:@escaping (ApiError)->()){
         executeRequest(
             route: "group/leave",
-            method: .post,
-            params: [
-                "param1": "data1",
-                "param2": "data2",
-                ],
+            method: .delete,
+            params: [:],
             success: { json in
                 success();
             },
@@ -246,6 +243,31 @@ class ServiceBase {
                 }
                 
                 success(bills);
+        },
+            error: { err in
+                error(err);
+        }
+        );
+    }
+    
+    static func CreateBill(bill: Bill, success:@escaping () -> Void, error:@escaping (ApiError)->()){
+        let df = DateFormatter();
+        df.dateFormat = "yyyy-MM-dd HH:mm:ss";
+        
+        executeRequest(
+            route: "bill",
+            method: .post,
+            params: [
+                "name": bill.name,
+                "total": bill.total,
+                "date_assigned": df.string(from: bill.date_assigned),
+                //TODO: change date paid back
+                "date_paid": df.string(from: Date()),
+                //"date_paid": bill.date_paid == nil ? "" : df.string(from: bill.date_paid!),
+                "date_due": df.string(from: bill.date_due),
+                ],
+            success: { json in
+                success();
         },
             error: { err in
                 error(err);

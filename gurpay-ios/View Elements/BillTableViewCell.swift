@@ -22,7 +22,7 @@ class BillTableViewCell: UITableViewCell {
     var bill: Bill? = nil {
         didSet {
             self.titleLabel.text = bill!.name;
-            self.costAllocationLabel.text = "TODO";
+            self.costAllocationLabel.text = "65.21/89.00";
             //self.statusImageView = ??
             self.dateDueLabel.text = Util.displayDate(date: bill!.date_due);
             self.dateReceivedLabel.text = Util.displayDate(date: bill!.date_assigned);

@@ -10,17 +10,43 @@ import UIKit
 
 class BillViewViewController: UIViewController {
 
+    var bill: Bill? = nil;
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var dateAssignedLabel: UILabel!
+    @IBOutlet weak var datePaidLabel: UILabel!
+    @IBOutlet weak var dateDueLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
+    
+     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        nameLabel.text = bill?.name;
+        totalLabel.text = String(describing: bill?.total);
+        dateAssignedLabel.text = Util.displayDate(date: bill?.date_assigned)
+        datePaidLabel.text = Util.displayDate(date: (bill?.date_paid)!)
+        dateDueLabel.text = Util.displayDate(date: bill?.date_due)
+        
+        self.title = bill?.name;
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if sender is Bill {
+            self.bill = (sender as! Bill);
+        }
+        else {
+            fatalError("Bil has incorrect sender.")
+        }
+    }
 
     /*
     // MARK: - Navigation

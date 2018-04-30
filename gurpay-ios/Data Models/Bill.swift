@@ -17,7 +17,7 @@ class Bill: Codable {
     var date_paid: Date?;
     var date_due: Date;
     
-    init(owner_id: Int, name: String, total: Decimal, date_assigned: Date, date_paid: Date, date_due: Date) {
+    init(owner_id: Int, name: String, total: Decimal, date_assigned: Date, date_paid: Date?, date_due: Date) {
         self.owner_id = owner_id;
         self.name = name;
         self.total = total;
