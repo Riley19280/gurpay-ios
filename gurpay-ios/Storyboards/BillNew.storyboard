@@ -110,9 +110,12 @@
                                 <date key="date" timeIntervalSinceReferenceDate="546812707.78406405">
                                     <!--2018-04-30 20:25:07 +0000-->
                                 </date>
+                                <connections>
+                                    <action selector="dateValueChanged:" destination="EUr-rZ-hav" eventType="valueChanged" id="EKq-pv-EaY"/>
+                                </connections>
                             </datePicker>
                         </subviews>
-                        <color key="backgroundColor" red="0.14901960780000001" green="0.74509803919999995" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.14117647058823529" green="0.77647058823529413" blue="0.30196078431372547" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="42v-ee-OwT" firstAttribute="bottom" secondItem="tbq-zs-dJZ" secondAttribute="bottom" id="0Ud-xD-qQK"/>
                             <constraint firstItem="3OF-qW-agm" firstAttribute="centerX" secondItem="tbq-zs-dJZ" secondAttribute="centerX" id="4en-En-30n"/>

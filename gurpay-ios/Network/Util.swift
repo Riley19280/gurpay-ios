@@ -38,6 +38,7 @@ class Util {
     }
     
     public static func getDeviceId()->String{
+        print(UIDevice.current.identifierForVendor!.uuidString)
         return UIDevice.current.identifierForVendor!.uuidString;
     }
     
@@ -65,4 +66,19 @@ class Util {
 
     }
     
+    private static var userCache: [User] = [];
+    public static func getUser(id: String, success:@escaping (_: User) -> Void, error:@escaping (ApiError)->()){
+        if userCache.contains(where: { return String($0.id) == id || $0.device_id == id })  {
+            success(userCache.first(where: { String($0.id) == id || $0.device_id == id })!);
+        } else {
+            ServiceBase.GetUser(user_id: String(id),
+                success: { user in
+                    success(user);
+                },
+                error: { err in
+                    error(err);
+                }
+            )
+        }
+    }
 }

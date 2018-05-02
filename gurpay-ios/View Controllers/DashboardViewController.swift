@@ -17,8 +17,7 @@ class DashboardViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        let group = Group.getFromDisk()!
-        self.title = group.name;
+       
         
         ServiceBase.GetUser(user_id: Util.getDeviceId(), success: {user in self.nameBarButton.title = user.name; }, error: { _ in self.nameBarButton.title = "You"; })
         
@@ -33,6 +32,9 @@ class DashboardViewController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.tintAdjustmentMode = .normal
         self.navigationController?.navigationBar.tintAdjustmentMode = .automatic
+        
+        let group = Group.getFromDisk()!
+        self.title = group.name;
     }
 
     /*

@@ -11,6 +11,7 @@ import Foundation
 class User: Codable {
     
     var id: Int;
+    var device_id: String = "";
     var name: String;
     var group_code: String;
     

@@ -150,7 +150,8 @@ class ServiceBase {
             }
         );
     }
-
+/**-----------------------------------------------------------------------*/
+    
     static func JoinGroup(group_code: String,group_name: String, user_name: String, success:@escaping () -> Void, error:@escaping (ApiError)->()){
         
         let customHeaders: HTTPHeaders = [
@@ -201,7 +202,7 @@ class ServiceBase {
     
     static func UpdateUser(name: String, success:@escaping (User) -> Void, error:@escaping (ApiError)->()){
         executeRequest(
-            route: "user/",
+            route: "user",
             method: .put,
             params: [
                 "name": name,
@@ -239,7 +240,8 @@ class ServiceBase {
                 var bills: [Bill] = [];
                 
                 for (_, o) in json {
-                    bills.append(Bill(owner_id: o["owner_id"].intValue, name: o["name"].stringValue, total: Decimal(o["total"].doubleValue), date_assigned: o["date_assigned"].stringValue, date_paid: o["date_paid"].stringValue, date_due: o["date_due"].stringValue))
+                    bills.append(Bill(owner_id: o["owner_id"].intValue, name: o["name"].stringValue, total: o["total"].doubleValue, date_assigned: o["date_assigned"].stringValue, date_paid: o["date_paid"].stringValue, date_due: o["date_due"].stringValue))
+                    bills.last?.subtotal = Double(o["subtotal"].doubleValue)
                 }
                 
                 success(bills);
@@ -264,6 +266,61 @@ class ServiceBase {
                 //TODO: change date paid back
                 "date_paid": df.string(from: Date()),
                 //"date_paid": bill.date_paid == nil ? "" : df.string(from: bill.date_paid!),
+                "date_due": df.string(from: bill.date_due),
+                ],
+            success: { json in
+                success();
+            },
+            error: { err in
+                error(err);
+            }
+        );
+    }
+    
+    static func editGroup(group: Group, success:@escaping () -> Void, error:@escaping (ApiError)->()){
+        executeRequest(
+            route: "group",
+            method: .put,
+            params: [
+                "name": group.name,
+                ],
+            success: { json in
+                success();
+            },
+            error: { err in
+                error(err);
+            }
+        );
+    }
+    
+    static func getBillDetail(bill_id: Int, success:@escaping () -> Void, error:@escaping (ApiError)->()){
+        executeRequest(
+            route: "bill/" + String(bill_id),
+            method: .get,
+            params: [:],
+            success: { json in
+                success();
+            },
+            error: { err in
+                error(err);
+            }
+        );
+    }
+    
+    static func updateBill(bill: Bill, success:@escaping () -> Void, error:@escaping (ApiError)->()){
+        let df = DateFormatter();
+        df.dateFormat = "yyyy-MM-dd HH:mm:ss";
+        
+        executeRequest(
+            route: "bill",
+            method: .put,
+            params: [
+                "name": bill.name,
+                "total": bill.total,
+                "date_assigned": df.string(from: bill.date_assigned),
+                //TODO: change date paid back
+                //"date_paid": df.string(from: Date()),
+                "date_paid": bill.date_paid == nil ? "" : df.string(from: bill.date_paid!),
                 "date_due": df.string(from: bill.date_due),
                 ],
             success: { json in

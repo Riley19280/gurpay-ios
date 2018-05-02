@@ -21,16 +21,30 @@ class BillTableViewCell: UITableViewCell {
 
     var bill: Bill? = nil {
         didSet {
+            let nf = NumberFormatter()
+            nf.maximumFractionDigits = 2;
+            nf.minimumFractionDigits = 2;
+            nf.minimumIntegerDigits = 1
+            
             self.titleLabel.text = bill!.name;
-            self.costAllocationLabel.text = "65.21/89.00";
-            //self.statusImageView = ??
+            self.costAllocationLabel.text = "$" + nf.string(from: NSNumber(value: bill!.subtotal))! + "/" + nf.string(from: NSNumber(value: bill!.total))!;
+            
+            if (bill!.subtotal + 0.02) >= bill!.total
+            {
+                self.statusImageView.image = #imageLiteral(resourceName: "Checkmark")
+            } else if bill!.date_paid == nil || bill!.date_paid! > bill!.date_due{
+                self.statusImageView.image = #imageLiteral(resourceName: "Alert")
+            } else {
+                self.statusImageView.image = #imageLiteral(resourceName: "RedX")
+            }
+            
             self.dateDueLabel.text = Util.displayDate(date: bill!.date_due);
             self.dateReceivedLabel.text = Util.displayDate(date: bill!.date_assigned);
             if bill!.date_paid != nil {
                 self.datePaidLabel.text = Util.displayDate(date: bill!.date_paid!);
             }
             else {
-                self.datePaidLabel.text = "Not yet pad.";
+                self.datePaidLabel.text = "Not yet paid.";
             }
         }
     }

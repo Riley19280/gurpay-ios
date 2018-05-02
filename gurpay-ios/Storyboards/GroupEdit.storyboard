@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,21 +19,81 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OdZ-gi-HVa">
-                                <rect key="frame" x="-0.5" y="571" width="375" height="21"/>
+                                <rect key="frame" x="0.0" y="571.5" width="375" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="S4p-Km-US2" userLabel="Edit Name Stack View">
+                                <rect key="frame" x="62.5" y="95" width="250" height="84"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odH-Od-T5c">
+                                        <rect key="frame" x="0.0" y="0.0" width="250" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d7u-hC-afc">
+                                        <rect key="frame" x="0.0" y="16" width="250" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        <connections>
+                                            <action selector="changeClicked:" destination="0iN-G5-YUk" eventType="editingDidEnd" id="Bca-wV-i3D"/>
+                                        </connections>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LFx-zk-8o8" userLabel="Padding Label">
+                                        <rect key="frame" x="0.0" y="46" width="250" height="8"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qXv-8R-z4L">
+                                        <rect key="frame" x="50" y="54" width="150" height="30"/>
+                                        <color key="backgroundColor" red="0.98713118649999998" green="0.41699226410000001" blue="0.20704654650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Change">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="changeClicked:" destination="0iN-G5-YUk" eventType="touchUpInside" id="4Cf-bs-xvc"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="d7u-hC-afc" secondAttribute="trailing" id="Hvj-tn-g1b"/>
+                                    <constraint firstItem="qXv-8R-z4L" firstAttribute="leading" secondItem="S4p-Km-US2" secondAttribute="leading" constant="50" id="Tdf-ox-STd"/>
+                                    <constraint firstAttribute="trailing" secondItem="odH-Od-T5c" secondAttribute="trailing" id="cK2-N9-Vmo"/>
+                                    <constraint firstItem="qXv-8R-z4L" firstAttribute="top" secondItem="d7u-hC-afc" secondAttribute="bottom" constant="8" id="gCW-Os-HTv"/>
+                                    <constraint firstAttribute="trailing" secondItem="qXv-8R-z4L" secondAttribute="trailing" constant="50" id="ikh-aL-A9M"/>
+                                    <constraint firstItem="d7u-hC-afc" firstAttribute="leading" secondItem="S4p-Km-US2" secondAttribute="leading" id="ncd-BH-POD"/>
+                                    <constraint firstItem="odH-Od-T5c" firstAttribute="leading" secondItem="S4p-Km-US2" secondAttribute="leading" id="ndW-d3-8Cc"/>
+                                </constraints>
+                            </stackView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="An error occured." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KdQ-AL-7we">
+                                <rect key="frame" x="0.0" y="334" width="375" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="0.70447335030000002" green="0.080107642960000003" blue="0.018675974089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.14117647059999999" green="0.77647058820000003" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="S4p-Km-US2" firstAttribute="top" secondItem="dvd-Yz-l4u" secondAttribute="top" constant="75" id="Etv-Hx-bzh"/>
+                            <constraint firstItem="S4p-Km-US2" firstAttribute="width" secondItem="bQ6-D3-mpb" secondAttribute="width" multiplier="2:3" id="MHZ-26-QwL"/>
                             <constraint firstItem="OdZ-gi-HVa" firstAttribute="width" secondItem="bQ6-D3-mpb" secondAttribute="width" id="MmX-BZ-Hfo"/>
+                            <constraint firstItem="KdQ-AL-7we" firstAttribute="centerY" secondItem="dvd-Yz-l4u" secondAttribute="centerY" id="QCS-xI-L4g"/>
+                            <constraint firstItem="KdQ-AL-7we" firstAttribute="width" secondItem="bQ6-D3-mpb" secondAttribute="width" id="T8T-41-n5H"/>
+                            <constraint firstItem="S4p-Km-US2" firstAttribute="centerX" secondItem="dvd-Yz-l4u" secondAttribute="centerX" id="aE0-uf-6Bc"/>
                             <constraint firstItem="OdZ-gi-HVa" firstAttribute="centerX" secondItem="dvd-Yz-l4u" secondAttribute="centerX" id="kBU-mj-bUh"/>
                             <constraint firstItem="dvd-Yz-l4u" firstAttribute="bottom" secondItem="OdZ-gi-HVa" secondAttribute="bottom" constant="75" id="pDQ-LX-hbi"/>
+                            <constraint firstItem="KdQ-AL-7we" firstAttribute="centerX" secondItem="dvd-Yz-l4u" secondAttribute="centerX" id="qbP-ZH-dqc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dvd-Yz-l4u"/>
                     </view>
                     <connections>
+                        <outlet property="changeButton" destination="qXv-8R-z4L" id="TnT-5o-yne"/>
+                        <outlet property="editNameTextField" destination="d7u-hC-afc" id="mA2-OW-jIc"/>
+                        <outlet property="errorLabel" destination="KdQ-AL-7we" id="nSp-9t-73M"/>
                         <outlet property="groupCodeLabel" destination="OdZ-gi-HVa" id="c8M-sK-So7"/>
                     </connections>
                 </viewController>

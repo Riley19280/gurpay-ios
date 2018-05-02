@@ -12,12 +12,15 @@ class Bill: Codable {
     
     var owner_id: Int;
     var name: String;
-    var total: Decimal;
+    var total: Double;
     var date_assigned: Date;
     var date_paid: Date?;
     var date_due: Date;
     
-    init(owner_id: Int, name: String, total: Decimal, date_assigned: Date, date_paid: Date?, date_due: Date) {
+    var subtotal: Double = 0;
+    var split_cost: Double = 0;
+    
+    init(owner_id: Int, name: String, total: Double, date_assigned: Date, date_paid: Date?, date_due: Date) {
         self.owner_id = owner_id;
         self.name = name;
         self.total = total;
@@ -26,7 +29,7 @@ class Bill: Codable {
         self.date_due = date_due;
     }
     
-    init(owner_id: Int, name: String, total: Decimal, date_assigned: String, date_paid: String, date_due: String) {
+    init(owner_id: Int, name: String, total: Double, date_assigned: String, date_paid: String, date_due: String) {
         self.owner_id = owner_id;
         self.name = name;
         self.total = total;

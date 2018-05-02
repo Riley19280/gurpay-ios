@@ -10,7 +10,6 @@ import UIKit
 
 class BillListTableViewController: UITableViewController {
 
-   
     var bills: [Bill] = [];
     
     override func viewDidLoad() {
@@ -85,9 +84,20 @@ class BillListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "ToBillView", sender: bills[indexPath.row]);
+        performSegue(withIdentifier: "ToBillView", sender: self);
     }
 
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is BillViewViewController {
+            guard tableView.indexPathForSelectedRow != nil else { return; }
+            (segue.destination as! BillViewViewController).bill = bills[tableView.indexPathForSelectedRow!.row];
+        }
+        else {
+//           / fatalError("Bil has incorrect segue.")
+        }
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

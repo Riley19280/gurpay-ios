@@ -18,9 +18,15 @@ class BillNewViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var errorLabel: UILabel!
     
     var firstResponder: UIView? = nil;
+    let dateFormatter = DateFormatter();
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dateFormatter.dateFormat = "MM/dd/yy"
+        
+        
         billTotal.keyboardType = .decimalPad;
         datePicker.setValue(UIColor.white, forKey: "textColor")
     }
@@ -31,13 +37,14 @@ class BillNewViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func createButtonClicked(_ sender: Any) {
-        let dateFormatter = DateFormatter();
-        dateFormatter.dateFormat = "MM/dd/YY"
+      
+        let nf = NumberFormatter();
+        
         guard let da = dateFormatter.date(from: startDate.text!) else { displayError(text: "Date is in the incorrect format."); return;}
         guard let dd = dateFormatter.date(from: dueDate.text!) else { displayError(text: "Date is in the incorrect format."); return;}
-        guard let to = Decimal(string: billTotal.text!) else { displayError(text: "Total should be a number."); return;}
-
-        let bill = Bill(owner_id: 0, name: billName.text!, total: to, date_assigned: da, date_paid: nil, date_due: dd);
+        guard let to = nf.number(from: billTotal.text!) else { displayError(text: "Total should be a number."); return;}
+      
+        let bill = Bill(owner_id: 0, name: billName.text!, total: Double(to), date_assigned: da, date_paid: nil, date_due: dd);
         
         ServiceBase.CreateBill(bill: bill,
             success: {
@@ -47,7 +54,6 @@ class BillNewViewController: UIViewController, UITextFieldDelegate {
                 self.displayError(text: err.toString());
             }
         )
-        
     }
     
     func displayError(text: String){
@@ -80,7 +86,15 @@ class BillNewViewController: UIViewController, UITextFieldDelegate {
         if textField.tag == 2 || textField.tag == 3 {
             datePicker.isHidden = false;
             firstResponder = textField;
-            textField.text = Util.displayDate(date: datePicker.date)
+
+            let oldDate = dateFormatter.date(from: textField.text!);
+            if oldDate != nil {
+                datePicker.date = oldDate!;
+            }
+            else {
+                textField.text = Util.displayDate(date: datePicker.date)
+            }
+            
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
             return false;
         }
