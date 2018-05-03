@@ -58,7 +58,7 @@ class Util {
     public static func displayDate(date: Date?)-> String? {
         if date == nil { return "" }
         
-        Util.dateFormatter.dateFormat = "MM/dd/YY"
+        Util.dateFormatter.dateFormat = "MM/dd/yy"
         Util.dateFormatter.timeZone = TimeZone.current;
         
       

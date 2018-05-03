@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Bill: Codable {
+class Bill {
     
     var owner_id: Int;
     var name: String;
@@ -17,8 +17,12 @@ class Bill: Codable {
     var date_paid: Date?;
     var date_due: Date;
     
+    typealias UserPaid = (user: User, paid: Bool);
+    
+    //detail bill stuff
     var subtotal: Double = 0;
     var split_cost: Double = 0;
+    var payers: [UserPaid] = [];
     
     init(owner_id: Int, name: String, total: Double, date_assigned: Date, date_paid: Date?, date_due: Date) {
         self.owner_id = owner_id;

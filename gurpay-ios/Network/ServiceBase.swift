@@ -240,8 +240,15 @@ class ServiceBase {
                 var bills: [Bill] = [];
                 
                 for (_, o) in json {
-                    bills.append(Bill(owner_id: o["owner_id"].intValue, name: o["name"].stringValue, total: o["total"].doubleValue, date_assigned: o["date_assigned"].stringValue, date_paid: o["date_paid"].stringValue, date_due: o["date_due"].stringValue))
-                    bills.last?.subtotal = Double(o["subtotal"].doubleValue)
+                    let bill = Bill(owner_id: o["owner_id"].intValue, name: o["name"].stringValue, total: o["total"].doubleValue, date_assigned: o["date_assigned"].stringValue, date_paid: o["date_paid"].stringValue, date_due: o["date_due"].stringValue)
+                    bill.subtotal = Double(o["subtotal"].doubleValue)
+                    bill.split_cost = Double(o["split_cost"].doubleValue)
+
+                    for (_, u) in o["payers"] {
+                        let user = User(id: u["id"].intValue, name: u["name"].stringValue, group_code: "")
+                        bill.payers.append((user: user,u["pivot"]["has_paid"].boolValue))
+                    }
+                    bills.append(bill)
                 }
                 
                 success(bills);

@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3OF-qW-agm">
-                                <rect key="frame" x="62" y="70" width="250" height="253.5"/>
+                                <rect key="frame" x="62" y="70" width="250" height="252.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bill Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sEC-eT-HrU">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="20.5"/>
@@ -27,8 +27,8 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Rent" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ggf-Re-J2S">
-                                        <rect key="frame" x="0.0" y="20.5" width="250" height="31"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Rent" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ggf-Re-J2S">
+                                        <rect key="frame" x="0.0" y="20.5" width="250" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
@@ -36,14 +36,14 @@
                                             <outlet property="delegate" destination="EUr-rZ-hav" id="mae-v2-fn6"/>
                                         </connections>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sxe-KW-Run">
-                                        <rect key="frame" x="0.0" y="51.5" width="250" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sxe-KW-Run">
+                                        <rect key="frame" x="0.0" y="50.5" width="250" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="206.53" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fz3-nP-gMV">
-                                        <rect key="frame" x="0.0" y="72" width="250" height="30"/>
+                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="206.53" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fz3-nP-gMV">
+                                        <rect key="frame" x="0.0" y="71" width="250" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="next"/>
@@ -51,44 +51,46 @@
                                             <outlet property="delegate" destination="EUr-rZ-hav" id="Tkx-4n-my9"/>
                                         </connections>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Start Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9iY-W6-0Bl">
-                                        <rect key="frame" x="0.0" y="102" width="250" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9iY-W6-0Bl">
+                                        <rect key="frame" x="0.0" y="101" width="250" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" tag="3" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select.." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U1g-BR-Dpz">
-                                        <rect key="frame" x="0.0" y="122.5" width="250" height="30"/>
+                                    <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select.." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U1g-BR-Dpz">
+                                        <rect key="frame" x="0.0" y="121.5" width="250" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
+                                            <action selector="dateFieldEditBegin:" destination="EUr-rZ-hav" eventType="editingDidBegin" id="iFn-YT-Wiw"/>
                                             <outlet property="delegate" destination="EUr-rZ-hav" id="gE2-Qp-eGA"/>
                                         </connections>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Due Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bPb-le-xPs">
-                                        <rect key="frame" x="0.0" y="152.5" width="250" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bPb-le-xPs">
+                                        <rect key="frame" x="0.0" y="151.5" width="250" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" tag="3" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select.." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H7z-U8-1QB">
-                                        <rect key="frame" x="0.0" y="173" width="250" height="30"/>
+                                    <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select.." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H7z-U8-1QB">
+                                        <rect key="frame" x="0.0" y="172" width="250" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
+                                            <action selector="dateFieldEditBegin:" destination="EUr-rZ-hav" eventType="editingDidBegin" id="oUo-vU-u22"/>
                                             <outlet property="delegate" destination="EUr-rZ-hav" id="9RD-WE-yUn"/>
                                         </connections>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="PadLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bRy-8w-k07">
-                                        <rect key="frame" x="0.0" y="203" width="250" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PadLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bRy-8w-k07">
+                                        <rect key="frame" x="0.0" y="202" width="250" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zGP-YO-0Uy">
-                                        <rect key="frame" x="0.0" y="223.5" width="250" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zGP-YO-0Uy">
+                                        <rect key="frame" x="0.0" y="222.5" width="250" height="30"/>
                                         <color key="backgroundColor" red="0.98713118649999998" green="0.41699226410000001" blue="0.20704654650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Create">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -99,41 +101,27 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There was an error creating your bill." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pVU-6r-UCP">
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="There was an error creating your bill." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pVU-6r-UCP">
                                 <rect key="frame" x="0.5" y="423.5" width="375" height="19.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="0.70447335030000002" green="0.080107642960000003" blue="0.018675974089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <datePicker hidden="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="42v-ee-OwT">
-                                <rect key="frame" x="0.0" y="451" width="375" height="216"/>
-                                <date key="date" timeIntervalSinceReferenceDate="546812707.78406405">
-                                    <!--2018-04-30 20:25:07 +0000-->
-                                </date>
-                                <connections>
-                                    <action selector="dateValueChanged:" destination="EUr-rZ-hav" eventType="valueChanged" id="EKq-pv-EaY"/>
-                                </connections>
-                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" red="0.14117647058823529" green="0.77647058823529413" blue="0.30196078431372547" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="42v-ee-OwT" firstAttribute="bottom" secondItem="tbq-zs-dJZ" secondAttribute="bottom" id="0Ud-xD-qQK"/>
                             <constraint firstItem="3OF-qW-agm" firstAttribute="centerX" secondItem="tbq-zs-dJZ" secondAttribute="centerX" id="4en-En-30n"/>
                             <constraint firstItem="pVU-6r-UCP" firstAttribute="top" relation="lessThanOrEqual" secondItem="3OF-qW-agm" secondAttribute="bottom" constant="100" id="H2R-e8-n91"/>
-                            <constraint firstItem="42v-ee-OwT" firstAttribute="centerX" secondItem="tbq-zs-dJZ" secondAttribute="centerX" id="TuP-pP-v3n"/>
                             <constraint firstItem="3OF-qW-agm" firstAttribute="width" secondItem="lDr-I5-7Ay" secondAttribute="width" multiplier="2:3" id="UJk-1p-eiw"/>
                             <constraint firstItem="3OF-qW-agm" firstAttribute="top" secondItem="tbq-zs-dJZ" secondAttribute="top" constant="50" id="YJp-uO-hDg"/>
                             <constraint firstItem="pVU-6r-UCP" firstAttribute="centerX" secondItem="tbq-zs-dJZ" secondAttribute="centerX" id="a6K-Y8-DUb"/>
-                            <constraint firstItem="42v-ee-OwT" firstAttribute="top" secondItem="pVU-6r-UCP" secondAttribute="bottom" constant="8" id="byx-Wj-O7r"/>
                             <constraint firstItem="pVU-6r-UCP" firstAttribute="width" secondItem="lDr-I5-7Ay" secondAttribute="width" id="fHz-Ra-f5Q"/>
-                            <constraint firstItem="42v-ee-OwT" firstAttribute="width" secondItem="lDr-I5-7Ay" secondAttribute="width" id="ozc-Z8-VUK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tbq-zs-dJZ"/>
                     </view>
                     <connections>
                         <outlet property="billName" destination="ggf-Re-J2S" id="WzS-xf-FPP"/>
                         <outlet property="billTotal" destination="Fz3-nP-gMV" id="67n-Fe-Q29"/>
-                        <outlet property="datePicker" destination="42v-ee-OwT" id="jzU-C1-zVN"/>
                         <outlet property="dueDate" destination="H7z-U8-1QB" id="0f4-KR-N6d"/>
                         <outlet property="errorLabel" destination="pVU-6r-UCP" id="HU6-cw-Yhd"/>
                         <outlet property="startDate" destination="U1g-BR-Dpz" id="UVd-11-uAN"/>

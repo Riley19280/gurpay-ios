@@ -14,10 +14,9 @@ class BillNewViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var billTotal: UITextField!
     @IBOutlet weak var startDate: UITextField!
     @IBOutlet weak var dueDate: UITextField!
-    @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var errorLabel: UILabel!
     
-    var firstResponder: UIView? = nil;
+    var firstResponder: UITextField? = nil;
     let dateFormatter = DateFormatter();
     
     
@@ -28,7 +27,7 @@ class BillNewViewController: UIViewController, UITextFieldDelegate {
         
         
         billTotal.keyboardType = .decimalPad;
-        datePicker.setValue(UIColor.white, forKey: "textColor")
+       
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,7 +63,7 @@ class BillNewViewController: UIViewController, UITextFieldDelegate {
     //MARK: Keyboard Stuff
     
     @objc func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let next = textField.superview?.viewWithTag(textField.tag + 1)
+        let next = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField
         if( next != nil) {
             firstResponder = next;
             next!.becomeFirstResponder();
@@ -77,31 +76,55 @@ class BillNewViewController: UIViewController, UITextFieldDelegate {
         return false;
     }
     
-    @IBAction func dateValueChanged(_ sender: Any) {
-        guard let fr = firstResponder as? UITextField else { return; }
-        fr.text = Util.displayDate(date: datePicker.date);
+    
+    @IBAction func dateFieldEditBegin(_ sender: UITextField) {
+        firstResponder = sender;
+        
+        let df = DateFormatter();
+        df.dateFormat = "MM/dd/yy";
+        
+        let datePickerView: UIDatePicker = UIDatePicker()
+        datePickerView.datePickerMode = UIDatePickerMode.date
+        
+        if let currentDate = df.date(from: sender.text!) {
+            datePickerView.date = currentDate;
+        }
+        
+        let toolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 100, height: 44 ));
+        let flexButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(datePickerDone));
+        toolbar.setItems([flexButton, doneButton], animated: true)
+        
+        sender.inputView = datePickerView
+        sender.inputAccessoryView = toolbar;
+        
+        datePickerView.addTarget(self, action: #selector(self.datePickerValueChanged(sender:)), for: .valueChanged)
     }
     
-    @objc func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if textField.tag == 2 || textField.tag == 3 {
-            datePicker.isHidden = false;
-            firstResponder = textField;
-
-            let oldDate = dateFormatter.date(from: textField.text!);
-            if oldDate != nil {
-                datePicker.date = oldDate!;
-            }
-            else {
-                textField.text = Util.displayDate(date: datePicker.date)
-            }
-            
-            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-            return false;
-        }
-        datePicker.isHidden = true;
-        
-        return true;
+    @objc func datePickerValueChanged(sender: UIDatePicker) {
+        guard  firstResponder != nil else { return; }
+        firstResponder!.text = Util.displayDate(date: sender.date)
     }
+    
+    @objc func datePickerDone(){
+        
+        let next = firstResponder?.superview?.viewWithTag((firstResponder?.tag)! + 1) as? UITextField
+        if( next != nil) {
+            firstResponder = next;
+            next!.becomeFirstResponder();
+        }
+        else {
+            //done now
+            firstResponder?.resignFirstResponder();
+            firstResponder = nil;
+            
+            //UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        }
+        
+        
+    }
+    
+   
     
 
 }
