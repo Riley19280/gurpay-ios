@@ -189,18 +189,18 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Title" id="lDi-Rz-pbk">
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="3KE-V0-7eL">
+                        <barButtonItem key="rightBarButtonItem" title="Actions" id="3KE-V0-7eL">
                             <connections>
-                                <action selector="editClicked:" destination="Eyt-sE-ggo" id="anD-aI-gd5"/>
+                                <action selector="actionsItemClicked:" destination="Eyt-sE-ggo" id="SQh-eU-YFv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="actionsBarButtonItem" destination="3KE-V0-7eL" id="4Fm-mc-JGD"/>
                         <outlet property="dateAssignedField" destination="2XF-aQ-Ymk" id="b9G-Ox-tee"/>
                         <outlet property="dateDueField" destination="lj9-nn-A3L" id="Adm-9f-sxf"/>
                         <outlet property="datePaidField" destination="h1x-R5-yc2" id="Ja6-Na-aTm"/>
-                        <outlet property="editBarButtonItem" destination="3KE-V0-7eL" id="qxz-gq-Jz7"/>
                         <outlet property="mainStackView" destination="J3a-tj-mCD" id="ZrL-r9-jrj"/>
                         <outlet property="nameField" destination="k53-q7-Ykh" id="hTQ-pE-Wec"/>
                         <outlet property="setPaidButton" destination="i1D-Nd-ePu" id="9Nm-By-ebK"/>
@@ -216,11 +216,20 @@
                         <outletCollection property="stackViewCollection" destination="QUZ-5R-TJn" collectionClass="NSMutableArray" id="PT6-qZ-ouA"/>
                         <outletCollection property="stackViewCollection" destination="b0s-Jp-aIt" collectionClass="NSMutableArray" id="2LJ-5L-sZd"/>
                         <outletCollection property="stackViewCollection" destination="B1P-N7-Kop" collectionClass="NSMutableArray" id="mJk-ga-d48"/>
+                        <segue destination="v1P-dH-9dC" kind="presentation" identifier="SelectPayers" id="f0a-m3-gbh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SYV-YM-0eP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="334.5" y="-161.5"/>
+        </scene>
+        <!--SelectPayers-->
+        <scene sceneID="x2N-eY-xwy">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SelectPayers" id="v1P-dH-9dC" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7O0-cM-v24" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="945" y="-163"/>
         </scene>
     </scenes>
 </document>

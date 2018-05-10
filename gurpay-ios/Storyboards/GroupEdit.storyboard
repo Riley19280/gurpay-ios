@@ -75,9 +75,36 @@
                                 <color key="textColor" red="0.70447335030000002" green="0.080107642960000003" blue="0.018675974089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bP5-ef-CRl">
+                                <rect key="frame" x="62" y="495.5" width="250" height="68"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycE-Xi-C5K">
+                                        <rect key="frame" x="0.0" y="0.0" width="250" height="30"/>
+                                        <color key="backgroundColor" red="0.98713118649999998" green="0.41699226410000001" blue="0.20704654650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Move current bills to archive">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="currentToArchiveClicked:" destination="0iN-G5-YUk" eventType="touchUpInside" id="z5D-xX-SuJ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BNe-vH-bLE">
+                                        <rect key="frame" x="0.0" y="38" width="250" height="30"/>
+                                        <color key="backgroundColor" red="0.98713118649999998" green="0.41699226410000001" blue="0.20704654650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Duplicate all bills for next month">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="duplicateForNextMonthClicked:" destination="0iN-G5-YUk" eventType="touchUpInside" id="fpv-3B-jOK"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.14117647059999999" green="0.77647058820000003" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="bP5-ef-CRl" firstAttribute="width" secondItem="bQ6-D3-mpb" secondAttribute="width" multiplier="2:3" id="89x-Jf-67X"/>
+                            <constraint firstItem="OdZ-gi-HVa" firstAttribute="top" secondItem="bP5-ef-CRl" secondAttribute="bottom" constant="8" id="9dM-72-7Dw"/>
                             <constraint firstItem="S4p-Km-US2" firstAttribute="top" secondItem="dvd-Yz-l4u" secondAttribute="top" constant="75" id="Etv-Hx-bzh"/>
                             <constraint firstItem="S4p-Km-US2" firstAttribute="width" secondItem="bQ6-D3-mpb" secondAttribute="width" multiplier="2:3" id="MHZ-26-QwL"/>
                             <constraint firstItem="OdZ-gi-HVa" firstAttribute="width" secondItem="bQ6-D3-mpb" secondAttribute="width" id="MmX-BZ-Hfo"/>
@@ -87,6 +114,7 @@
                             <constraint firstItem="OdZ-gi-HVa" firstAttribute="centerX" secondItem="dvd-Yz-l4u" secondAttribute="centerX" id="kBU-mj-bUh"/>
                             <constraint firstItem="dvd-Yz-l4u" firstAttribute="bottom" secondItem="OdZ-gi-HVa" secondAttribute="bottom" constant="75" id="pDQ-LX-hbi"/>
                             <constraint firstItem="KdQ-AL-7we" firstAttribute="centerX" secondItem="dvd-Yz-l4u" secondAttribute="centerX" id="qbP-ZH-dqc"/>
+                            <constraint firstItem="bP5-ef-CRl" firstAttribute="centerX" secondItem="dvd-Yz-l4u" secondAttribute="centerX" id="vG3-bC-hOp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dvd-Yz-l4u"/>
                     </view>

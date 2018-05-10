@@ -134,6 +134,7 @@ class ServiceBase {
         
     }
     
+    //MARK: ---------EXAMPLE---------
     static func example(success:@escaping () -> Void, error:@escaping (ApiError)->()){
         executeRequest(
             route: "exroute",
@@ -240,7 +241,7 @@ class ServiceBase {
                 var bills: [Bill] = [];
                 
                 for (_, o) in json {
-                    let bill = Bill(owner_id: o["owner_id"].intValue, name: o["name"].stringValue, total: o["total"].doubleValue, date_assigned: o["date_assigned"].stringValue, date_paid: o["date_paid"].stringValue, date_due: o["date_due"].stringValue)
+                    let bill = Bill(owner_id: o["owner_id"].intValue, name: o["name"].stringValue, total: o["total"].doubleValue, date_assigned: o["date_assigned"].stringValue, date_paid: o["date_paid"].stringValue, date_due: o["date_due"].stringValue, is_archive: o["archived"].boolValue)
                     bill.subtotal = Double(o["subtotal"].doubleValue)
                     bill.split_cost = Double(o["split_cost"].doubleValue)
 
@@ -332,6 +333,27 @@ class ServiceBase {
                 ],
             success: { json in
                 success();
+        },
+            error: { err in
+                error(err);
+        }
+        );
+    }
+    
+    static func getGroupMembers(success:@escaping (_:[User]) -> Void, error:@escaping (ApiError)->()){
+        executeRequest(
+            route: "group/members",
+            method: .get,
+            params: [:],
+            success: { json in
+                
+                var users: [User] = [];
+                for (_, o) in json {
+                    let user = User(id: u["id"].intValue, name: u["name"].stringValue, group_code: "")
+                    users.append(user)
+                }
+                
+                success(users);
         },
             error: { err in
                 error(err);

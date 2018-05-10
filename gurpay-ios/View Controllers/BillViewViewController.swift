@@ -21,26 +21,29 @@ class BillViewViewController: UIViewController {
     @IBOutlet weak var dateDueField: UITextField!
     @IBOutlet weak var setPaidButton: UIButton!
     
-    @IBOutlet weak var editBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var actionsBarButtonItem: UIBarButtonItem!
+    
     
     @IBOutlet var fieldCollection: [UITextField]!
     @IBOutlet var stackViewCollection: [UIStackView]!
+    
     enum State {
         case normal
         case editing
     }
+    var allowEdit: Bool = false;
     
     var state:State = State.normal  {
         didSet {
             switch state {
             case .normal:
-                editBarButtonItem.title = "Edit"
+                actionsBarButtonItem.title = "Actions"
                 fieldCollection.forEach({ $0.isUserInteractionEnabled = false})
                 fieldCollection.forEach({ $0.borderStyle = .none})
                 navigationItem.leftBarButtonItems?.forEach({$0.isEnabled = true})
                 
             case .editing:
-                editBarButtonItem.title = "Save"
+                actionsBarButtonItem.title = "Save"
                 fieldCollection.forEach({ $0.isUserInteractionEnabled = true})
                 fieldCollection.forEach({ $0.borderStyle = .roundedRect})
                 navigationItem.leftBarButtonItems?.forEach({$0.isEnabled = false})
@@ -52,77 +55,28 @@ class BillViewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let formatter = NumberFormatter()
-        formatter.maximumFractionDigits = 2;
-        formatter.minimumFractionDigits = 2;
-        formatter.minimumIntegerDigits = 1;
         
         Util.getUser(
             id: Util.getDeviceId(),
             success: { user in
                 if user.id == self.bill!.owner_id {
                     self.setPaidButton.isHidden = false;
-                    
-                } else {
-                    self.editBarButtonItem.isEnabled = false;
-                    self.editBarButtonItem.tintColor = UIColor.clear
+                    self.allowEdit = true;
                 }
             },
             error: { err in
-                //TODO: Hangle error
+                //TODO: Handle error
             }
         )
         
-        // Do any additional setup after loading the view.
-        if bill != nil {
-            //configuring base bill properties
-            nameField.text = bill!.name;
-            totalField.text = formatter.string(from: bill!.total as! NSNumber)!;
-            dateAssignedField.text = Util.displayDate(date: bill!.date_assigned)!
-            datePaidField.text = Util.displayDate(date: bill!.date_paid)!
-            dateDueField.text = Util.displayDate(date: bill!.date_due)!
-            self.title = bill!.name;
-            
-            //configure payers stuff
-            
-            if bill!.payers.count > 0 {
-                
-               mainStackView.setCustomSpacing(32, after: stackViewCollection.last!)
-                
-                let payersSectionLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 375, height: 25))
-                payersSectionLabel.text = "Payers on this bill";
-                payersSectionLabel.textAlignment = .center;
-                payersSectionLabel.font = payersSectionLabel.font.withSize(30);
-                payersSectionLabel.textColor = UIColor.white;
-                mainStackView.addArrangedSubview(payersSectionLabel);
-            }
-            
-            for p in bill!.payers {
-                
-                
-                let nameLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 375, height: 25))
-                nameLabel.text = p.user.name;
-                nameLabel.textColor = UIColor.white;
-                
-                
-                let paidLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 375, height: 25))
-                paidLabel.text = p.paid == true ? "Paid" : "Unpaid"
-                paidLabel.textColor = UIColor.white;
-                
-                let stackView = UIStackView(arrangedSubviews: [nameLabel,paidLabel])
-                stackView.frame = CGRect(x: 0, y: 0, width: 375, height: 25)
-                stackView.axis = .horizontal;
-                stackView.heightAnchor.constraint(equalToConstant: 25)
-                
-                mainStackView.addArrangedSubview(stackView);
-               
-               
-            }
-            
+        initializeUI();
+        
+        if(bill!.is_archive) {
+            self.allowEdit = false;
+            self.setPaidButton.isHidden = false;
+            navigationItem.rightBarButtonItems = nil;
+            navigationItem.rightBarButtonItem = nil;
         }
-        
-        
-        
     }
     
      override func didReceiveMemoryWarning() {
@@ -130,15 +84,10 @@ class BillViewViewController: UIViewController {
         // Dispose of any resources that can be recreated.
       }
     
+    //MARK: Functions
+    
     @IBAction func editClicked(_ sender: Any) {
-        if state == .normal
-        {
-            state = .editing;
-        }
-        else
-        {
-            state = .normal
-        }
+       
     }
     
     @IBAction func setPaidClicked(_ sender: Any) {
@@ -160,6 +109,77 @@ class BillViewViewController: UIViewController {
         )
     }
     
+    @IBAction func actionsItemClicked(_ sender: Any) {
+
+        if state == .editing
+        {
+            state = .normal;
+            return;
+        }
+        
+        let alertController = UIAlertController(
+            title: nil,
+            message: nil,
+            preferredStyle: UIAlertControllerStyle.actionSheet
+        );
+        
+        if allowEdit {
+            alertController.addAction(
+                UIAlertAction(
+                    title: "Delete",
+                    style: UIAlertActionStyle.destructive,
+                    handler: actionDelete
+                )
+            );
+        
+            alertController.addAction(
+                UIAlertAction(
+                    title: "Duplicate bill for next month",
+                    style: UIAlertActionStyle.default,
+                    handler: actionDuplicate
+                )
+            );
+            alertController.addAction(
+                UIAlertAction(
+                    title: "Add Payers to bill",
+                    style: UIAlertActionStyle.default,
+                    handler: actionAddPayer
+                )
+            );
+            alertController.addAction(
+                UIAlertAction(
+                    title: "Notify those who haven't paid",
+                    style: UIAlertActionStyle.default,
+                    handler: actionNotifyUnpaid
+                )
+            );
+            alertController.addAction(
+                UIAlertAction(
+                    title: "Edit bill",
+                    style: UIAlertActionStyle.default,
+                    handler: actionEdit
+                )
+            );
+        }
+        else {
+            alertController.addAction(
+                UIAlertAction(
+                    title: "Mark as paid",
+                    style: UIAlertActionStyle.default,
+                    handler: {_ in }
+                )
+            );
+        }
+        alertController.addAction(
+            UIAlertAction(
+                title: "Cancel",
+                style: UIAlertActionStyle.cancel,
+                handler: {_ in }
+            )
+        );
+        
+        navigationController?.present(alertController, animated: true, completion: nil)
+    }
     
     //MARK: Text Entry Stuff
     
@@ -201,6 +221,61 @@ class BillViewViewController: UIViewController {
     
     @objc func datePickerDone(){
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+    
+    func initializeUI(){
+        let formatter = NumberFormatter()
+        formatter.maximumFractionDigits = 2;
+        formatter.minimumFractionDigits = 2;
+        formatter.minimumIntegerDigits = 1;
+        
+        // Do any additional setup after loading the view.
+        if bill != nil {
+            //configuring base bill properties
+            nameField.text = bill!.name;
+            totalField.text = formatter.string(from: bill!.total as! NSNumber)!;
+            dateAssignedField.text = Util.displayDate(date: bill!.date_assigned)!
+            datePaidField.text = Util.displayDate(date: bill!.date_paid)!
+            dateDueField.text = Util.displayDate(date: bill!.date_due)!
+            self.title = bill!.name;
+            
+            //configure payers stuff
+            
+            if bill!.payers.count > 0 {
+                
+                mainStackView.setCustomSpacing(32, after: stackViewCollection.last!)
+                
+                let payersSectionLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 375, height: 25))
+                payersSectionLabel.text = "Payers on this bill";
+                payersSectionLabel.textAlignment = .center;
+                payersSectionLabel.font = payersSectionLabel.font.withSize(30);
+                payersSectionLabel.textColor = UIColor.white;
+                mainStackView.addArrangedSubview(payersSectionLabel);
+            }
+            
+            for p in bill!.payers {
+                
+                
+                let nameLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 375, height: 25))
+                nameLabel.text = p.user.name;
+                nameLabel.textColor = UIColor.white;
+                
+                
+                let paidLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 375, height: 25))
+                paidLabel.text = p.paid == true ? "Paid" : "Unpaid"
+                paidLabel.textColor = UIColor.white;
+                
+                let stackView = UIStackView(arrangedSubviews: [nameLabel,paidLabel])
+                stackView.frame = CGRect(x: 0, y: 0, width: 375, height: 25)
+                stackView.axis = .horizontal;
+                stackView.heightAnchor.constraint(equalToConstant: 25)
+                
+                mainStackView.addArrangedSubview(stackView);
+                
+                
+            }
+            
+        }
     }
     
 }

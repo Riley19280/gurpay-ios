@@ -10,6 +10,10 @@
 		3112B3C65A74D0C51FC9C6A1 /* Pods_gurpay_iosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781F5A985076970DE7FBAA55 /* Pods_gurpay_iosUITests.framework */; };
 		396F3919E41B9EA2D8612121 /* Pods_gurpay_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E176EAB4B4FBF4BD8BD8DAA /* Pods_gurpay_iosTests.framework */; };
 		6E4B516A53EA3E0933CE1B1B /* Pods_gurpay_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E99B88FC38CF06ED1348928 /* Pods_gurpay_ios.framework */; };
+		E5071D6820A2051400FD2397 /* BillViewController+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5071D6720A2051400FD2397 /* BillViewController+Actions.swift */; };
+		E5071D6A20A4CC2C00FD2397 /* SelectPayers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5071D6920A4CC2C00FD2397 /* SelectPayers.storyboard */; };
+		E5071D6C20A4CD7B00FD2397 /* SelectPayersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5071D6B20A4CD7B00FD2397 /* SelectPayersTableViewController.swift */; };
+		E5071D6E20A4CD9100FD2397 /* SelectPayersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5071D6D20A4CD9100FD2397 /* SelectPayersTableViewCell.swift */; };
 		E53FFE7B2090CA8D00D365A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53FFE7A2090CA8D00D365A3 /* AppDelegate.swift */; };
 		E53FFE7D2090CA8D00D365A3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53FFE7C2090CA8D00D365A3 /* ViewController.swift */; };
 		E53FFE802090CA8D00D365A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E53FFE7E2090CA8D00D365A3 /* Main.storyboard */; };
@@ -70,6 +74,10 @@
 		781F5A985076970DE7FBAA55 /* Pods_gurpay_iosUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_gurpay_iosUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86F8998F2A3FACA0C4CFABD4 /* Pods-gurpay-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gurpay-iosUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-gurpay-iosUITests/Pods-gurpay-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8E99B88FC38CF06ED1348928 /* Pods_gurpay_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_gurpay_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5071D6720A2051400FD2397 /* BillViewController+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BillViewController+Actions.swift"; sourceTree = "<group>"; };
+		E5071D6920A4CC2C00FD2397 /* SelectPayers.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelectPayers.storyboard; sourceTree = "<group>"; };
+		E5071D6B20A4CD7B00FD2397 /* SelectPayersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPayersTableViewController.swift; sourceTree = "<group>"; };
+		E5071D6D20A4CD9100FD2397 /* SelectPayersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SelectPayersTableViewCell.swift; path = "gurpay-ios/View Controllers/SelectPayersTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		E53FFE772090CA8D00D365A3 /* gurpay-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "gurpay-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E53FFE7A2090CA8D00D365A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E53FFE7C2090CA8D00D365A3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -237,8 +245,10 @@
 				E53FFEC32090F65900D365A3 /* GroupEditViewController.swift */,
 				E53FFECD2090F6EB00D365A3 /* BillNewViewController.swift */,
 				E53FFECF2090F6F700D365A3 /* BillViewViewController.swift */,
+				E5071D6720A2051400FD2397 /* BillViewController+Actions.swift */,
 				E53FFED12090F72D00D365A3 /* BillListTableViewController.swift */,
 				E53FFED32090F74300D365A3 /* UserListViewTableViewController.swift */,
+				E5071D6B20A4CD7B00FD2397 /* SelectPayersTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -255,6 +265,7 @@
 				E53FFEC72090F69C00D365A3 /* BillView.storyboard */,
 				E53FFEC92090F6A900D365A3 /* BillListView.storyboard */,
 				E53FFECB2090F6DA00D365A3 /* UserListView.storyboard */,
+				E5071D6920A4CC2C00FD2397 /* SelectPayers.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -264,6 +275,7 @@
 			children = (
 				E5513C312094F88E000574BE /* BillTableViewCell.swift */,
 				E5513C322094F88E000574BE /* BillTableViewCell.xib */,
+				E5071D6D20A4CD9100FD2397 /* SelectPayersTableViewCell.swift */,
 			);
 			path = "View Elements";
 			sourceTree = "<group>";
@@ -399,6 +411,7 @@
 				E5513C342094F88E000574BE /* BillTableViewCell.xib in Resources */,
 				E53FFEC22090F63C00D365A3 /* GroupEdit.storyboard in Resources */,
 				E53FFEC62090F68300D365A3 /* BillNew.storyboard in Resources */,
+				E5071D6A20A4CC2C00FD2397 /* SelectPayers.storyboard in Resources */,
 				E53FFE802090CA8D00D365A3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -506,6 +519,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E53FFEC02090F60100D365A3 /* UserEditViewController.swift in Sources */,
+				E5071D6E20A4CD9100FD2397 /* SelectPayersTableViewCell.swift in Sources */,
 				E53FFEAF2090D94700D365A3 /* SelectGroupViewController.swift in Sources */,
 				E53FFE7D2090CA8D00D365A3 /* ViewController.swift in Sources */,
 				E53FFED42090F74300D365A3 /* UserListViewTableViewController.swift in Sources */,
@@ -515,6 +529,8 @@
 				E53FFECE2090F6EB00D365A3 /* BillNewViewController.swift in Sources */,
 				E53FFEB82090EEA200D365A3 /* Bill.swift in Sources */,
 				E5513C332094F88E000574BE /* BillTableViewCell.swift in Sources */,
+				E5071D6C20A4CD7B00FD2397 /* SelectPayersTableViewController.swift in Sources */,
+				E5071D6820A2051400FD2397 /* BillViewController+Actions.swift in Sources */,
 				E5513C2E2094CB6B000574BE /* ApiError.swift in Sources */,
 				E53FFED62090FC8800D365A3 /* ServiceBase.swift in Sources */,
 				E53FFEB42090EE8600D365A3 /* Group.swift in Sources */,

@@ -33,6 +33,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
                                         <connections>
+                                            <action selector="fieldEditBegin:" destination="EUr-rZ-hav" eventType="editingDidBegin" id="lkf-25-u0p"/>
                                             <outlet property="delegate" destination="EUr-rZ-hav" id="mae-v2-fn6"/>
                                         </connections>
                                     </textField>
@@ -48,6 +49,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="next"/>
                                         <connections>
+                                            <action selector="fieldEditBegin:" destination="EUr-rZ-hav" eventType="editingDidBegin" id="jcT-K9-7ba"/>
                                             <outlet property="delegate" destination="EUr-rZ-hav" id="Tkx-4n-my9"/>
                                         </connections>
                                     </textField>

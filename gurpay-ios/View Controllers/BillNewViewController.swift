@@ -39,11 +39,11 @@ class BillNewViewController: UIViewController, UITextFieldDelegate {
       
         let nf = NumberFormatter();
         
-        guard let da = dateFormatter.date(from: startDate.text!) else { displayError(text: "Date is in the incorrect format."); return;}
-        guard let dd = dateFormatter.date(from: dueDate.text!) else { displayError(text: "Date is in the incorrect format."); return;}
+        guard let da = dateFormatter.date(from: startDate.text!) else { displayError(text: "Start date is in the incorrect format."); return;}
+        guard let dd = dateFormatter.date(from: dueDate.text!) else { displayError(text: "Due date is in the incorrect format."); return;}
         guard let to = nf.number(from: billTotal.text!) else { displayError(text: "Total should be a number."); return;}
       
-        let bill = Bill(owner_id: 0, name: billName.text!, total: Double(to), date_assigned: da, date_paid: nil, date_due: dd);
+        let bill = Bill(owner_id: 0, name: billName.text!, total: Double(truncating: to), date_assigned: da, date_paid: nil, date_due: dd,is_archive: false);
         
         ServiceBase.CreateBill(bill: bill,
             success: {
@@ -61,22 +61,25 @@ class BillNewViewController: UIViewController, UITextFieldDelegate {
     }
     
     //MARK: Keyboard Stuff
-    
-    @objc func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let next = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField
+    @IBAction func fieldEditBegin(_ sender: UITextField) {
+         firstResponder = sender;
+        
+        let toolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 100, height: 44 ));
+        let flexButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(keyboardDone));
+        
+        let next = sender.superview?.viewWithTag((firstResponder?.tag)! + 1) as? UITextField
         if( next != nil) {
-            firstResponder = next;
-            next!.becomeFirstResponder();
+            doneButton.title = "Next";
         }
-        else {
-            //done now
-            firstResponder = nil;
-            textField.resignFirstResponder();
-        }
-        return false;
+
+        
+        toolbar.setItems([flexButton, doneButton], animated: true)
+        
+        sender.inputAccessoryView = toolbar
+        
     }
-    
-    
+
     @IBAction func dateFieldEditBegin(_ sender: UITextField) {
         firstResponder = sender;
         
@@ -89,10 +92,20 @@ class BillNewViewController: UIViewController, UITextFieldDelegate {
         if let currentDate = df.date(from: sender.text!) {
             datePickerView.date = currentDate;
         }
+        sender.text = df.string(from: datePickerView.date)
+        
+        
         
         let toolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 100, height: 44 ));
         let flexButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(datePickerDone));
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(keyboardDone));
+        
+        let next = firstResponder?.superview?.viewWithTag((firstResponder?.tag)! + 1) as? UITextField
+        if( next != nil) {
+            doneButton.title = "Next";
+        }
+        
+        
         toolbar.setItems([flexButton, doneButton], animated: true)
         
         sender.inputView = datePickerView
@@ -106,7 +119,7 @@ class BillNewViewController: UIViewController, UITextFieldDelegate {
         firstResponder!.text = Util.displayDate(date: sender.date)
     }
     
-    @objc func datePickerDone(){
+    @objc func keyboardDone(){
         
         let next = firstResponder?.superview?.viewWithTag((firstResponder?.tag)! + 1) as? UITextField
         if( next != nil) {

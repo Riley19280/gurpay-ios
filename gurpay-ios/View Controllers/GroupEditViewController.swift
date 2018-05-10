@@ -57,6 +57,10 @@ class GroupEditViewController: UIViewController {
         )
     }
     
+    @IBAction func currentToArchiveClicked(_ sender: Any) {
+    }
+    @IBAction func duplicateForNextMonthClicked(_ sender: Any) {
+    }
     /*
     // MARK: - Navigation
 

@@ -37,6 +37,14 @@ class DashboardViewController: UIViewController {
         self.title = group.name;
     }
 
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ToArchive" {
+            guard let billListTableViewController = segue.destination as? BillListTableViewController else { fatalError("Incorrect segue view controller.")}
+            billListTableViewController.isArchive = true;
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

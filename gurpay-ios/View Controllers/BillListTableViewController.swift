@@ -12,6 +12,8 @@ class BillListTableViewController: UITableViewController {
 
     var bills: [Bill] = [];
     
+    var isArchive = false;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,7 +22,10 @@ class BillListTableViewController: UITableViewController {
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.addTarget(self, action: #selector(loadData), for: .valueChanged)
         
-        
+        if(isArchive) {
+            navigationItem.rightBarButtonItems = nil;
+            navigationItem.rightBarButtonItem = nil;
+        }
 
     }
 
