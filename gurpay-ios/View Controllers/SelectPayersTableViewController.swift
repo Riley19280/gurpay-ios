@@ -104,6 +104,9 @@ class SelectPayersTableViewController: UITableViewController {
         if let billVC = myRootViewController as? BillViewViewController {
             billVC.addPayers(users: selectedUsers);
         }
+        if let billVC = myRootViewController as? BillNewViewController {
+            billVC.addPayers(users: selectedUsers);
+        }
         
         self.dismiss(animated: true, completion: nil)
     }

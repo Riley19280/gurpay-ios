@@ -304,7 +304,7 @@ class ServiceBase {
         );
     }
     
-    static func CreateBill(bill: Bill, success:@escaping () -> Void, error:@escaping (ApiError)->()){
+    static func CreateBill(bill: Bill, success:@escaping (_ :Bill) -> Void, error:@escaping (ApiError)->()){
         let df = DateFormatter();
         df.dateFormat = "yyyy-MM-dd HH:mm:ss";
         
@@ -318,8 +318,11 @@ class ServiceBase {
                 "date_paid": bill.date_paid == nil ? "" : df.string(from: bill.date_paid!),
                 "date_due": df.string(from: bill.date_due),
                 ],
-            success: { json in
-                success();
+            success: { o in // o is json
+                let bill = Bill(id: o["id"].intValue,owner_id: o["owner_id"].intValue, name: o["name"].stringValue, total: o["total"].doubleValue, date_assigned: o["date_assigned"].stringValue, date_paid: o["date_paid"].stringValue, date_due: o["date_due"].stringValue, is_archive: o["archived"].boolValue)
+                bill.subtotal = Double(o["subtotal"].doubleValue)
+                bill.split_cost = Double(o["split_cost"].doubleValue)
+                success(bill);
             },
             error: { err in
                 error(err);
@@ -378,14 +381,15 @@ class ServiceBase {
         );
     }
     
-    static func addPayers(bill: Bill, users: [User], success:@escaping () -> Void, error:@escaping (ApiError)->()){
+    static func addPayers(bill: Bill, users: [User], success:@escaping (_: User) -> Void, error:@escaping (ApiError)->()){
         for user in users {
             executeRequest(
                 route: "bill/" + String(bill.id) + "/payer/" + String(user.id),
                 method: .post,
                 params: [:],
                 success: { json in
-                    success();
+                    
+                    success(user);
                 },
                 error: { err in
                     error(err);

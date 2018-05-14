@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Bill New View Controller-->
+        <!--New Bill-->
         <scene sceneID="lva-1c-SDG">
             <objects>
                 <viewController id="EUr-rZ-hav" customClass="BillNewViewController" customModule="gurpay_ios" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,8 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3OF-qW-agm">
-                                <rect key="frame" x="62" y="70" width="250" height="252.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3OF-qW-agm">
+                                <rect key="frame" x="62" y="70" width="250" height="302.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bill Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sEC-eT-HrU">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="20.5"/>
@@ -85,14 +85,18 @@
                                             <outlet property="delegate" destination="EUr-rZ-hav" id="9RD-WE-yUn"/>
                                         </connections>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PadLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bRy-8w-k07">
-                                        <rect key="frame" x="0.0" y="202" width="250" height="20.5"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="25" estimatedRowHeight="25" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="yFs-hm-KyH" customClass="BillViewPayersTableView" customModule="gurpay_ios" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="202" width="250" height="50"/>
+                                        <color key="backgroundColor" red="0.14117647059999999" green="0.77647058820000003" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableView>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="PadLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bRy-8w-k07">
+                                        <rect key="frame" x="0.0" y="252" width="250" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zGP-YO-0Uy">
-                                        <rect key="frame" x="0.0" y="222.5" width="250" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zGP-YO-0Uy">
+                                        <rect key="frame" x="0.0" y="272.5" width="250" height="30"/>
                                         <color key="backgroundColor" red="0.98713118649999998" green="0.41699226410000001" blue="0.20704654650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Create">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -121,17 +125,34 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tbq-zs-dJZ"/>
                     </view>
+                    <navigationItem key="navigationItem" title="New Bill" id="Jke-l4-YeL">
+                        <barButtonItem key="rightBarButtonItem" title="Add Payers" id="FUC-9V-ddm">
+                            <connections>
+                                <segue destination="InW-da-hpM" kind="presentation" identifier="SelectPayers" id="aLL-3A-tde"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="billName" destination="ggf-Re-J2S" id="WzS-xf-FPP"/>
                         <outlet property="billTotal" destination="Fz3-nP-gMV" id="67n-Fe-Q29"/>
                         <outlet property="dueDate" destination="H7z-U8-1QB" id="0f4-KR-N6d"/>
                         <outlet property="errorLabel" destination="pVU-6r-UCP" id="HU6-cw-Yhd"/>
+                        <outlet property="stackView" destination="3OF-qW-agm" id="pw5-gC-IY0"/>
                         <outlet property="startDate" destination="U1g-BR-Dpz" id="UVd-11-uAN"/>
+                        <outlet property="tableView" destination="yFs-hm-KyH" id="4if-Zs-MVR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VE0-4j-dUo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="392.80000000000001" y="-388.15592203898052"/>
+        </scene>
+        <!--SelectPayers-->
+        <scene sceneID="zGQ-vM-AHP">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SelectPayers" id="InW-da-hpM" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0rS-Uu-iXd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1055" y="-389"/>
         </scene>
     </scenes>
 </document>

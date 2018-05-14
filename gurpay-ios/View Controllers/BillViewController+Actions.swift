@@ -70,8 +70,12 @@ extension BillViewViewController {
         ServiceBase.addPayers(
             bill: bill!,
             users: users,
-            success: {
-                    
+            success: { user in
+                self.payersTableView.beginUpdates()
+                self.bill!.payers.append((user,false))
+                self.payersTableView.insertRows(at: [IndexPath(item: self.bill!.payers.count-1, section: 0)], with: .fade)
+                self.payersTableView.endUpdates()
+                self.payersTableView.invalidateIntrinsicContentSize()
             },
             error: {err in
                 self.displayError(text: err.toString())
@@ -91,5 +95,5 @@ extension BillViewViewController {
             }
         }
     }
-    
+
 }
