@@ -90,7 +90,7 @@ class ServiceBase {
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
             .responseData { response in
-                
+                //print(String(data: response.data!, encoding: String.Encoding.utf8) as String!)
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value);
@@ -105,7 +105,7 @@ class ServiceBase {
                 case .failure( _):
                     print(String(data: response.data!, encoding: String.Encoding.utf8) as String!)
                     if(!genericHandleErrorCodes(code: response.response?.statusCode)){
-                        //TxhjRU
+                        
                         guard let data = response.data else  { error(ApiError(string: "An unknown error occured")); return;  }
                         
                         var errorThrow = false;//stupid workaround var for the catch block
@@ -151,7 +151,8 @@ class ServiceBase {
             }
         );
     }
-/**-----------------------------------------------------------------------*/
+
+    //MARK: Group Functions
     
     static func JoinGroup(group_code: String,group_name: String, user_name: String, success:@escaping () -> Void, error:@escaping (ApiError)->()){
         
@@ -179,11 +180,65 @@ class ServiceBase {
                     error(ApiError(string: "There was a problem joing the group."))
                 }
             },
-                error: { err in
-                    error(err);
+            error: { err in
+                error(err);
             }
         );
     }
+    
+    static func LeaveGroup(success:@escaping () -> Void, error:@escaping (ApiError)->()){
+        executeRequest(
+            route: "group/leave",
+            method: .delete,
+            params: [:],
+            success: { json in
+                success();
+            },
+            error: { err in
+                error(err);
+            }
+        );
+    }
+    
+    static func editGroup(group: Group, success:@escaping () -> Void, error:@escaping (ApiError)->()){
+        executeRequest(
+            route: "group",
+            method: .put,
+            params: [
+                "name": group.name,
+            ],
+            success: { json in
+                success();
+            },
+            error: { err in
+                error(err);
+            }
+        );
+    }
+    
+
+    
+    static func getGroupMembers(success:@escaping (_:[User]) -> Void, error:@escaping (ApiError)->()){
+        executeRequest(
+            route: "group/members",
+            method: .get,
+            params: [:],
+            success: { json in
+                var users: [User] = [];
+                for (_, o) in json {
+                    let user = User(id: o["id"].intValue, name: o["name"].stringValue, group_code: "")
+                    users.append(user)
+                }
+                
+                success(users);
+            },
+            error: { err in
+                error(err);
+            }
+        );
+    }
+    
+    //MARK: User Functions
     
     static func GetUser(user_id: String, success:@escaping (User) -> Void, error:@escaping (ApiError)->()){
         executeRequest(
@@ -218,20 +273,9 @@ class ServiceBase {
         );
     }
     
-    static func LeaveGroup(success:@escaping () -> Void, error:@escaping (ApiError)->()){
-        executeRequest(
-            route: "group/leave",
-            method: .delete,
-            params: [:],
-            success: { json in
-                success();
-            },
-            error: { err in
-                error(err);
-            }
-        );
-    }
-
+   
+    //MARK: Bill Functions
+    
     static func GetBills(success:@escaping ([Bill]) -> Void, error:@escaping (ApiError)->()){
         executeRequest(
             route: "group/bills",
@@ -241,7 +285,7 @@ class ServiceBase {
                 var bills: [Bill] = [];
                 
                 for (_, o) in json {
-                    let bill = Bill(owner_id: o["owner_id"].intValue, name: o["name"].stringValue, total: o["total"].doubleValue, date_assigned: o["date_assigned"].stringValue, date_paid: o["date_paid"].stringValue, date_due: o["date_due"].stringValue, is_archive: o["archived"].boolValue)
+                    let bill = Bill(id: o["id"].intValue,owner_id: o["owner_id"].intValue, name: o["name"].stringValue, total: o["total"].doubleValue, date_assigned: o["date_assigned"].stringValue, date_paid: o["date_paid"].stringValue, date_due: o["date_due"].stringValue, is_archive: o["archived"].boolValue)
                     bill.subtotal = Double(o["subtotal"].doubleValue)
                     bill.split_cost = Double(o["split_cost"].doubleValue)
 
@@ -253,10 +297,10 @@ class ServiceBase {
                 }
                 
                 success(bills);
-        },
+            },
             error: { err in
                 error(err);
-        }
+            }
         );
     }
     
@@ -271,9 +315,7 @@ class ServiceBase {
                 "name": bill.name,
                 "total": bill.total,
                 "date_assigned": df.string(from: bill.date_assigned),
-                //TODO: change date paid back
-                "date_paid": df.string(from: Date()),
-                //"date_paid": bill.date_paid == nil ? "" : df.string(from: bill.date_paid!),
+                "date_paid": bill.date_paid == nil ? "" : df.string(from: bill.date_paid!),
                 "date_due": df.string(from: bill.date_due),
                 ],
             success: { json in
@@ -284,23 +326,7 @@ class ServiceBase {
             }
         );
     }
-    
-    static func editGroup(group: Group, success:@escaping () -> Void, error:@escaping (ApiError)->()){
-        executeRequest(
-            route: "group",
-            method: .put,
-            params: [
-                "name": group.name,
-                ],
-            success: { json in
-                success();
-            },
-            error: { err in
-                error(err);
-            }
-        );
-    }
-    
+
     static func getBillDetail(bill_id: Int, success:@escaping () -> Void, error:@escaping (ApiError)->()){
         executeRequest(
             route: "bill/" + String(bill_id),
@@ -320,46 +346,70 @@ class ServiceBase {
         df.dateFormat = "yyyy-MM-dd HH:mm:ss";
         
         executeRequest(
-            route: "bill",
+            route: "bill/" + String(bill.id),
             method: .put,
             params: [
                 "name": bill.name,
                 "total": bill.total,
                 "date_assigned": df.string(from: bill.date_assigned),
-                //TODO: change date paid back
-                //"date_paid": df.string(from: Date()),
                 "date_paid": bill.date_paid == nil ? "" : df.string(from: bill.date_paid!),
                 "date_due": df.string(from: bill.date_due),
                 ],
             success: { json in
                 success();
-        },
+            },
             error: { err in
                 error(err);
-        }
+            }
         );
     }
     
-    static func getGroupMembers(success:@escaping (_:[User]) -> Void, error:@escaping (ApiError)->()){
+    static func deleteBill(bill: Bill, success:@escaping () -> Void, error:@escaping (ApiError)->()){
         executeRequest(
-            route: "group/members",
-            method: .get,
+            route: "bill/" + String(bill.id),
+            method: .delete,
             params: [:],
             success: { json in
-                
-                var users: [User] = [];
-                for (_, o) in json {
-                    let user = User(id: u["id"].intValue, name: u["name"].stringValue, group_code: "")
-                    users.append(user)
-                }
-                
-                success(users);
-        },
+                success();
+            },
             error: { err in
                 error(err);
-        }
+            }
         );
     }
     
+    static func addPayers(bill: Bill, users: [User], success:@escaping () -> Void, error:@escaping (ApiError)->()){
+        for user in users {
+            executeRequest(
+                route: "bill/" + String(bill.id) + "/payer/" + String(user.id),
+                method: .post,
+                params: [:],
+                success: { json in
+                    success();
+                },
+                error: { err in
+                    error(err);
+                }
+            );
+        }
+    }
+    
+    static func deletePayers(bill: Bill, users: [User], success:@escaping () -> Void, error:@escaping (ApiError)->()){
+        
+        for user in users {
+            executeRequest(
+                route: "bill/" + String(bill.id) + "/payer/" + String(user.id),
+                method: .delete,
+                params: [:],
+                success: { json in
+                    success();
+                },
+                error: { err in
+                    error(err);
+                }
+            );
+        }
+    }
+        
 }
 

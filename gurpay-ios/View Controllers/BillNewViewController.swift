@@ -43,7 +43,7 @@ class BillNewViewController: UIViewController, UITextFieldDelegate {
         guard let dd = dateFormatter.date(from: dueDate.text!) else { displayError(text: "Due date is in the incorrect format."); return;}
         guard let to = nf.number(from: billTotal.text!) else { displayError(text: "Total should be a number."); return;}
       
-        let bill = Bill(owner_id: 0, name: billName.text!, total: Double(truncating: to), date_assigned: da, date_paid: nil, date_due: dd,is_archive: false);
+        let bill = Bill(id: 0, owner_id: 0, name: billName.text!, total: Double(truncating: to), date_assigned: da, date_paid: nil, date_due: dd,is_archive: false);
         
         ServiceBase.CreateBill(bill: bill,
             success: {

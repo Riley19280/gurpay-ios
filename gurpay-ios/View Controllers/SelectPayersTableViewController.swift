@@ -12,13 +12,20 @@ class SelectPayersTableViewController: UITableViewController {
 
     var myRootViewController: UIViewController?;
     var users: [User] = [];
+    var filterUsers: [User] = [];
     @IBOutlet weak var errorLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let navBar = UINavigationBar()
+        navBar.setItems([UINavigationItem(title: "Test")], animated: true)
+        
+        self.view.addSubview(navBar)
+        
         tableView.allowsMultipleSelection = true;
         
+        loadData();
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,38 +45,67 @@ class SelectPayersTableViewController: UITableViewController {
         return users.count;
     }
     
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PayerCell", for: indexPath) as! SelectPayersTableViewCell
+        
+        cell.user = users[indexPath.row];
+      
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 52;
+    }
     
 
     func loadData(){
-        
-        ServiceBase.getGroupMembers(
-            success: { users in
-                if users.count == 0 { self.errorLabel.isHidden = false; return; }
-                
-                self.users = users;
-                self.tableView.reloadData();
-                
-            }, error: { _ in
+        ServiceBase.GetUser(
+            user_id: Util.getDeviceId(),
+            success: { user in
+                self.filterUsers.append(user);
+                ServiceBase.getGroupMembers(
+                    success: { users in
+                       
+                        
+                        for user in users {
+                            if self.filterUsers.contains(where: {return $0.id == user.id})  {
+                                continue
+                            }
+                            self.users.append(user);
+                        }
+                        
+                        if self.users.count == 0 { self.errorLabel.isHidden = false; return; }
+                        self.tableView.reloadData();
+                        
+                    },
+                    error: { _ in
+                        self.errorLabel.text = "There was an error getting the groups' members."
+                        self.errorLabel.isHidden = false;
+                    }
+                )
+            },
+            error: { err in
                 self.errorLabel.text = "There was an error getting the groups' members."
                 self.errorLabel.isHidden = false;
             }
         )
         
+       
+        
     }
     @IBAction func doneClicked(_ sender: Any) {
-        
-        guard let rvc = myRootViewController as? BillViewViewController else { return; }
-        
+
         var selectedUsers: [User] = [];
-        
-        guard let selectedRows = tableView.indexPathsForSelectedRows else { return; }
-        
+        guard let selectedRows = tableView.indexPathsForSelectedRows else { self.dismiss(animated: true, completion: nil); return; }
         for path in selectedRows {
             selectedUsers.append(users[path.row]);
         }
         
-        rvc.setPayers(users);
-        navigationController?.popViewController(animated: true);
+        if let billVC = myRootViewController as? BillViewViewController {
+            billVC.addPayers(users: selectedUsers);
+        }
+        
+        self.dismiss(animated: true, completion: nil)
     }
     
 }

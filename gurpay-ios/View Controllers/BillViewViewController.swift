@@ -26,6 +26,11 @@ class BillViewViewController: UIViewController {
     
     @IBOutlet var fieldCollection: [UITextField]!
     @IBOutlet var stackViewCollection: [UIStackView]!
+    @IBOutlet var payerRemoveButtonCollection: [UIButton]! = []
+    @IBOutlet var payerStackViewCollection: [UIStackView]! = []
+    
+    
+    let dateFormatter = DateFormatter();
     
     enum State {
         case normal
@@ -40,12 +45,14 @@ class BillViewViewController: UIViewController {
                 actionsBarButtonItem.title = "Actions"
                 fieldCollection.forEach({ $0.isUserInteractionEnabled = false})
                 fieldCollection.forEach({ $0.borderStyle = .none})
+                payerRemoveButtonCollection.forEach({ $0.isHidden = true})
                 navigationItem.leftBarButtonItems?.forEach({$0.isEnabled = true})
                 
             case .editing:
                 actionsBarButtonItem.title = "Save"
                 fieldCollection.forEach({ $0.isUserInteractionEnabled = true})
                 fieldCollection.forEach({ $0.borderStyle = .roundedRect})
+                payerRemoveButtonCollection.forEach({ $0.isHidden = false})
                 navigationItem.leftBarButtonItems?.forEach({$0.isEnabled = false})
            
             }
@@ -60,7 +67,13 @@ class BillViewViewController: UIViewController {
             id: Util.getDeviceId(),
             success: { user in
                 if user.id == self.bill!.owner_id {
-                    self.setPaidButton.isHidden = false;
+                    if self.bill!.date_paid != nil {
+                        self.setPaidButton.isHidden = true;
+                    }
+                    else {
+                        self.setPaidButton.isHidden = false;
+                    }
+                    
                     self.allowEdit = true;
                 }
             },
@@ -71,9 +84,11 @@ class BillViewViewController: UIViewController {
         
         initializeUI();
         
-        if(bill!.is_archive) {
+       
+        
+        if bill!.is_archive {
             self.allowEdit = false;
-            self.setPaidButton.isHidden = false;
+            self.setPaidButton.isHidden = true;
             navigationItem.rightBarButtonItems = nil;
             navigationItem.rightBarButtonItem = nil;
         }
@@ -84,12 +99,7 @@ class BillViewViewController: UIViewController {
         // Dispose of any resources that can be recreated.
       }
     
-    //MARK: Functions
-    
-    @IBAction func editClicked(_ sender: Any) {
-       
-    }
-    
+    //MARK: Functions    
     @IBAction func setPaidClicked(_ sender: Any) {
         let date = Date();
         datePaidField.text = Util.displayDate(date: date)
@@ -98,10 +108,23 @@ class BillViewViewController: UIViewController {
     }
     
     func updateBill() {
+        let nf = NumberFormatter();
+        dateFormatter.dateFormat = "MM/dd/yy"
+        guard let da = dateFormatter.date(from: dateAssignedField.text!) else { displayError(text: "Date assigned is in the incorrect format."); return;}
+        guard let dd = dateFormatter.date(from: dateDueField.text!) else { displayError(text: "Due date is in the incorrect format."); return;}
+        guard let dp = dateFormatter.date(from: dateDueField.text!) else { displayError(text: "Date paid is in the incorrect format."); return;}
+        guard let to = nf.number(from: totalField.text!) else { displayError(text: "Total should be a number."); return;}
+        
+        bill?.name = nameField.text!;
+        bill?.total = Double(truncating: to);
+        bill?.date_assigned = da;
+        bill?.date_paid = dp;
+        bill?.date_due = dd;
+        
         ServiceBase.updateBill(
             bill: bill!,
             success: {
-                //TODO: handle update bill
+                self.state = .normal;
             },
             error: { err in
                 Util.displayBasicMessage(title: "Error", message: err.toString())
@@ -109,11 +132,38 @@ class BillViewViewController: UIViewController {
         )
     }
     
+    @objc func removePayerClicked(sender: UIButton) {
+      ServiceBase.deletePayers(bill: bill, users: [bill?.payers[sender.tag].user], success: {}, error: {})
+    }
+    
+    
+    //MARK: Error Handler
+    
+    func displayError(text: String) {
+        
+        let alertController = UIAlertController(
+            title: "Error",
+            message: text,
+            preferredStyle: UIAlertControllerStyle.alert
+        );
+        alertController.addAction(
+            UIAlertAction(
+                title: "Dismiss",
+                style: UIAlertActionStyle.default,
+                handler: {_ in }
+            )
+        );
+        
+        navigationController?.present(alertController, animated: true, completion: nil)
+    }
+    
+    //MARK: Action Handler
+    
     @IBAction func actionsItemClicked(_ sender: Any) {
 
         if state == .editing
         {
-            state = .normal;
+            updateBill();
             return;
         }
         
@@ -253,26 +303,37 @@ class BillViewViewController: UIViewController {
                 mainStackView.addArrangedSubview(payersSectionLabel);
             }
             
+            var count = 0;
             for p in bill!.payers {
-                
-                
+        
                 let nameLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 375, height: 25))
                 nameLabel.text = p.user.name;
                 nameLabel.textColor = UIColor.white;
-                
                 
                 let paidLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 375, height: 25))
                 paidLabel.text = p.paid == true ? "Paid" : "Unpaid"
                 paidLabel.textColor = UIColor.white;
                 
-                let stackView = UIStackView(arrangedSubviews: [nameLabel,paidLabel])
+                let removeButton = UIButton(frame: CGRect(x: 0, y: 0, width: 375, height: 25))
+                removeButton.setTitle("Remove", for: .normal)
+                removeButton.setTitleColor(UIColor.white, for: .normal)
+                removeButton.backgroundColor = UIColor(red: 252/255, green: 106/255, blue: 53/255, alpha: 1)
+                removeButton.isHidden = true;
+                removeButton.tag = count;
+                removeButton.addTarget(self, action: #selector(removePayerClicked(sender:)), for: .touchUpInside)
+                removeButton.contentEdgeInsets = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
+                payerRemoveButtonCollection.append(removeButton);
+                
+                let stackView = UIStackView(arrangedSubviews: [nameLabel,paidLabel,removeButton])
                 stackView.frame = CGRect(x: 0, y: 0, width: 375, height: 25)
                 stackView.axis = .horizontal;
                 stackView.heightAnchor.constraint(equalToConstant: 25)
+                stackView.setCustomSpacing(8, after: paidLabel)
+                payerStackViewCollection.append(stackView)
                 
                 mainStackView.addArrangedSubview(stackView);
                 
-                
+                count += 1;
             }
             
         }

@@ -12,13 +12,18 @@ class SelectPayersTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     
-    var user: User?;
+    var user: User? {
+        didSet {
+             nameLabel.text = user?.name;
+        }
+    }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
-        nameLabel.text = user?.name;
+        
         }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -26,4 +31,5 @@ class SelectPayersTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
 }

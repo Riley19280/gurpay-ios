@@ -10,6 +10,7 @@ import Foundation
 
 class Bill {
     
+    var id: Int;
     var owner_id: Int;
     var name: String;
     var total: Double;
@@ -25,7 +26,8 @@ class Bill {
     var split_cost: Double = 0;
     var payers: [UserPaid] = [];
     
-    init(owner_id: Int, name: String, total: Double, date_assigned: Date, date_paid: Date?, date_due: Date, is_archive: Bool) {
+    init(id: Int, owner_id: Int, name: String, total: Double, date_assigned: Date, date_paid: Date?, date_due: Date, is_archive: Bool) {
+        self.id = id;
         self.owner_id = owner_id;
         self.name = name;
         self.total = total;
@@ -35,7 +37,8 @@ class Bill {
         self.is_archive = is_archive;
     }
     
-    init(owner_id: Int, name: String, total: Double, date_assigned: String, date_paid: String, date_due: String, is_archive: Bool) {
+    init(id: Int, owner_id: Int, name: String, total: Double, date_assigned: String, date_paid: String, date_due: String, is_archive: Bool) {
+        self.id = id;
         self.owner_id = owner_id;
         self.name = name;
         self.total = total;

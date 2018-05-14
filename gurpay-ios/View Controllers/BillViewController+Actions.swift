@@ -25,14 +25,22 @@ extension BillViewViewController {
                 title: "Yes",
                 style: UIAlertActionStyle.destructive,
                 handler: { _ in
-                    //TODO: Delete Bill
+                    ServiceBase.deleteBill(
+                        bill: self.bill!,
+                        success: {
+                            self.navigationController?.popViewController(animated: true);
+                        },
+                        error: { err in
+                            self.displayError(text: err.toString())
+                        }
+                    )
                 }
             )
         );
         alertController.addAction(
             UIAlertAction(
                 title: "No",
-                style: UIAlertActionStyle.destructive,
+                style: UIAlertActionStyle.default,
                 handler: { _ in
                     
                 }
@@ -56,6 +64,32 @@ extension BillViewViewController {
     
     func actionEdit(_:UIAlertAction){
         state = .editing;
+    }
+    
+    func addPayers(users: [User]){
+        ServiceBase.addPayers(
+            bill: bill!,
+            users: users,
+            success: {
+                    
+            },
+            error: {err in
+                self.displayError(text: err.toString())
+            }
+        )
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let nav = segue.destination as? UINavigationController {
+            if let dest = nav.viewControllers.first as? SelectPayersTableViewController {
+                var filter: [User] = [];
+                for payer in bill!.payers {
+                    filter.append(payer.user)
+                }
+                dest.filterUsers = filter;
+                dest.myRootViewController = self;
+            }
+        }
     }
     
 }
