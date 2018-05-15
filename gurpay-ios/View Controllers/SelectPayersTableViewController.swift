@@ -59,7 +59,7 @@ class SelectPayersTableViewController: UITableViewController {
     
 
     func loadData(){
-        ServiceBase.GetUser(
+        Util.getUser(
             user_id: Util.getDeviceId(),
             success: { user in
                 self.filterUsers.append(user);

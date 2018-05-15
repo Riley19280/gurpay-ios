@@ -20,7 +20,7 @@ class GroupEditViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         let group = Group.getFromDisk();
-        groupCodeLabel.text = "Group Code:" + (group?.code)!;
+        groupCodeLabel.text = "Group Code: " + (group?.code)!;
         self.title = group?.name;
         
         editNameTextField.text = group?.name;
@@ -34,7 +34,7 @@ class GroupEditViewController: UIViewController {
     
     func displayError(message: String) {
         errorLabel.alpha = 1;
-        errorLabel.text = message;
+        errorLabel.text = errorLabel.text! + "\n" + message;
     }
     
     @IBAction func changeClicked(_ sender: Any) {
@@ -58,17 +58,32 @@ class GroupEditViewController: UIViewController {
     }
     
     @IBAction func currentToArchiveClicked(_ sender: Any) {
+        ServiceBase.GetBills(success: { bills in
+      
+        
+            ServiceBase.archiveBills(bills: bills, success: {
+                Util.displayBasicMessage(title: "Bill Archived", message: "Bills have been archived.")
+            }, error: {err in
+                self.displayError(message: err)
+            })
+        
+            
+        }, error: { err in
+            self.displayError(message: err.toString())
+        })
     }
     @IBAction func duplicateForNextMonthClicked(_ sender: Any) {
+        ServiceBase.GetBills(success: { bills in
+           
+            ServiceBase.duplicateBills(bills: bills, success: {
+                Util.displayBasicMessage(title: "Bill Duplicated", message: "Bills have been duplicated for next month.")
+            }, error: { err in
+                self.displayError(message: err)
+            })
+        
+        }, error: { err in
+            self.displayError(message: err.toString())
+        })
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+   
 }

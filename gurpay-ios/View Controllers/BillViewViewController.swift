@@ -20,6 +20,8 @@ class BillViewViewController: UIViewController {
     @IBOutlet weak var datePaidField: UITextField!
     @IBOutlet weak var dateDueField: UITextField!
     @IBOutlet weak var setPaidButton: UIButton!
+    @IBOutlet weak var addPayerButton: UIButton!
+    @IBOutlet weak var ownerLabel: UILabel!
     
     @IBOutlet weak var actionsBarButtonItem: UIBarButtonItem!
     
@@ -44,12 +46,14 @@ class BillViewViewController: UIViewController {
                 actionsBarButtonItem.title = "Actions"
                 fieldCollection.forEach({ $0.isUserInteractionEnabled = false})
                 fieldCollection.forEach({ $0.borderStyle = .none})
+                addPayerButton.isHidden = true;
                 navigationItem.leftBarButtonItems?.forEach({$0.isEnabled = true})
                 self.setEditing(false, animated: true)
             case .editing:
                 actionsBarButtonItem.title = "Save"
                 fieldCollection.forEach({ $0.isUserInteractionEnabled = true})
                 fieldCollection.forEach({ $0.borderStyle = .roundedRect})
+                addPayerButton.isHidden = false;
                 navigationItem.leftBarButtonItems?.forEach({$0.isEnabled = false})
                 self.setEditing(true, animated: true)
             }
@@ -61,10 +65,10 @@ class BillViewViewController: UIViewController {
 
         
         Util.getUser(
-            id: Util.getDeviceId(),
+            user_id: Util.getDeviceId(),
             success: { user in
                 if user.id == self.bill!.owner_id {
-                    if self.bill!.date_paid != nil {
+                    if self.bill!.date_paid != nil || self.bill!.is_archive {
                         self.setPaidButton.isHidden = true;
                     }
                     else {
@@ -73,6 +77,8 @@ class BillViewViewController: UIViewController {
                     
                     self.allowEdit = true;
                 }
+                self.buildActionHandler(user: user);
+                
             },
             error: { err in
                 //TODO: Handle error
@@ -84,6 +90,7 @@ class BillViewViewController: UIViewController {
             self.setPaidButton.isHidden = true;
             navigationItem.rightBarButtonItems = nil;
             navigationItem.rightBarButtonItem = nil;
+            self.title = "Group Archive";
         }
         
         payersTableView.register(UINib(nibName: "BillViewPayerTableViewCell", bundle: nil), forCellReuseIdentifier: "BillViewPayerCell")
@@ -93,6 +100,8 @@ class BillViewViewController: UIViewController {
         payersTableView.reloadData();
         
         initializeUI()
+        
+       
     }
     
      override func didReceiveMemoryWarning() {
@@ -101,9 +110,10 @@ class BillViewViewController: UIViewController {
       }
     
     //MARK: Functions    
-    @IBAction func setPaidClicked(_ sender: Any) {
+    @IBAction func setPaidClicked(_ sender: UIButton) {
         let date = Date();
         datePaidField.text = Util.displayDate(date: date)
+        sender.isHidden = true;
         bill?.date_paid = date;
         updateBill()
     }
@@ -133,11 +143,7 @@ class BillViewViewController: UIViewController {
         )
     }
     
-   
-    
-    
     //MARK: Error Handler
-    
     func displayError(text: String) {
         
         let alertController = UIAlertController(
@@ -157,52 +163,47 @@ class BillViewViewController: UIViewController {
     }
     
     //MARK: Action Handler
+    let actionAlertController = UIAlertController(
+        title: nil,
+        message: nil,
+        preferredStyle: UIAlertControllerStyle.actionSheet
+    );
     
-    @IBAction func actionsItemClicked(_ sender: Any) {
-
-        if state == .editing
-        {
-            updateBill();
-            return;
-        }
-        
-        let alertController = UIAlertController(
-            title: nil,
-            message: nil,
-            preferredStyle: UIAlertControllerStyle.actionSheet
-        );
+    func buildActionHandler(user: User){
         
         if allowEdit {
-            alertController.addAction(
+            actionAlertController.addAction(
                 UIAlertAction(
                     title: "Delete",
                     style: UIAlertActionStyle.destructive,
                     handler: actionDelete
                 )
             );
-        
-            alertController.addAction(
+            
+            actionAlertController.addAction(
                 UIAlertAction(
                     title: "Duplicate bill for next month",
                     style: UIAlertActionStyle.default,
                     handler: actionDuplicate
                 )
             );
-            alertController.addAction(
-                UIAlertAction(
-                    title: "Add Payers to bill",
-                    style: UIAlertActionStyle.default,
-                    handler: actionAddPayer
-                )
-            );
-            alertController.addAction(
+            actionAlertController.addAction(
                 UIAlertAction(
                     title: "Notify those who haven't paid",
                     style: UIAlertActionStyle.default,
                     handler: actionNotifyUnpaid
                 )
             );
-            alertController.addAction(
+            if bill?.date_paid != nil {
+                actionAlertController.addAction(
+                    UIAlertAction(
+                        title: "Archive Bill",
+                        style: UIAlertActionStyle.default,
+                        handler: actionArchive
+                    )
+                );
+            }
+            actionAlertController.addAction(
                 UIAlertAction(
                     title: "Edit bill",
                     style: UIAlertActionStyle.default,
@@ -211,33 +212,49 @@ class BillViewViewController: UIViewController {
             );
         }
         else {
-            alertController.addAction(
-                UIAlertAction(
-                    title: "Mark as paid",
-                    style: UIAlertActionStyle.default,
-                    handler: {_ in }
-                )
-            );
+ 
+            if self.bill!.payers.contains(where: {return $0.user.id == user.id && $0.paid == false}) {
+                self.actionAlertController.addAction(
+                    UIAlertAction(
+                        title: "Mark as paid",
+                        style: UIAlertActionStyle.default,
+                        handler: self.actionMarkPaid
+                    )
+                );
+            }
+            else {
+                self.navigationItem.rightBarButtonItems = nil;
+                self.navigationItem.rightBarButtonItem = nil;
+            }
+       
+            
         }
-        alertController.addAction(
+        actionAlertController.addAction(
             UIAlertAction(
                 title: "Cancel",
                 style: UIAlertActionStyle.cancel,
                 handler: {_ in }
             )
         );
+    }
+
+    @IBAction func actionsItemClicked(_ sender: Any) {
+
+        if state == .editing
+        {
+            updateBill();
+            return;
+        }
         
-        navigationController?.present(alertController, animated: true, completion: nil)
+        navigationController?.present(actionAlertController, animated: true, completion: nil)
     }
     
     //MARK: Text Entry Stuff
-    
     @IBAction func textFieldPrimaryAction(_ sender: Any) {
         guard let sender = sender as? UITextField else { return; }
         sender.resignFirstResponder()
     }
 
-    
     var currentEditingField: UITextField?;
     @IBAction func dateFieldEditBegin(_ sender: UITextField) {
         currentEditingField = sender;
@@ -287,6 +304,12 @@ class BillViewViewController: UIViewController {
             datePaidField.text = Util.displayDate(date: bill!.date_paid)!
             dateDueField.text = Util.displayDate(date: bill!.date_due)!
             self.title = bill!.name;
+            
+            Util.getUser(user_id: String(bill!.owner_id), success: {user in
+                self.ownerLabel.text = "Owner: " + user.name;
+            }, error: {err in
+                self.ownerLabel.text = "Owner: Unknown";
+            })
         }
     }
 }

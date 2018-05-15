@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="24" width="375" height="599"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="J3a-tj-mCD">
-                                        <rect key="frame" x="8" y="0.0" width="359" height="253"/>
+                                        <rect key="frame" x="8" y="0.0" width="359" height="284"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Idp-3A-kc4">
                                                 <rect key="frame" x="0.0" y="0.0" width="359" height="25"/>
@@ -162,14 +162,40 @@
                                                     <constraint firstAttribute="height" constant="25" id="hli-GK-MjU"/>
                                                 </constraints>
                                             </stackView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payers on this bill" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRt-jb-gdj">
-                                                <rect key="frame" x="0.0" y="165" width="359" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Owner: User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5y-89-ZG4">
+                                                <rect key="frame" x="0.0" y="165" width="359" height="23"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NSA-RF-JG8">
+                                                <rect key="frame" x="0.0" y="196" width="359" height="30"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payers on this bill" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRt-jb-gdj">
+                                                        <rect key="frame" x="0.0" y="0.0" width="359" height="30"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mPV-WM-8Vu">
+                                                        <rect key="frame" x="-8" y="0.0" width="30" height="30"/>
+                                                        <color key="backgroundColor" red="0.98713118649999998" green="0.41699226410000001" blue="0.20704654650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="30" id="3Bu-qb-FTg"/>
+                                                            <constraint firstAttribute="height" constant="30" id="9VV-Nh-Pbh"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                        <state key="normal" title="+">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="actionAddPayer:" destination="Eyt-sE-ggo" eventType="touchUpInside" id="mms-49-5Vo"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" ambiguous="YES" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="25" estimatedRowHeight="25" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UTK-RC-2ED" customClass="BillViewPayersTableView" customModule="gurpay_ios" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="203" width="359" height="50"/>
+                                                <rect key="frame" x="0.0" y="234" width="359" height="50"/>
                                                 <color key="backgroundColor" red="0.14117647059999999" green="0.77647058820000003" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                             </tableView>
                                         </subviews>
@@ -208,11 +234,13 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="actionsBarButtonItem" destination="3KE-V0-7eL" id="4Fm-mc-JGD"/>
+                        <outlet property="addPayerButton" destination="mPV-WM-8Vu" id="XeC-Bo-HYb"/>
                         <outlet property="dateAssignedField" destination="2XF-aQ-Ymk" id="b9G-Ox-tee"/>
                         <outlet property="dateDueField" destination="lj9-nn-A3L" id="Adm-9f-sxf"/>
                         <outlet property="datePaidField" destination="h1x-R5-yc2" id="Ja6-Na-aTm"/>
                         <outlet property="mainStackView" destination="J3a-tj-mCD" id="ZrL-r9-jrj"/>
                         <outlet property="nameField" destination="k53-q7-Ykh" id="hTQ-pE-Wec"/>
+                        <outlet property="ownerLabel" destination="O5y-89-ZG4" id="ZYe-sg-3AE"/>
                         <outlet property="payersTableView" destination="UTK-RC-2ED" id="0uZ-Ee-dYf"/>
                         <outlet property="setPaidButton" destination="i1D-Nd-ePu" id="9Nm-By-ebK"/>
                         <outlet property="totalField" destination="cor-go-qUB" id="Mmc-Y0-4dk"/>

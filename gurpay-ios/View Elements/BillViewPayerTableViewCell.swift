@@ -14,7 +14,7 @@ class BillViewPayerTableViewCell: UITableViewCell {
     @IBOutlet weak var statusLabel: UILabel!
 
     
-    public var payer : Bill.UserPaid? {
+    public var payer : UserPaid? {
         didSet {
             self.nameLabel.text = payer!.user.name
             self.statusLabel.text = payer!.paid == true ? "Paid" : "Unpaid"

@@ -19,7 +19,7 @@ class DashboardViewController: UIViewController {
         
        
         
-        ServiceBase.GetUser(user_id: Util.getDeviceId(), success: {user in self.nameBarButton.title = user.name; }, error: { _ in self.nameBarButton.title = "You"; })
+        Util.getUser(user_id: Util.getDeviceId(), success: {user in self.nameBarButton.title = user.name; }, error: { _ in self.nameBarButton.title = "You"; })
         
     }
 

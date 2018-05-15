@@ -240,7 +240,8 @@ class ServiceBase {
     
     //MARK: User Functions
     
-    static func GetUser(user_id: String, success:@escaping (User) -> Void, error:@escaping (ApiError)->()){
+
+    static func GetUser(user_id: String, success:@escaping (User) -> Void, error:@escaping (ApiError)->()) {
         executeRequest(
             route: "user/" + user_id,
             method: .get,
@@ -276,9 +277,13 @@ class ServiceBase {
    
     //MARK: Bill Functions
     
-    static func GetBills(success:@escaping ([Bill]) -> Void, error:@escaping (ApiError)->()){
+    static func GetBills(archived: Bool = false, success:@escaping ([Bill]) -> Void, error:@escaping (ApiError)->()){
+        var route: String = "group/bills";
+        if archived {
+            route = "group/archive";
+        }
         executeRequest(
-            route: "group/bills",
+            route: route,
             method: .get,
             params: [:],
             success: { json in
@@ -291,11 +296,11 @@ class ServiceBase {
 
                     for (_, u) in o["payers"] {
                         let user = User(id: u["id"].intValue, name: u["name"].stringValue, group_code: "")
-                        bill.payers.append((user: user,u["pivot"]["has_paid"].boolValue))
+                        bill.payers.append(UserPaid(user: user,paid:u["pivot"]["has_paid"].boolValue))
                     }
                     bills.append(bill)
                 }
-                
+                bills = bills.sorted(by: {a,b in return a.date_assigned < b.date_assigned})
                 success(bills);
             },
             error: { err in
@@ -392,6 +397,7 @@ class ServiceBase {
                     success(user);
                 },
                 error: { err in
+                    print(bill.id, bill.owner_id, user.id)
                     error(err);
                 }
             );
@@ -414,6 +420,88 @@ class ServiceBase {
             );
         }
     }
+    
+    static func markPayerPaid(bill: Bill, success:@escaping () -> Void, error:@escaping (ApiError)->()){
+        executeRequest(
+            route: "bill/" + String(bill.id) + "/payer/pay",
+            method: .post,
+            params: [:],
+            success: { json in
+                success();
+        },
+            error: { err in
+                error(err);
+        }
+        );
+    }
+    
+    static func archiveBills(bills: [Bill], success:@escaping () -> Void, error:@escaping (String)->()){
+        let queue = DispatchGroup();
+          var errors: [ApiError] = [];
         
+        for bill in bills {
+            if bill.date_paid == nil { continue; }
+            queue.enter()
+            executeRequest(
+                route: "bill/" + String(bill.id) + "/archive",
+                method: .put,
+                params: [:],
+                success: { json in
+                    queue.leave();
+                },
+                error: { err in
+                    queue.leave();
+                    errors.append(err);
+                }
+            );
+        }
+        
+        queue.notify(queue: .main) {
+            if errors.count == 0 {
+                success();
+            }else {
+                var str = "";
+                for err in errors {
+                    str += err.toString() + "\n";
+                }
+                error(str);
+            }
+        }
+        
+    }
+    
+    static func duplicateBills(bills: [Bill], success:@escaping () -> Void, error:@escaping (String)->()){
+        let queue = DispatchGroup();
+        var errors: [ApiError] = [];
+        
+        for bill in bills {
+            queue.enter();
+            executeRequest(
+                route: "bill/" + String(bill.id) + "/duplicate",
+                method: .post,
+                params: [:],
+                success: { json in
+                    queue.leave();
+                },
+                error: { err in
+                    queue.leave();
+                    errors.append(err);
+                }
+            );
+        }
+        
+        queue.notify(queue: .main) {
+            if errors.count == 0 {
+                success();
+            }else {
+                var str = "";
+                for err in errors {
+                    str += err.toString() + "\n";
+                }
+                error(str);
+            }
+        }
+    }
+    
 }
 

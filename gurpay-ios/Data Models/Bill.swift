@@ -19,8 +19,6 @@ class Bill {
     var date_due: Date;
     var is_archive: Bool;
     
-    typealias UserPaid = (user: User, paid: Bool);
-    
     //detail bill stuff
     var subtotal: Double = 0;
     var split_cost: Double = 0;
@@ -48,4 +46,22 @@ class Bill {
         self.is_archive = is_archive;
     }
     
+    func usersFromPayers()-> [User]{
+        var users: [User] = [];
+        for payer in payers {
+            users.append(payer.user)
+        }
+        return users;
+    }
+    
+}
+
+class UserPaid {
+    var user: User;
+    var paid: Bool;
+    
+    init(user: User, paid: Bool) {
+        self.user = user;
+        self.paid = paid;
+    }
 }

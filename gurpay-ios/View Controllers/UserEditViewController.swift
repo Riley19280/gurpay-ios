@@ -23,7 +23,7 @@ class UserEditViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        ServiceBase.GetUser(
+        Util.getUser(
             user_id: Util.getDeviceId(),
             success: { user in
                 self.editNameTextField.text = user.name;

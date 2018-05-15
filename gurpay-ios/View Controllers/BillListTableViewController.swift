@@ -35,6 +35,7 @@ class BillListTableViewController: UITableViewController {
     
     @objc func loadData(){
         ServiceBase.GetBills(
+            archived: isArchive,
             success: { bills in
                 self.bills = bills;
                 self.tableView.reloadData();

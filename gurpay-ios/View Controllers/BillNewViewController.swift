@@ -84,7 +84,7 @@ class BillNewViewController: UIViewController, UITextFieldDelegate {
     
 
     func addPayers(users: [User]){
-        payers = users;
+        payers.append(contentsOf: users)
         tableView.reloadData()
         tableView.invalidateIntrinsicContentSize()
     }
@@ -93,7 +93,7 @@ class BillNewViewController: UIViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let nav = segue.destination as? UINavigationController {
             if let dest = nav.viewControllers.first as? SelectPayersTableViewController {
-                dest.filterUsers = [];
+                dest.filterUsers = payers;
                 dest.myRootViewController = self;
             }
         }

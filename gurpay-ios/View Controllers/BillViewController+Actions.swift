@@ -51,20 +51,55 @@ extension BillViewViewController {
     }
     
     func actionDuplicate(_:UIAlertAction) {
+        ServiceBase.duplicateBills(bills: [bill!], success: {
+            Util.displayBasicMessage(title: "Bill Duplicated", message: "Bill successfully duplicated.")
+        }, error: { err in
+            self.displayError(text: err)
+        })
         
     }
     
-    func actionAddPayer(_:UIAlertAction){
+    @IBAction func actionAddPayer(_:UIAlertAction) {
         performSegue(withIdentifier: "SelectPayers", sender: self);
     }
     
-    func actionNotifyUnpaid(_:UIAlertAction){
+    func actionNotifyUnpaid(_:UIAlertAction) {
         
     }
     
-    func actionEdit(_:UIAlertAction){
+    func actionEdit(_:UIAlertAction) {
         state = .editing;
     }
+    
+    func actionMarkPaid(_:UIAlertAction) {
+        ServiceBase.markPayerPaid(
+            bill: bill!,
+            success: {
+                Util.getUser(
+                    user_id: Util.getDeviceId(),
+                    success: {user in
+                        (self.bill!.payers.first(where: {return $0.user.id == user.id}))?.paid = true;
+                    },
+                    error: {_ in
+                        //TODO: Handle Error
+                    }
+                )
+            },
+            error: {err in
+                //TODO: Handle Error
+            }
+        )
+    }
+    
+    func actionArchive(_:UIAlertAction){
+        ServiceBase.archiveBills(bills: [bill!], success: {
+            Util.displayBasicMessage(title: "Bill archived", message: "Bill successfully archived.")
+        }, error: { err in
+            self.displayError(text: err)
+        })
+    }
+    
+    //MARK: Helper Functions
     
     func addPayers(users: [User]){
         ServiceBase.addPayers(
@@ -72,7 +107,7 @@ extension BillViewViewController {
             users: users,
             success: { user in
                 self.payersTableView.beginUpdates()
-                self.bill!.payers.append((user,false))
+                self.bill!.payers.append(UserPaid(user: user, paid: false))
                 self.payersTableView.insertRows(at: [IndexPath(item: self.bill!.payers.count-1, section: 0)], with: .fade)
                 self.payersTableView.endUpdates()
                 self.payersTableView.invalidateIntrinsicContentSize()

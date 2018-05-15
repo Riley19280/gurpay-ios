@@ -42,19 +42,8 @@
                                     <segue destination="LSv-7d-dLY" kind="show" id="Hev-SZ-aZ2"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agn-4J-WuN">
-                                <rect key="frame" x="117" y="318" width="158" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.98713118649999998" green="0.41699226410000001" blue="0.20704654650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="View Group Users">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="4XC-cW-8Ex" kind="show" id="zvF-U8-L1E"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FgB-DL-Rdd">
-                                <rect key="frame" x="117" y="364" width="158" height="30"/>
+                                <rect key="frame" x="116" y="311" width="158" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.98713118649999998" green="0.41699226410000001" blue="0.20704654650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Add BIll">
@@ -65,7 +54,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UeV-ST-9LC">
-                                <rect key="frame" x="117" y="409" width="158" height="30"/>
+                                <rect key="frame" x="116" y="349" width="158" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.98713118649999998" green="0.41699226410000001" blue="0.20704654650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="View Archive">
@@ -105,7 +94,7 @@
                 <viewControllerPlaceholder storyboardName="UserEdit" id="xV7-Sn-pP7" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bCJ-cO-1X6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1226" y="-377"/>
+            <point key="canvasLocation" x="1225" y="-355"/>
         </scene>
         <!--GroupEdit-->
         <scene sceneID="hot-MH-TDM">
@@ -113,7 +102,7 @@
                 <viewControllerPlaceholder storyboardName="GroupEdit" id="566-nR-M4n" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s5v-OR-wgh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1231" y="-334"/>
+            <point key="canvasLocation" x="1230" y="-312"/>
         </scene>
         <!--BillListView-->
         <scene sceneID="IVB-5v-6GO">
@@ -121,15 +110,7 @@
                 <viewControllerPlaceholder storyboardName="BillListView" id="LSv-7d-dLY" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Ue-IP-Rd3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1239" y="-288"/>
-        </scene>
-        <!--UserListView-->
-        <scene sceneID="PhG-9X-5fW">
-            <objects>
-                <viewControllerPlaceholder storyboardName="UserListView" id="4XC-cW-8Ex" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IlD-KI-jo0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1246" y="-243"/>
+            <point key="canvasLocation" x="1238" y="-266"/>
         </scene>
         <!--BillNew-->
         <scene sceneID="zUV-aZ-iPT">
@@ -137,7 +118,7 @@
                 <viewControllerPlaceholder storyboardName="BillNew" id="mq0-SR-W0l" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ik2-Og-oNq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1219" y="-199"/>
+            <point key="canvasLocation" x="1218" y="-222"/>
         </scene>
         <!--BillListView-->
         <scene sceneID="lk0-gw-83E">
@@ -145,7 +126,7 @@
                 <viewControllerPlaceholder storyboardName="BillListView" id="9PM-GA-fIK" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="at3-Xu-rWZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1239" y="-153"/>
+            <point key="canvasLocation" x="1238" y="-176"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="spK-yD-DyK">
