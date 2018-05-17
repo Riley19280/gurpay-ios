@@ -9,6 +9,14 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Verdana.ttf">
+            <string>Verdana</string>
+        </array>
+        <array key="VerdanaBold.ttf">
+            <string>Verdana-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Group Edit View Controller-->
         <scene sceneID="v0k-dw-5wG">
@@ -18,107 +26,119 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OdZ-gi-HVa">
-                                <rect key="frame" x="0.0" y="571.5" width="375" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="S4p-Km-US2" userLabel="Edit Name Stack View">
-                                <rect key="frame" x="62.5" y="95" width="250" height="84"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IlD-rz-qX7">
+                                <rect key="frame" x="16" y="36" width="343" height="615"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odH-Od-T5c">
-                                        <rect key="frame" x="0.0" y="0.0" width="250" height="16"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="S4p-Km-US2" userLabel="Edit Name Stack View">
+                                        <rect key="frame" x="34.5" y="75" width="274" height="96"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odH-Od-T5c">
+                                                <rect key="frame" x="0.0" y="0.0" width="274" height="21"/>
+                                                <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d7u-hC-afc">
+                                                <rect key="frame" x="0.0" y="29" width="274" height="30"/>
+                                                <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                <connections>
+                                                    <action selector="changeClicked:" destination="0iN-G5-YUk" eventType="editingDidEnd" id="Bca-wV-i3D"/>
+                                                </connections>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qXv-8R-z4L">
+                                                <rect key="frame" x="50" y="67" width="174" height="29"/>
+                                                <color key="backgroundColor" red="0.98713118649999998" green="0.41699226410000001" blue="0.20704654650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="4" maxX="8" maxY="4"/>
+                                                <state key="normal" title="Change">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="changeClicked:" destination="0iN-G5-YUk" eventType="touchUpInside" id="4Cf-bs-xvc"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="d7u-hC-afc" secondAttribute="trailing" id="Hvj-tn-g1b"/>
+                                            <constraint firstItem="qXv-8R-z4L" firstAttribute="leading" secondItem="S4p-Km-US2" secondAttribute="leading" constant="50" id="Tdf-ox-STd"/>
+                                            <constraint firstAttribute="trailing" secondItem="odH-Od-T5c" secondAttribute="trailing" id="cK2-N9-Vmo"/>
+                                            <constraint firstItem="qXv-8R-z4L" firstAttribute="top" secondItem="d7u-hC-afc" secondAttribute="bottom" constant="8" id="gCW-Os-HTv"/>
+                                            <constraint firstAttribute="trailing" secondItem="qXv-8R-z4L" secondAttribute="trailing" constant="50" id="ikh-aL-A9M"/>
+                                            <constraint firstItem="d7u-hC-afc" firstAttribute="leading" secondItem="S4p-Km-US2" secondAttribute="leading" id="ncd-BH-POD"/>
+                                            <constraint firstItem="odH-Od-T5c" firstAttribute="leading" secondItem="S4p-Km-US2" secondAttribute="leading" id="ndW-d3-8Cc"/>
+                                        </constraints>
+                                    </stackView>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="An error occured." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KdQ-AL-7we">
+                                        <rect key="frame" x="0.0" y="297" width="343" height="21"/>
+                                        <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="17"/>
+                                        <color key="textColor" red="1" green="0.080107642960000003" blue="0.018675974089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d7u-hC-afc">
-                                        <rect key="frame" x="0.0" y="16" width="250" height="30"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                                        <connections>
-                                            <action selector="changeClicked:" destination="0iN-G5-YUk" eventType="editingDidEnd" id="Bca-wV-i3D"/>
-                                        </connections>
-                                    </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LFx-zk-8o8" userLabel="Padding Label">
-                                        <rect key="frame" x="0.0" y="46" width="250" height="8"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OdZ-gi-HVa">
+                                        <rect key="frame" x="121" y="585.5" width="101" height="21"/>
+                                        <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qXv-8R-z4L">
-                                        <rect key="frame" x="50" y="54" width="150" height="30"/>
-                                        <color key="backgroundColor" red="0.98713118649999998" green="0.41699226410000001" blue="0.20704654650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Change">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="changeClicked:" destination="0iN-G5-YUk" eventType="touchUpInside" id="4Cf-bs-xvc"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bP5-ef-CRl">
+                                        <rect key="frame" x="24" y="511.5" width="295" height="66"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycE-Xi-C5K">
+                                                <rect key="frame" x="0.0" y="0.0" width="295" height="29"/>
+                                                <color key="backgroundColor" red="0.98713118649999998" green="0.41699226410000001" blue="0.20704654650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="4" maxX="8" maxY="4"/>
+                                                <state key="normal" title="Move current bills to archive">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="currentToArchiveClicked:" destination="0iN-G5-YUk" eventType="touchUpInside" id="z5D-xX-SuJ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BNe-vH-bLE">
+                                                <rect key="frame" x="0.0" y="37" width="295" height="29"/>
+                                                <color key="backgroundColor" red="0.98713118649999998" green="0.41699226410000001" blue="0.20704654650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="4" maxX="8" maxY="4"/>
+                                                <state key="normal" title="Duplicate all bills for next month">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="duplicateForNextMonthClicked:" destination="0iN-G5-YUk" eventType="touchUpInside" id="fpv-3B-jOK"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="d7u-hC-afc" secondAttribute="trailing" id="Hvj-tn-g1b"/>
-                                    <constraint firstItem="qXv-8R-z4L" firstAttribute="leading" secondItem="S4p-Km-US2" secondAttribute="leading" constant="50" id="Tdf-ox-STd"/>
-                                    <constraint firstAttribute="trailing" secondItem="odH-Od-T5c" secondAttribute="trailing" id="cK2-N9-Vmo"/>
-                                    <constraint firstItem="qXv-8R-z4L" firstAttribute="top" secondItem="d7u-hC-afc" secondAttribute="bottom" constant="8" id="gCW-Os-HTv"/>
-                                    <constraint firstAttribute="trailing" secondItem="qXv-8R-z4L" secondAttribute="trailing" constant="50" id="ikh-aL-A9M"/>
-                                    <constraint firstItem="d7u-hC-afc" firstAttribute="leading" secondItem="S4p-Km-US2" secondAttribute="leading" id="ncd-BH-POD"/>
-                                    <constraint firstItem="odH-Od-T5c" firstAttribute="leading" secondItem="S4p-Km-US2" secondAttribute="leading" id="ndW-d3-8Cc"/>
+                                    <constraint firstItem="S4p-Km-US2" firstAttribute="width" secondItem="IlD-rz-qX7" secondAttribute="width" multiplier="4:5" id="4m1-YP-L0H"/>
+                                    <constraint firstItem="bP5-ef-CRl" firstAttribute="centerX" secondItem="IlD-rz-qX7" secondAttribute="centerX" id="8HQ-ma-uBN"/>
+                                    <constraint firstItem="KdQ-AL-7we" firstAttribute="width" secondItem="IlD-rz-qX7" secondAttribute="width" id="AzK-ak-csE"/>
+                                    <constraint firstAttribute="bottom" secondItem="OdZ-gi-HVa" secondAttribute="bottom" constant="8" id="KuX-Z6-MGE"/>
+                                    <constraint firstItem="S4p-Km-US2" firstAttribute="centerX" secondItem="IlD-rz-qX7" secondAttribute="centerX" id="iv5-uS-51b"/>
+                                    <constraint firstItem="OdZ-gi-HVa" firstAttribute="top" secondItem="bP5-ef-CRl" secondAttribute="bottom" constant="8" id="k5w-bv-Cua"/>
+                                    <constraint firstItem="KdQ-AL-7we" firstAttribute="centerX" secondItem="IlD-rz-qX7" secondAttribute="centerX" id="l5g-rz-ls4"/>
+                                    <constraint firstItem="OdZ-gi-HVa" firstAttribute="centerX" secondItem="IlD-rz-qX7" secondAttribute="centerX" id="na8-PA-VBf"/>
+                                    <constraint firstItem="S4p-Km-US2" firstAttribute="top" secondItem="IlD-rz-qX7" secondAttribute="top" constant="75" id="pA7-uF-Npr"/>
+                                    <constraint firstItem="KdQ-AL-7we" firstAttribute="centerY" secondItem="IlD-rz-qX7" secondAttribute="centerY" id="pwZ-eN-6p1"/>
                                 </constraints>
-                            </stackView>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="An error occured." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KdQ-AL-7we">
-                                <rect key="frame" x="0.0" y="334" width="375" height="20.5"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" red="0.70447335030000002" green="0.080107642960000003" blue="0.018675974089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bP5-ef-CRl">
-                                <rect key="frame" x="62" y="495.5" width="250" height="68"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycE-Xi-C5K">
-                                        <rect key="frame" x="0.0" y="0.0" width="250" height="30"/>
-                                        <color key="backgroundColor" red="0.98713118649999998" green="0.41699226410000001" blue="0.20704654650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Move current bills to archive">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="currentToArchiveClicked:" destination="0iN-G5-YUk" eventType="touchUpInside" id="z5D-xX-SuJ"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BNe-vH-bLE">
-                                        <rect key="frame" x="0.0" y="38" width="250" height="30"/>
-                                        <color key="backgroundColor" red="0.98713118649999998" green="0.41699226410000001" blue="0.20704654650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Duplicate all bills for next month">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="duplicateForNextMonthClicked:" destination="0iN-G5-YUk" eventType="touchUpInside" id="fpv-3B-jOK"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.14117647059999999" green="0.77647058820000003" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.30588235289999999" green="0.58039215690000001" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="bP5-ef-CRl" firstAttribute="width" secondItem="bQ6-D3-mpb" secondAttribute="width" multiplier="2:3" id="89x-Jf-67X"/>
-                            <constraint firstItem="OdZ-gi-HVa" firstAttribute="top" secondItem="bP5-ef-CRl" secondAttribute="bottom" constant="8" id="9dM-72-7Dw"/>
-                            <constraint firstItem="S4p-Km-US2" firstAttribute="top" secondItem="dvd-Yz-l4u" secondAttribute="top" constant="75" id="Etv-Hx-bzh"/>
-                            <constraint firstItem="S4p-Km-US2" firstAttribute="width" secondItem="bQ6-D3-mpb" secondAttribute="width" multiplier="2:3" id="MHZ-26-QwL"/>
-                            <constraint firstItem="OdZ-gi-HVa" firstAttribute="width" secondItem="bQ6-D3-mpb" secondAttribute="width" id="MmX-BZ-Hfo"/>
-                            <constraint firstItem="KdQ-AL-7we" firstAttribute="centerY" secondItem="dvd-Yz-l4u" secondAttribute="centerY" id="QCS-xI-L4g"/>
-                            <constraint firstItem="KdQ-AL-7we" firstAttribute="width" secondItem="bQ6-D3-mpb" secondAttribute="width" id="T8T-41-n5H"/>
-                            <constraint firstItem="S4p-Km-US2" firstAttribute="centerX" secondItem="dvd-Yz-l4u" secondAttribute="centerX" id="aE0-uf-6Bc"/>
-                            <constraint firstItem="OdZ-gi-HVa" firstAttribute="centerX" secondItem="dvd-Yz-l4u" secondAttribute="centerX" id="kBU-mj-bUh"/>
-                            <constraint firstItem="dvd-Yz-l4u" firstAttribute="bottom" secondItem="OdZ-gi-HVa" secondAttribute="bottom" constant="75" id="pDQ-LX-hbi"/>
-                            <constraint firstItem="KdQ-AL-7we" firstAttribute="centerX" secondItem="dvd-Yz-l4u" secondAttribute="centerX" id="qbP-ZH-dqc"/>
-                            <constraint firstItem="bP5-ef-CRl" firstAttribute="centerX" secondItem="dvd-Yz-l4u" secondAttribute="centerX" id="vG3-bC-hOp"/>
+                            <constraint firstItem="IlD-rz-qX7" firstAttribute="top" secondItem="dvd-Yz-l4u" secondAttribute="top" constant="16" id="PfX-cK-8Fw"/>
+                            <constraint firstItem="IlD-rz-qX7" firstAttribute="leading" secondItem="dvd-Yz-l4u" secondAttribute="leading" constant="16" id="al8-34-Sk0"/>
+                            <constraint firstItem="dvd-Yz-l4u" firstAttribute="trailing" secondItem="IlD-rz-qX7" secondAttribute="trailing" constant="16" id="jS7-pH-Cgl"/>
+                            <constraint firstItem="dvd-Yz-l4u" firstAttribute="bottom" secondItem="IlD-rz-qX7" secondAttribute="bottom" constant="16" id="yi3-60-QyZ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dvd-Yz-l4u"/>
                     </view>
                     <connections>
+                        <outlet property="bgView" destination="IlD-rz-qX7" id="LrD-JT-a9g"/>
                         <outlet property="changeButton" destination="qXv-8R-z4L" id="TnT-5o-yne"/>
                         <outlet property="editNameTextField" destination="d7u-hC-afc" id="mA2-OW-jIc"/>
                         <outlet property="errorLabel" destination="KdQ-AL-7we" id="nSp-9t-73M"/>

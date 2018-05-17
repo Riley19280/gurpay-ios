@@ -50,6 +50,7 @@
 		E5513C332094F88E000574BE /* BillTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5513C312094F88E000574BE /* BillTableViewCell.swift */; };
 		E5513C342094F88E000574BE /* BillTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5513C322094F88E000574BE /* BillTableViewCell.xib */; };
 		E5513C36209508F9000574BE /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5513C35209508F9000574BE /* Util.swift */; };
+		E570525620ACBA1900AF1A42 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E570525520ACBA1900AF1A42 /* Dashboard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +126,7 @@
 		E5513C312094F88E000574BE /* BillTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillTableViewCell.swift; sourceTree = "<group>"; };
 		E5513C322094F88E000574BE /* BillTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BillTableViewCell.xib; sourceTree = "<group>"; };
 		E5513C35209508F9000574BE /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		E570525520ACBA1900AF1A42 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +244,7 @@
 				E53FFEB52090EE9600D365A3 /* User.swift */,
 				E53FFEB72090EEA200D365A3 /* Bill.swift */,
 				E5513C2D2094CB6B000574BE /* ApiError.swift */,
+				E570525520ACBA1900AF1A42 /* Dashboard.swift */,
 			);
 			path = "Data Models";
 			sourceTree = "<group>";
@@ -551,6 +554,7 @@
 				E5071D7120AA132500FD2397 /* BillViewPayerTableViewCell.swift in Sources */,
 				E5071D6C20A4CD7B00FD2397 /* SelectPayersTableViewController.swift in Sources */,
 				E5071D6820A2051400FD2397 /* BillViewController+Actions.swift in Sources */,
+				E570525620ACBA1900AF1A42 /* Dashboard.swift in Sources */,
 				E5513C2E2094CB6B000574BE /* ApiError.swift in Sources */,
 				E53FFED62090FC8800D365A3 /* ServiceBase.swift in Sources */,
 				E53FFEB42090EE8600D365A3 /* Group.swift in Sources */,

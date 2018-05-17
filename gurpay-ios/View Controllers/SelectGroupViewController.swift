@@ -14,6 +14,7 @@ class SelectGroupViewController: UIViewController {
     
     //create view elements
     
+    @IBOutlet weak var createSuperview: UIView!
     @IBOutlet weak var createStackView: UIStackView!
     
     @IBOutlet weak var createYourNameTextField: UITextField!
@@ -23,6 +24,7 @@ class SelectGroupViewController: UIViewController {
     @IBOutlet weak var createJoinGroupButton: UIButton!
     
     //join view elements
+    @IBOutlet weak var joinSuperview: UIView!
     @IBOutlet weak var joinStackView: UIStackView!
     
     @IBOutlet weak var joinYourNameTextField: UITextField!
@@ -41,12 +43,12 @@ class SelectGroupViewController: UIViewController {
         didSet {
             switch state {
             case .create:
-                joinStackView.isHidden = true;
-                createStackView.isHidden = false;
+                joinSuperview.isHidden = true;
+                createSuperview.isHidden = false;
                 
             case .join:
-                 createStackView.isHidden = true;
-                 joinStackView.isHidden = false;
+                 createSuperview.isHidden = true;
+                 joinSuperview.isHidden = false;
             }
         }
     }
@@ -64,6 +66,26 @@ class SelectGroupViewController: UIViewController {
         joinCreateGroupButton.clipsToBounds = true
         //joinCreateGroupButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
         
+    }
+    
+    override func viewDidLayoutSubviews() {
+        let shadowPath = UIBezierPath(rect: createSuperview.bounds)
+        createSuperview.layer.cornerRadius = 10
+        createSuperview.layer.masksToBounds = false
+        createSuperview.layer.shadowRadius = 4
+        createSuperview.layer.shadowColor = UIColor.black.cgColor
+        createSuperview.layer.shadowOffset = CGSize(width: 1, height: 1)
+        createSuperview.layer.shadowOpacity = 0.3
+        createSuperview.layer.shadowPath = shadowPath.cgPath
+        
+        let shadowPath1 = UIBezierPath(rect: joinSuperview.bounds)
+        joinSuperview.layer.cornerRadius = 10
+        joinSuperview.layer.masksToBounds = false
+        joinSuperview.layer.shadowRadius = 4
+        joinSuperview.layer.shadowColor = UIColor.black.cgColor
+        joinSuperview.layer.shadowOffset = CGSize(width: 1, height: 1)
+        joinSuperview.layer.shadowOpacity = 0.3
+        joinSuperview.layer.shadowPath = shadowPath1.cgPath
     }
 
     override func didReceiveMemoryWarning() {

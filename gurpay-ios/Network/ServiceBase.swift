@@ -274,7 +274,35 @@ class ServiceBase {
         );
     }
     
-   
+    static func getDashboard(success:@escaping (_: Dashboard) -> Void, error:@escaping (ApiError)->()){
+        executeRequest(
+            route: "dashboard",
+            method: .get,
+            params: [:],
+            success: { json in 
+                
+                let db = Dashboard(
+                    mbc: json["myBillCount"].intValue,
+                    mubc: json["myUnpaidBillCount"].intValue,
+                    mbpc: json["myBillsPayerCount"].intValue,
+                    mbpp: json["myBillsPayersPaidTotal"].intValue,
+                    mbppt: json["myBillsPayerPaidAmount"].doubleValue,
+                    mbpptd: json["myBillsPayerPaidToDate"].doubleValue,
+                    pt: json["payTotal"].doubleValue,
+                    pttd: json["payTotalToDate"].doubleValue,
+                    ptc: json["payTotalCount"].intValue,
+                    ptctd: json["payTotalCountToDate"].intValue,
+                    ndd: Util.formatDate(string: json["nextDueDate"].stringValue)!
+                )
+                
+                success(db);
+            },
+            error: { err in
+                error(err);
+            }
+        );
+    }
+    
     //MARK: Bill Functions
     
     static func GetBills(archived: Bool = false, success:@escaping ([Bill]) -> Void, error:@escaping (ApiError)->()){
@@ -424,7 +452,7 @@ class ServiceBase {
     static func markPayerPaid(bill: Bill, success:@escaping () -> Void, error:@escaping (ApiError)->()){
         executeRequest(
             route: "bill/" + String(bill.id) + "/payer/pay",
-            method: .post,
+            method: .put,
             params: [:],
             success: { json in
                 success();

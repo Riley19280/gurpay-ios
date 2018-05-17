@@ -90,7 +90,7 @@ class BillViewViewController: UIViewController {
             self.setPaidButton.isHidden = true;
             navigationItem.rightBarButtonItems = nil;
             navigationItem.rightBarButtonItem = nil;
-            self.title = "Group Archive";
+            
         }
         
         payersTableView.register(UINib(nibName: "BillViewPayerTableViewCell", bundle: nil), forCellReuseIdentifier: "BillViewPayerCell")

@@ -29,12 +29,6 @@ class SelectPayersTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        let v = UIView()
-        v.backgroundColor = UIColor(red: 26/255, green: 130/255, blue: 41/255, alpha: 1);
-        
-        if(selected) {
-            self.selectedBackgroundView = v;
-        }
     }
     
 }

@@ -5,6 +5,8 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,71 +19,198 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You have 3 bills to pay" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a9q-Gq-RRF">
-                                <rect key="frame" x="100" y="90" width="175" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="bill {bill} is due tomorrow" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lLo-zQ-k9d">
-                                <rect key="frame" x="67" y="130" width="241" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u7b-tF-WNL">
-                                <rect key="frame" x="119" y="273" width="155" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.98713118649999998" green="0.41699226410000001" blue="0.20704654650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="View bills">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="LSv-7d-dLY" kind="show" id="Hev-SZ-aZ2"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FgB-DL-Rdd">
-                                <rect key="frame" x="116" y="311" width="158" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.98713118649999998" green="0.41699226410000001" blue="0.20704654650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Add BIll">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="mq0-SR-W0l" kind="show" id="pjT-Ka-xZd"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UeV-ST-9LC">
-                                <rect key="frame" x="116" y="349" width="158" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.98713118649999998" green="0.41699226410000001" blue="0.20704654650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="View Archive">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="9PM-GA-fIK" kind="show" identifier="ToArchive" id="XZx-k8-m8a"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8fT-v4-cBm">
+                                <rect key="frame" x="19" y="94" width="337.5" height="543"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="yAk-w4-tXA">
+                                        <rect key="frame" x="16" y="16" width="305.5" height="511"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="8Pf-G9-gTQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="305.5" height="145"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cHu-iN-0FH">
+                                                        <rect key="frame" x="0.0" y="0.0" width="144.5" height="145"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nry-aL-bnt">
+                                                                <rect key="frame" x="0.0" y="8" width="144.5" height="60"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="50"/>
+                                                                <color key="textColor" red="0.679931640625" green="0.080107642960000003" blue="0.018675974089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <variation key="heightClass=regular-widthClass=regular">
+                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="100"/>
+                                                                </variation>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="unpaid bills." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MHL-fh-nYP">
+                                                                <rect key="frame" x="0.0" y="68" width="144.5" height="14.5"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <variation key="heightClass=regular-widthClass=regular">
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                                </variation>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next bill due on" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="drv-9e-ld3">
+                                                                <rect key="frame" x="0.0" y="122.5" width="144.5" height="14.5"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <variation key="heightClass=regular-widthClass=regular">
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                                </variation>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" red="0.36078431372549019" green="0.40000000000000002" blue="0.76862745098039209" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <constraints>
+                                                            <constraint firstItem="Nry-aL-bnt" firstAttribute="width" secondItem="cHu-iN-0FH" secondAttribute="width" id="07y-u0-c7m"/>
+                                                            <constraint firstAttribute="width" secondItem="cHu-iN-0FH" secondAttribute="height" multiplier="1:1" id="IbD-ku-7QN"/>
+                                                            <constraint firstItem="Nry-aL-bnt" firstAttribute="top" secondItem="cHu-iN-0FH" secondAttribute="top" constant="8" id="NDz-bR-BGF"/>
+                                                            <constraint firstItem="drv-9e-ld3" firstAttribute="centerX" secondItem="cHu-iN-0FH" secondAttribute="centerX" id="T1s-RP-GN1"/>
+                                                            <constraint firstItem="Nry-aL-bnt" firstAttribute="centerX" secondItem="cHu-iN-0FH" secondAttribute="centerX" id="T7e-2s-8gg"/>
+                                                            <constraint firstItem="drv-9e-ld3" firstAttribute="width" secondItem="cHu-iN-0FH" secondAttribute="width" id="XVw-aW-K50"/>
+                                                            <constraint firstItem="MHL-fh-nYP" firstAttribute="top" secondItem="Nry-aL-bnt" secondAttribute="bottom" id="XW0-UL-cjm"/>
+                                                            <constraint firstAttribute="bottom" secondItem="drv-9e-ld3" secondAttribute="bottom" constant="8" id="gxr-9Y-Ove"/>
+                                                            <constraint firstItem="MHL-fh-nYP" firstAttribute="width" secondItem="cHu-iN-0FH" secondAttribute="width" id="x2N-pd-xEf"/>
+                                                            <constraint firstItem="MHL-fh-nYP" firstAttribute="centerX" secondItem="cHu-iN-0FH" secondAttribute="centerX" id="yWh-4D-4Dj"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="alL-5Q-y7L">
+                                                        <rect key="frame" x="160.5" y="0.0" width="145" height="145"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have recieved $0/0 from 0/0 people." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0u-NR-bkf">
+                                                                <rect key="frame" x="7" y="8" width="130" height="130.5"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <variation key="heightClass=regular-widthClass=regular">
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                                                </variation>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" red="0.36078431372549019" green="0.40000000000000002" blue="0.76862745098039209" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <constraints>
+                                                            <constraint firstItem="p0u-NR-bkf" firstAttribute="height" secondItem="alL-5Q-y7L" secondAttribute="height" multiplier="9:10" id="1mP-t1-X6e"/>
+                                                            <constraint firstItem="p0u-NR-bkf" firstAttribute="width" secondItem="alL-5Q-y7L" secondAttribute="width" multiplier="9:10" id="4Iy-w6-tTf"/>
+                                                            <constraint firstItem="p0u-NR-bkf" firstAttribute="centerY" secondItem="alL-5Q-y7L" secondAttribute="centerY" id="I70-FF-3ZC"/>
+                                                            <constraint firstAttribute="width" secondItem="alL-5Q-y7L" secondAttribute="height" multiplier="1:1" id="Ven-dW-uIA"/>
+                                                            <constraint firstItem="p0u-NR-bkf" firstAttribute="centerX" secondItem="alL-5Q-y7L" secondAttribute="centerX" id="aYY-zG-uJt"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="MaY-ev-iAW">
+                                                <rect key="frame" x="0.0" y="161" width="305.5" height="189.5"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ArN-6A-zcm">
+                                                        <rect key="frame" x="0.0" y="0.0" width="305.5" height="189.5"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have paid $00.00/00.00 to others for 0/0 bills." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tgF-X3-23u">
+                                                                <rect key="frame" x="15" y="9.5" width="275" height="170"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <variation key="heightClass=regular-widthClass=regular">
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                                                </variation>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" red="0.36078431372549019" green="0.40000000000000002" blue="0.76862745098039209" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <constraints>
+                                                            <constraint firstItem="tgF-X3-23u" firstAttribute="centerX" secondItem="ArN-6A-zcm" secondAttribute="centerX" id="9Qz-pe-ubn"/>
+                                                            <constraint firstItem="tgF-X3-23u" firstAttribute="height" secondItem="ArN-6A-zcm" secondAttribute="height" multiplier="9:10" id="BeI-Ke-mRp"/>
+                                                            <constraint firstItem="tgF-X3-23u" firstAttribute="width" secondItem="ArN-6A-zcm" secondAttribute="width" multiplier="9:10" id="dnU-Ey-IAW"/>
+                                                            <constraint firstItem="tgF-X3-23u" firstAttribute="centerY" secondItem="ArN-6A-zcm" secondAttribute="centerY" id="oA9-d1-2Yj"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="qDd-Ya-mv8">
+                                                <rect key="frame" x="0.0" y="366.5" width="305.5" height="144.5"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="u7b-tF-WNL">
+                                                        <rect key="frame" x="0.0" y="0.0" width="144.5" height="144.5"/>
+                                                        <color key="backgroundColor" red="1" green="0.54509803921568623" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="u7b-tF-WNL" secondAttribute="height" multiplier="1:1" id="UgB-pF-LCF"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                        <inset key="contentEdgeInsets" minX="8" minY="4" maxX="8" maxY="4"/>
+                                                        <state key="normal" title="View bills">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                            <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                                        </variation>
+                                                        <connections>
+                                                            <segue destination="LSv-7d-dLY" kind="show" id="Hev-SZ-aZ2"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="UeV-ST-9LC">
+                                                        <rect key="frame" x="160.5" y="0.0" width="145" height="144.5"/>
+                                                        <color key="backgroundColor" red="1" green="0.54509803921568623" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="UeV-ST-9LC" secondAttribute="height" multiplier="1:1" id="vSe-Nc-Cvm"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                        <inset key="contentEdgeInsets" minX="8" minY="4" maxX="8" maxY="4"/>
+                                                        <state key="normal" title="View Archive">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                            <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                                        </variation>
+                                                        <connections>
+                                                            <segue destination="9PM-GA-fIK" kind="show" identifier="ToArchive" id="XZx-k8-m8a"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="yAk-w4-tXA" firstAttribute="top" secondItem="8fT-v4-cBm" secondAttribute="top" constant="16" id="502-Xk-LSE"/>
+                                    <constraint firstItem="yAk-w4-tXA" firstAttribute="leading" secondItem="8fT-v4-cBm" secondAttribute="leading" constant="16" id="Cg5-rJ-ooE"/>
+                                    <constraint firstAttribute="trailing" secondItem="yAk-w4-tXA" secondAttribute="trailing" constant="16" id="UeG-aN-9x9"/>
+                                    <constraint firstAttribute="bottom" secondItem="yAk-w4-tXA" secondAttribute="bottom" constant="16" id="i0q-2A-Wsv"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.14117647058823529" green="0.77647058823529413" blue="0.30196078431372547" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.30588235294117649" green="0.58039215686274503" blue="0.72549019607843135" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="8fT-v4-cBm" firstAttribute="centerX" secondItem="REM-OE-L24" secondAttribute="centerX" id="62k-RS-ye3"/>
+                            <constraint firstItem="8fT-v4-cBm" firstAttribute="height" secondItem="REM-OE-L24" secondAttribute="height" multiplier="9:10" id="GfU-AV-VZx"/>
+                            <constraint firstItem="8fT-v4-cBm" firstAttribute="centerY" secondItem="REM-OE-L24" secondAttribute="centerY" id="UFO-bG-t6h"/>
+                            <constraint firstItem="8fT-v4-cBm" firstAttribute="width" secondItem="REM-OE-L24" secondAttribute="width" multiplier="9:10" id="W1k-lo-iUY"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="REM-OE-L24"/>
                     </view>
                     <navigationItem key="navigationItem" title="Group Name" id="546-Ha-2Xn">
                         <barButtonItem key="leftBarButtonItem" title="User Name" id="FfA-mh-2Ge">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="xV7-Sn-pP7" kind="show" id="PC9-ft-BqZ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Edit Group" id="eHz-hu-N3O">
+                        <barButtonItem key="rightBarButtonItem" title="Manage" id="eHz-hu-N3O">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="566-nR-M4n" kind="show" id="s8R-nn-S2k"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bgView" destination="8fT-v4-cBm" id="4oJ-QS-Mtg"/>
                         <outlet property="nameBarButton" destination="FfA-mh-2Ge" id="dVF-em-U3s"/>
+                        <outlet property="nextDueOnLabel" destination="drv-9e-ld3" id="F4K-bs-0E4"/>
+                        <outlet property="paidOthersLabel" destination="tgF-X3-23u" id="s1x-ee-Tnp"/>
+                        <outlet property="recievedPeopleLabel" destination="p0u-NR-bkf" id="Aw8-Kq-d3v"/>
+                        <outlet property="unpaidCountLabel" destination="Nry-aL-bnt" id="vP9-98-aaB"/>
+                        <outletCollection property="boxViews" destination="cHu-iN-0FH" collectionClass="NSMutableArray" id="Dzv-JR-t7a"/>
+                        <outletCollection property="boxViews" destination="alL-5Q-y7L" collectionClass="NSMutableArray" id="oDF-Ye-bqp"/>
+                        <outletCollection property="boxViews" destination="ArN-6A-zcm" collectionClass="NSMutableArray" id="Xfi-W2-9DW"/>
+                        <outletCollection property="boxViews" destination="u7b-tF-WNL" collectionClass="NSMutableArray" id="gpJ-wY-qYO"/>
+                        <outletCollection property="boxViews" destination="UeV-ST-9LC" collectionClass="NSMutableArray" id="xpG-DQ-hCC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ET-M4-Oba" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -136,6 +265,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pXK-3I-beb">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.031372549019607843" green="0.42352941176470588" blue="0.63529411764705879" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

@@ -25,6 +25,7 @@ class BillListTableViewController: UITableViewController {
         if(isArchive) {
             navigationItem.rightBarButtonItems = nil;
             navigationItem.rightBarButtonItem = nil;
+            self.title = "Group Archive";
         }
 
     }
@@ -86,7 +87,7 @@ class BillListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100;
+        return 120;
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

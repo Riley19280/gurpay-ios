@@ -21,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var newvc: UIViewController;
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
+        //window?.tintColor = UIColor.white
+        
         if(group != nil)
         {
             newvc = UIStoryboard(name: "Dashboard", bundle: nil).instantiateInitialViewController()!

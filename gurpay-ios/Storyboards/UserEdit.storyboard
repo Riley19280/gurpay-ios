@@ -5,7 +5,6 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,81 +17,87 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="An error occured." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c21-QK-yyd">
-                                <rect key="frame" x="62.5" y="333.5" width="250" height="20.5"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" red="0.70447335030000002" green="0.080107642960000003" blue="0.018675974089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="DZP-Ii-4pm" userLabel="Edit Name Stack View">
-                                <rect key="frame" x="94" y="95" width="188" height="84"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B3W-vU-6QT">
+                                <rect key="frame" x="16" y="36" width="343" height="615"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cbe-13-Xua">
-                                        <rect key="frame" x="0.0" y="0.0" width="188" height="16"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="DZP-Ii-4pm" userLabel="Edit Name Stack View">
+                                        <rect key="frame" x="87" y="100" width="169" height="88"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cbe-13-Xua">
+                                                <rect key="frame" x="0.0" y="0.0" width="169" height="16"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ATp-nX-Smr">
+                                                <rect key="frame" x="0.0" y="24" width="169" height="30"/>
+                                                <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kgo-2p-4a6">
+                                                <rect key="frame" x="50" y="62" width="69" height="26"/>
+                                                <color key="backgroundColor" red="0.98713118649999998" green="0.41699226410000001" blue="0.20704654650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="4" maxX="8" maxY="4"/>
+                                                <state key="normal" title="Change">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="changeNameClicked:" destination="Nsh-RU-Xvx" eventType="touchUpInside" id="P8C-3G-3FR"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="ATp-nX-Smr" secondAttribute="trailing" id="HVf-Cf-BoD"/>
+                                            <constraint firstItem="ATp-nX-Smr" firstAttribute="leading" secondItem="DZP-Ii-4pm" secondAttribute="leading" id="hPh-rb-zdC"/>
+                                            <constraint firstAttribute="trailing" secondItem="Kgo-2p-4a6" secondAttribute="trailing" constant="50" id="jO3-b2-8hl"/>
+                                            <constraint firstItem="cbe-13-Xua" firstAttribute="leading" secondItem="DZP-Ii-4pm" secondAttribute="leading" id="kdn-kE-fua"/>
+                                            <constraint firstItem="Kgo-2p-4a6" firstAttribute="top" secondItem="ATp-nX-Smr" secondAttribute="bottom" constant="8" id="lF4-Nd-DgH"/>
+                                            <constraint firstAttribute="trailing" secondItem="cbe-13-Xua" secondAttribute="trailing" id="llO-iw-rl5"/>
+                                            <constraint firstItem="Kgo-2p-4a6" firstAttribute="leading" secondItem="DZP-Ii-4pm" secondAttribute="leading" constant="50" id="zuR-2k-wxZ"/>
+                                        </constraints>
+                                    </stackView>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="An error occured." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c21-QK-yyd">
+                                        <rect key="frame" x="99" y="313" width="144" height="0.0"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" red="0.70447335030000002" green="0.080107642960000003" blue="0.018675974089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ATp-nX-Smr">
-                                        <rect key="frame" x="0.0" y="16" width="188" height="30"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vmR-en-KIA" userLabel="Padding Label">
-                                        <rect key="frame" x="0.0" y="46" width="188" height="8"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kgo-2p-4a6">
-                                        <rect key="frame" x="50" y="54" width="88" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ToS-x4-y5c">
+                                        <rect key="frame" x="120" y="573" width="103" height="34"/>
                                         <color key="backgroundColor" red="0.98713118649999998" green="0.41699226410000001" blue="0.20704654650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Change">
+                                        <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                        <state key="normal" title="Leave Group">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="changeNameClicked:" destination="Nsh-RU-Xvx" eventType="touchUpInside" id="P8C-3G-3FR"/>
+                                            <action selector="leaveGroupCicked:" destination="Nsh-RU-Xvx" eventType="touchUpInside" id="0So-4C-MK6"/>
                                         </connections>
                                     </button>
                                 </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="ATp-nX-Smr" secondAttribute="trailing" id="HVf-Cf-BoD"/>
-                                    <constraint firstItem="ATp-nX-Smr" firstAttribute="leading" secondItem="DZP-Ii-4pm" secondAttribute="leading" id="hPh-rb-zdC"/>
-                                    <constraint firstAttribute="trailing" secondItem="Kgo-2p-4a6" secondAttribute="trailing" constant="50" id="jO3-b2-8hl"/>
-                                    <constraint firstItem="cbe-13-Xua" firstAttribute="leading" secondItem="DZP-Ii-4pm" secondAttribute="leading" id="kdn-kE-fua"/>
-                                    <constraint firstItem="Kgo-2p-4a6" firstAttribute="top" secondItem="ATp-nX-Smr" secondAttribute="bottom" constant="8" id="lF4-Nd-DgH"/>
-                                    <constraint firstAttribute="trailing" secondItem="cbe-13-Xua" secondAttribute="trailing" id="llO-iw-rl5"/>
-                                    <constraint firstItem="Kgo-2p-4a6" firstAttribute="leading" secondItem="DZP-Ii-4pm" secondAttribute="leading" constant="50" id="zuR-2k-wxZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="ToS-x4-y5c" secondAttribute="bottom" constant="8" id="F8n-pm-zEZ"/>
+                                    <constraint firstItem="DZP-Ii-4pm" firstAttribute="centerX" secondItem="B3W-vU-6QT" secondAttribute="centerX" id="ScC-sQ-oIz"/>
+                                    <constraint firstItem="DZP-Ii-4pm" firstAttribute="top" secondItem="B3W-vU-6QT" secondAttribute="top" constant="100" id="gVl-tg-V0t"/>
+                                    <constraint firstItem="ToS-x4-y5c" firstAttribute="centerX" secondItem="B3W-vU-6QT" secondAttribute="centerX" id="l8G-en-2r0"/>
                                 </constraints>
-                            </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ToS-x4-y5c">
-                                <rect key="frame" x="136" y="558" width="103" height="34"/>
-                                <color key="backgroundColor" red="0.98713118649999998" green="0.41699226410000001" blue="0.20704654650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
-                                <state key="normal" title="Leave Group">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="leaveGroupCicked:" destination="Nsh-RU-Xvx" eventType="touchUpInside" id="0So-4C-MK6"/>
-                                </connections>
-                            </button>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.14901960784313725" green="0.74509803921568629" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.30588235289999999" green="0.58039215690000001" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="DZP-Ii-4pm" firstAttribute="top" secondItem="eca-9j-cbn" secondAttribute="top" constant="75" id="2dA-nP-Tlr"/>
-                            <constraint firstItem="c21-QK-yyd" firstAttribute="centerX" secondItem="eca-9j-cbn" secondAttribute="centerX" id="5UW-ij-Dhz"/>
-                            <constraint firstItem="ToS-x4-y5c" firstAttribute="centerX" secondItem="eca-9j-cbn" secondAttribute="centerX" id="Icj-Ff-uLI"/>
-                            <constraint firstItem="DZP-Ii-4pm" firstAttribute="width" secondItem="gK4-hS-EVb" secondAttribute="width" multiplier="1:2" id="N0L-Vc-2fR"/>
-                            <constraint firstItem="c21-QK-yyd" firstAttribute="centerY" secondItem="eca-9j-cbn" secondAttribute="centerY" id="Y7T-vZ-PdX"/>
-                            <constraint firstItem="c21-QK-yyd" firstAttribute="width" secondItem="gK4-hS-EVb" secondAttribute="width" multiplier="2:3" id="tkM-GS-fBS"/>
-                            <constraint firstItem="eca-9j-cbn" firstAttribute="bottom" secondItem="ToS-x4-y5c" secondAttribute="bottom" constant="75" id="wT6-Fi-HBa"/>
-                            <constraint firstItem="DZP-Ii-4pm" firstAttribute="centerX" secondItem="eca-9j-cbn" secondAttribute="centerX" id="xSO-cH-zF5"/>
+                            <constraint firstItem="B3W-vU-6QT" firstAttribute="leading" secondItem="eca-9j-cbn" secondAttribute="leading" constant="16" id="56r-gN-NUS"/>
+                            <constraint firstItem="eca-9j-cbn" firstAttribute="trailing" secondItem="B3W-vU-6QT" secondAttribute="trailing" constant="16" id="Gfj-ar-eqt"/>
+                            <constraint firstItem="B3W-vU-6QT" firstAttribute="top" secondItem="eca-9j-cbn" secondAttribute="top" constant="16" id="SNi-By-Gtj"/>
+                            <constraint firstItem="eca-9j-cbn" firstAttribute="bottom" secondItem="B3W-vU-6QT" secondAttribute="bottom" constant="16" id="T2L-z6-ThK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eca-9j-cbn"/>
                     </view>
                     <navigationItem key="navigationItem" title="Edit User" id="OLa-qM-bnx"/>
                     <connections>
+                        <outlet property="bgView" destination="B3W-vU-6QT" id="L5h-V2-Usz"/>
                         <outlet property="changeNameButton" destination="Kgo-2p-4a6" id="eIc-CT-7pT"/>
                         <outlet property="editNameStackView" destination="DZP-Ii-4pm" id="Lt7-ou-wV6"/>
                         <outlet property="editNameTextField" destination="ATp-nX-Smr" id="Csi-3c-MqG"/>

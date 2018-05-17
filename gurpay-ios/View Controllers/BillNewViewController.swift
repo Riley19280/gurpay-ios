@@ -19,6 +19,7 @@ class BillNewViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var startDate: UITextField!
     @IBOutlet weak var dueDate: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var bgView: UIView!
     
     var firstResponder: UITextField? = nil;
     let dateFormatter = DateFormatter();
@@ -39,6 +40,19 @@ class BillNewViewController: UIViewController, UITextFieldDelegate {
         tableView.register(UINib(nibName: "BillViewPayerTableViewCell", bundle: nil), forCellReuseIdentifier: "BillViewPayerCell")
         
     }
+    
+    override func viewDidLayoutSubviews() {
+        let shadowPath = UIBezierPath(rect: bgView.bounds)
+        bgView.layer.cornerRadius = 10
+        bgView.layer.masksToBounds = false
+        bgView.layer.shadowRadius = 4
+        bgView.layer.shadowColor = UIColor.black.cgColor
+        bgView.layer.shadowOffset = CGSize(width: 1, height: 1)
+        bgView.layer.shadowOpacity = 0.3
+        bgView.layer.shadowPath = shadowPath.cgPath
+        
+        tableView.backgroundColor = UIColor.clear
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -57,6 +71,11 @@ class BillNewViewController: UIViewController, UITextFieldDelegate {
         
         ServiceBase.CreateBill(bill: bill,
             success: { bill in
+                
+                if self.payers.count == 0 {
+                    self.navigationController?.popViewController(animated: true)
+                    return;
+                }
                 
                 ServiceBase.addPayers(
                     bill: bill,

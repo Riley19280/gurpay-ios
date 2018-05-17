@@ -19,6 +19,8 @@ class BillTableViewCell: UITableViewCell {
     @IBOutlet weak var dateReceivedLabel: UILabel!
     @IBOutlet weak var datePaidLabel: UILabel!
 
+    @IBOutlet weak var bgView: UIView!
+    
     var bill: Bill? = nil {
         didSet {
             let nf = NumberFormatter()
@@ -49,14 +51,30 @@ class BillTableViewCell: UITableViewCell {
         }
     }
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+      
     }
 
+    
+    override func layoutSubviews() {
+        super.layoutSubviews();
+        self.backgroundColor = UIColor.clear
+        self.contentView.backgroundColor = UIColor.clear
+        bgView.layer.cornerRadius = 7
+        bgView.layer.masksToBounds = false
+        bgView.layer.shadowRadius = 3
+        bgView.layer.shadowColor = UIColor.black.cgColor
+        bgView.layer.shadowOffset = CGSize(width: 2, height: 2)
+        bgView.layer.shadowOpacity = 0.3
+        //bgView.layer.shadowPath = UIBezierPath(rect: bgView.bounds)
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-       
+     /*
         let v = UIView()
         v.backgroundColor = UIColor(red: 26/255, green: 130/255, blue: 41/255, alpha: 1);
         
@@ -65,7 +83,7 @@ class BillTableViewCell: UITableViewCell {
         }
         else {
             //self.selectedBackgroundView?.backgroundColor = UIColor(red: 20/255, green: 108/255, blue: 42/255, alpha: 1)
-        }
+        }*/
         // Configure the view for the selected state
     }
         

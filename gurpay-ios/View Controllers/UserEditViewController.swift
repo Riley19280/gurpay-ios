@@ -17,6 +17,7 @@ class UserEditViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     
     @IBOutlet weak var leaveGroupButton: UIButton!
+    @IBOutlet weak var bgView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +39,17 @@ class UserEditViewController: UIViewController {
         
     }
 
+    override func viewDidLayoutSubviews() {
+        let shadowPath = UIBezierPath(rect: bgView.bounds)
+        bgView.layer.cornerRadius = 10
+        bgView.layer.masksToBounds = false
+        bgView.layer.shadowRadius = 4
+        bgView.layer.shadowColor = UIColor.black.cgColor
+        bgView.layer.shadowOffset = CGSize(width: 1, height: 1)
+        bgView.layer.shadowOpacity = 0.3
+        bgView.layer.shadowPath = shadowPath.cgPath
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
