@@ -1,24 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0iN-G5-YUk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0iN-G5-YUk">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Verdana.ttf">
-            <string>Verdana</string>
-        </array>
-        <array key="VerdanaBold.ttf">
-            <string>Verdana-Bold</string>
-        </array>
-    </customFonts>
     <scenes>
-        <!--Group Edit View Controller-->
+        <!--Title-->
         <scene sceneID="v0k-dw-5wG">
             <objects>
                 <viewController id="0iN-G5-YUk" customClass="GroupEditViewController" customModule="gurpay_ios" customModuleProvider="target" sceneMemberID="viewController">
@@ -45,15 +37,19 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                 <connections>
-                                                    <action selector="changeClicked:" destination="0iN-G5-YUk" eventType="editingDidEnd" id="Bca-wV-i3D"/>
+                                                    <action selector="editChanged:" destination="0iN-G5-YUk" eventType="editingChanged" id="FXQ-ps-USn"/>
+                                                    <outlet property="delegate" destination="0iN-G5-YUk" id="weG-fI-dDM"/>
                                                 </connections>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qXv-8R-z4L">
+                                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qXv-8R-z4L">
                                                 <rect key="frame" x="50" y="67" width="174" height="29"/>
-                                                <color key="backgroundColor" red="0.98713118649999998" green="0.41699226410000001" blue="0.20704654650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
                                                 <inset key="contentEdgeInsets" minX="8" minY="4" maxX="8" maxY="4"/>
                                                 <state key="normal" title="Change">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="disabled">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -137,6 +133,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dvd-Yz-l4u"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="J7Y-hO-Shd">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="HII-rw-de6">
+                            <connections>
+                                <action selector="shareClicked:" destination="0iN-G5-YUk" id="Ed5-pp-kql"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="bgView" destination="IlD-rz-qX7" id="LrD-JT-a9g"/>
                         <outlet property="changeButton" destination="qXv-8R-z4L" id="TnT-5o-yne"/>

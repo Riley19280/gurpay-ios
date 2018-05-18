@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserEditViewController: UIViewController {
+class UserEditViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var editNameStackView: UIStackView!
     @IBOutlet weak var editNameTextField: UITextField!
@@ -19,6 +19,8 @@ class UserEditViewController: UIViewController {
     @IBOutlet weak var leaveGroupButton: UIButton!
     @IBOutlet weak var bgView: UIView!
     
+    var user: User?;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,6 +29,7 @@ class UserEditViewController: UIViewController {
         Util.getUser(
             user_id: Util.getDeviceId(),
             success: { user in
+                self.user = user;
                 self.editNameTextField.text = user.name;
             },
             error: { err in
@@ -60,7 +63,6 @@ class UserEditViewController: UIViewController {
         ServiceBase.UpdateUser(
             name: editNameTextField.text!,
             success:{ user in
-                self.title = user.name
                 self.editNameTextField.text = user.name;
             },
             error: { err in
@@ -113,15 +115,21 @@ class UserEditViewController: UIViewController {
         
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    //MARK Keyboard Stuff
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
-    */
-
+    
+    @IBAction func editChanged(_ sender: UITextField) {
+        if sender.text == user?.name {
+            changeNameButton.isEnabled = false;
+            changeNameButton.backgroundColor = UIColor.lightGray
+        }
+        else {
+            changeNameButton.isEnabled = true;
+            changeNameButton.backgroundColor = UIColor(red: 252/255, green: 106/255, blue: 53/255, alpha: 1)
+        }
+    }
+    
 }

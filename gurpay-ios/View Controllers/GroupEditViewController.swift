@@ -8,23 +8,25 @@
 
 import UIKit
 
-class GroupEditViewController: UIViewController {
+class GroupEditViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var groupCodeLabel: UILabel!
     @IBOutlet weak var editNameTextField: UITextField!
     @IBOutlet weak var changeButton: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var bgView: UIView!
+    var group: Group?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let group = Group.getFromDisk();
+        group = Group.getFromDisk();
         groupCodeLabel.text = "Group Code: " + (group?.code)!;
         self.title = group?.name;
         
         editNameTextField.text = group?.name;
+       
         
     }
     
@@ -74,7 +76,7 @@ class GroupEditViewController: UIViewController {
       
         
             ServiceBase.archiveBills(bills: bills, success: {
-                Util.displayBasicMessage(title: "Bill Archived", message: "Bills have been archived.")
+                Util.displayBasicMessage(title: "Bill Archived", message: "Eligible bills have been archived.")
             }, error: {err in
                 self.displayError(message: err)
             })
@@ -98,4 +100,28 @@ class GroupEditViewController: UIViewController {
         })
     }
    
+    @IBAction func shareClicked(_ sender: Any) {
+        let urlStr = "http://itunes.apple.com/us/app/apple-store/id1386508899?mt=8"
+
+        //UIApplication.shared.open(URL(string: urlStr)!, options: [:], completionHandler: nil)
+        
+        let vc = UIActivityViewController(activityItems: ["Hey,\nGurpay is a great app that you can use to manage bills between roommates. You can join our group using the code \(String(group!.code)), or download the app here! \n \(urlStr)"], applicationActivities: nil)
+        self.present(vc,animated: true,completion: nil)
+    }
+    //MARK: Keyboard Control
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true;
+    }
+    
+    @IBAction func editChanged(_ sender: UITextField) {
+        if sender.text == group?.name {
+            changeButton.isEnabled = false;
+            changeButton.backgroundColor = UIColor.lightGray
+        }
+        else {
+            changeButton.isEnabled = true;
+            changeButton.backgroundColor = UIColor(red: 252/255, green: 106/255, blue: 53/255, alpha: 1)
+        }
+    }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SelectGroupViewController: UIViewController {
+class SelectGroupViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var errorLabel: UILabel!
     
@@ -57,14 +57,20 @@ class SelectGroupViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        createJoinGroupButton.layer.cornerRadius = 10
-        createJoinGroupButton.clipsToBounds = true
+        //createJoinGroupButton.layer.cornerRadius = 10
+        //createJoinGroupButton.clipsToBounds = true
         //createJoinGroupButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
 
         
-        joinCreateGroupButton.layer.cornerRadius = 10
-        joinCreateGroupButton.clipsToBounds = true
+        //joinCreateGroupButton.layer.cornerRadius = 10
+        //joinCreateGroupButton.clipsToBounds = true
         //joinCreateGroupButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+        
+        joinGroupCodeTextField.keyboardType = .numberPad
         
     }
     
@@ -154,14 +160,28 @@ class SelectGroupViewController: UIViewController {
         
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    //MARK: keyboard Stuff
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let nextTag = textField.tag + 1
+        // Try to find next responder
+        let nextResponder = textField.superview?.viewWithTag(nextTag) as UIResponder?
+        
+        if nextResponder != nil {
+            // Found next responder, so set it
+            nextResponder?.becomeFirstResponder()
+        } else {
+            // Not found, so remove keyboard
+            textField.resignFirstResponder()
+        }
+        
+        return false
     }
-    */
+    @objc func dismissKeyboard(tap: UITapGestureRecognizer){
+        let point = tap.location(in: self.view)
+        
+       
+        
+        view.endEditing(true)
+    }
 
 }

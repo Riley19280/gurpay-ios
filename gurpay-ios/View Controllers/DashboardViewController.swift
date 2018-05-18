@@ -16,6 +16,7 @@ class DashboardViewController: UIViewController {
     @IBOutlet var boxViews: [UIView]!
     
     @IBOutlet weak var unpaidCountLabel: UILabel!
+    @IBOutlet weak var unpaidBillLabel: UILabel!
     @IBOutlet weak var nextDueOnLabel: UILabel!
     @IBOutlet weak var recievedPeopleLabel: UILabel!
     @IBOutlet weak var paidOthersLabel: UILabel!
@@ -29,7 +30,7 @@ class DashboardViewController: UIViewController {
         
         Util.getUser(user_id: Util.getDeviceId(), success: {user in self.nameBarButton.title = user.name; }, error: { _ in self.nameBarButton.title = "You"; })
         
-        loadData()
+        //loadData()
     }
     
     func loadData(){
@@ -37,7 +38,7 @@ class DashboardViewController: UIViewController {
             success: { db in
                 self.unpaidCountLabel.text = String(db.myUnpaidBillCount)
                 if db.myUnpaidBillCount == 0 {
-                    self.unpaidCountLabel.textColor = UIColor.green
+                    self.unpaidCountLabel.textColor = UIColor(red: 37/255, green: 213/255, blue: 0, alpha: 1)
                 }
                 if db.nextDueDate != nil {
                 self.nextDueOnLabel.text = "Next bill due on \(Util.displayDate(date: db.nextDueDate)!)"
@@ -48,7 +49,7 @@ class DashboardViewController: UIViewController {
                 self.recievedPeopleLabel.text = "You have recieved $\(db.myBillsPayerPaidToDate)/\(db.myBillsPayerPaidTotal) from \(db.myBillsPayersPaid)/\(db.myBillsPayerCount) people."
                 
                 self.paidOthersLabel.text = "You have paid $\(db.payTotalToDate)/\(db.payTotal) to others for \(db.payTotalCountToDate)/\(db.payTotalCount) bills."
-                
+                self.unpaidBillLabel.text = "unpaid bills."
             },
             error: { err in
                //self.boxLabels.forEach({$0.text = "Error"})

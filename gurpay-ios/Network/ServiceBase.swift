@@ -167,6 +167,7 @@ class ServiceBase {
                 "group_name": group_name,
                 "user_name": user_name,
                 "group_code": group_code,
+                "platform": "ios"
             ],
             headers: customHeaders,
             success: { json in
@@ -256,7 +257,6 @@ class ServiceBase {
         );
     }
     
-    
     static func UpdateUser(name: String, success:@escaping (User) -> Void, error:@escaping (ApiError)->()){
         executeRequest(
             route: "user",
@@ -292,7 +292,7 @@ class ServiceBase {
                     pttd: json["payTotalToDate"].doubleValue,
                     ptc: json["payTotalCount"].intValue,
                     ptctd: json["payTotalCountToDate"].intValue,
-                    ndd: Util.formatDate(string: json["nextDueDate"].stringValue)!
+                    ndd: Util.formatDate(string: json["nextDueDate"].stringValue)
                 )
                 
                 success(db);
@@ -302,6 +302,37 @@ class ServiceBase {
             }
         );
     }
+    
+    static func registerPush(push_id: String, success:@escaping () -> Void, error:@escaping (ApiError)->()){
+        executeRequest(
+            route: "user/push",
+            method: .post,
+            params: [
+                "push_id": push_id,
+                ],
+            success: { json in
+                success();
+        },
+            error: { err in
+                error(err);
+        }
+        );
+    }
+
+    static func unregisterPush(success:@escaping () -> Void, error:@escaping (ApiError)->()){
+        executeRequest(
+            route: "user/push",
+            method: .delete,
+            params: [:],
+            success: { json in
+                success();
+        },
+            error: { err in
+                error(err);
+        }
+        );
+    }
+
     
     //MARK: Bill Functions
     
@@ -468,7 +499,11 @@ class ServiceBase {
           var errors: [ApiError] = [];
         
         for bill in bills {
+            var payerUnpaidCount = 0;
             if bill.date_paid == nil { continue; }
+            bill.payers.forEach({if $0.paid == false { payerUnpaidCount += 1}})
+            if payerUnpaidCount != 0 { continue; }
+            	
             queue.enter()
             executeRequest(
                 route: "bill/" + String(bill.id) + "/archive",
@@ -531,5 +566,19 @@ class ServiceBase {
         }
     }
     
+    static func notifyUnpaidPayers(bill: Bill, success:@escaping () -> Void, error:@escaping (ApiError)->()){
+        executeRequest(
+            route: "bill/" + String(bill.id) + "/notify",
+            method: .post,
+            params: [:],
+            success: { json in
+                success();
+        },
+            error: { err in
+                error(err);
+        }
+        );
+    }
+
 }
 

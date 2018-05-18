@@ -64,7 +64,14 @@ extension BillViewViewController {
     }
     
     func actionNotifyUnpaid(_:UIAlertAction) {
-        
+        ServiceBase.notifyUnpaidPayers(
+            bill: bill!,
+            success: {
+                Util.displayBasicMessage(title: "Payers notified", message: "Payers who have not yet paid have been notified.")
+            },
+            error: {err in
+                
+            })
     }
     
     func actionEdit(_:UIAlertAction) {
@@ -78,7 +85,8 @@ extension BillViewViewController {
                 Util.getUser(
                     user_id: Util.getDeviceId(),
                     success: {user in
-                        (self.bill!.payers.first(where: {return $0.user.id == user.id}))?.paid = true;
+                        (self.bill!.payers.first(where: {return $0.user.id == user.id}))!.paid = true;
+                        self.payersTableView.reloadData()
                     },
                     error: {_ in
                         //TODO: Handle Error

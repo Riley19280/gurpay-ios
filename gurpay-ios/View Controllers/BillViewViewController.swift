@@ -213,7 +213,7 @@ class BillViewViewController: UIViewController {
         }
         else {
  
-            if self.bill!.payers.contains(where: {return $0.user.id == user.id && $0.paid == false}) {
+            if self.bill!.payers.contains(where: {return ($0.user.id == user.id && $0.paid == false)}) {
                 self.actionAlertController.addAction(
                     UIAlertAction(
                         title: "Mark as paid",

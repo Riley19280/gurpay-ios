@@ -127,6 +127,7 @@
 		E5513C322094F88E000574BE /* BillTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BillTableViewCell.xib; sourceTree = "<group>"; };
 		E5513C35209508F9000574BE /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		E570525520ACBA1900AF1A42 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
+		E5DA175220ADEAA1006C5555 /* gurpay-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "gurpay-ios.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +206,7 @@
 		E53FFE792090CA8D00D365A3 /* gurpay-ios */ = {
 			isa = PBXGroup;
 			children = (
+				E5DA175220ADEAA1006C5555 /* gurpay-ios.entitlements */,
 				E53FFEA82090D59B00D365A3 /* Data Models */,
 				E53FFEAA2090D5B100D365A3 /* Storyboards */,
 				E53FFEA92090D5AA00D365A3 /* View Controllers */,
@@ -380,6 +382,11 @@
 					E53FFE762090CA8D00D365A3 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					E53FFE8A2090CA8E00D365A3 = {
 						CreatedOnToolsVersion = 9.2;
@@ -728,12 +735,13 @@
 			baseConfigurationReference = 15538D3B50B2E0F8EEB36D97 /* Pods-gurpay-ios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "gurpay-ios/gurpay-ios.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9P44VFRT8Q;
+				DEVELOPMENT_TEAM = 5ABZGFKC9S;
 				INFOPLIST_FILE = "gurpay-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Rileystech.gurpay-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rileystech.gurpay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -745,12 +753,13 @@
 			baseConfigurationReference = 2D7221C1EF0A11D3D71A698D /* Pods-gurpay-ios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "gurpay-ios/gurpay-ios.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9P44VFRT8Q;
+				DEVELOPMENT_TEAM = 5ABZGFKC9S;
 				INFOPLIST_FILE = "gurpay-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Rileystech.gurpay-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rileystech.gurpay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
