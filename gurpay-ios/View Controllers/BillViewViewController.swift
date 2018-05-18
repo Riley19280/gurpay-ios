@@ -22,6 +22,7 @@ class BillViewViewController: UIViewController {
     @IBOutlet weak var setPaidButton: UIButton!
     @IBOutlet weak var addPayerButton: UIButton!
     @IBOutlet weak var ownerLabel: UILabel!
+    @IBOutlet weak var payPerPersonLabel: UILabel!
     
     @IBOutlet weak var actionsBarButtonItem: UIBarButtonItem!
     
@@ -120,6 +121,10 @@ class BillViewViewController: UIViewController {
     
     func updateBill() {
         let nf = NumberFormatter();
+        nf.maximumFractionDigits = 2;
+        nf.minimumFractionDigits = 2;
+        nf.minimumIntegerDigits = 1
+        
         dateFormatter.dateFormat = "MM/dd/yy"
         guard let da = dateFormatter.date(from: dateAssignedField.text!) else { displayError(text: "Date assigned is in the incorrect format."); return;}
         guard let dd = dateFormatter.date(from: dateDueField.text!) else { displayError(text: "Due date is in the incorrect format."); return;}
@@ -131,11 +136,13 @@ class BillViewViewController: UIViewController {
         bill?.date_assigned = da;
         bill?.date_paid = dp;
         bill?.date_due = dd;
+        bill?.split_cost = Double(truncating: nf.number(from: String(bill!.total/Double((bill!.payers.count+1))))!)
         
         ServiceBase.updateBill(
             bill: bill!,
             success: {
                 self.state = .normal;
+                self.initializeUI()
             },
             error: { err in
                 Util.displayBasicMessage(title: "Error", message: err.toString())
@@ -304,6 +311,8 @@ class BillViewViewController: UIViewController {
             datePaidField.text = Util.displayDate(date: bill!.date_paid)!
             dateDueField.text = Util.displayDate(date: bill!.date_due)!
             self.title = bill!.name;
+            payPerPersonLabel.text = "Amount per person: " + String(bill!.split_cost)
+            
             
             Util.getUser(user_id: String(bill!.owner_id), success: {user in
                 self.ownerLabel.text = "Owner: " + user.name;

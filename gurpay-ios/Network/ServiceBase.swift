@@ -217,7 +217,27 @@ class ServiceBase {
         );
     }
     
-
+    static func getGroup(success:@escaping () -> Void, error:@escaping (ApiError)->()){
+        executeRequest(
+            route: "group",
+            method: .get,
+            params: [:],
+            success: { json in
+                let g = Group(name: json["name"].stringValue, code: json["code"].stringValue);
+                guard let gs = g else { error(ApiError(string: "There was a problem joing the group.")); return; }
+                if Group.writeToDisk(group: gs) {
+                    _ = reloadHeaders();
+                    success();
+                }
+                else {
+                    error(ApiError(string: "There was a problem joing the group."))
+                }
+            },
+            error: { err in
+                error(err);
+            }
+        );
+    }
     
     static func getGroupMembers(success:@escaping (_:[User]) -> Void, error:@escaping (ApiError)->()){
         executeRequest(
@@ -332,7 +352,6 @@ class ServiceBase {
         }
         );
     }
-
     
     //MARK: Bill Functions
     

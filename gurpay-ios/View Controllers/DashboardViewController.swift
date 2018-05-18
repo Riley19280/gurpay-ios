@@ -30,7 +30,14 @@ class DashboardViewController: UIViewController {
         
         Util.getUser(user_id: Util.getDeviceId(), success: {user in self.nameBarButton.title = user.name; }, error: { _ in self.nameBarButton.title = "You"; })
         
-        //loadData()
+        ServiceBase.getGroup(
+            success: {
+                let group = Group.getFromDisk()!
+                self.title = group.name;
+            },
+            error: {err in
+                
+            })
     }
     
     func loadData(){
@@ -87,9 +94,8 @@ class DashboardViewController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.tintAdjustmentMode = .normal
         self.navigationController?.navigationBar.tintAdjustmentMode = .automatic
+  
         
-        let group = Group.getFromDisk()!
-        self.title = group.name;
         loadData()
     }
 
