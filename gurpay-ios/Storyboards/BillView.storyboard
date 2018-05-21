@@ -22,13 +22,13 @@
                                 <rect key="frame" x="0.0" y="24" width="375" height="599"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="J3a-tj-mCD">
-                                        <rect key="frame" x="16" y="16" width="343" height="296.5"/>
+                                        <rect key="frame" x="16" y="16" width="343" height="299"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="plL-56-Ctf">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="184.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="187"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="jR5-oW-9d0">
-                                                        <rect key="frame" x="8" y="8" width="327" height="168.5"/>
+                                                        <rect key="frame" x="8" y="8" width="327" height="171"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Idp-3A-kc4">
                                                                 <rect key="frame" x="0.0" y="0.0" width="327" height="25"/>
@@ -175,9 +175,9 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment per person" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uFd-rH-QRX">
-                                                                <rect key="frame" x="0.0" y="148" width="327" height="20.5"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount per person" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uFd-rH-QRX">
+                                                                <rect key="frame" x="0.0" y="148" width="327" height="23"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -193,7 +193,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K9M-5W-TWH">
-                                                <rect key="frame" x="0.0" y="200.5" width="343" height="96"/>
+                                                <rect key="frame" x="0.0" y="203" width="343" height="96"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dvf-VC-N0u">
                                                         <rect key="frame" x="8" y="8" width="323" height="80"/>

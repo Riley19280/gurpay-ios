@@ -43,6 +43,11 @@ class DashboardViewController: UIViewController {
     func loadData(){
         ServiceBase.getDashboard(
             success: { db in
+                let nf = NumberFormatter()
+                nf.maximumFractionDigits = 2;
+                nf.minimumFractionDigits = 2;
+                nf.minimumIntegerDigits = 1;
+                
                 self.unpaidCountLabel.text = String(db.myUnpaidBillCount)
                 if db.myUnpaidBillCount == 0 {
                     self.unpaidCountLabel.textColor = UIColor(red: 37/255, green: 213/255, blue: 0, alpha: 1)
@@ -53,9 +58,9 @@ class DashboardViewController: UIViewController {
                 else {
                     self.nextDueOnLabel.alpha = 0;
                 }
-                self.recievedPeopleLabel.text = "You have recieved $\(db.myBillsPayerPaidToDate)/\(db.myBillsPayerPaidTotal) from \(db.myBillsPayersPaid)/\(db.myBillsPayerCount) people."
+                self.recievedPeopleLabel.text = "You have recieved $\(nf.string(for: db.myBillsPayerPaidToDate)!)/\(nf.string(for: db.myBillsPayerPaidTotal)!) from \(db.myBillsPayersPaid)/\(db.myBillsPayerCount) people."
                 
-                self.paidOthersLabel.text = "You have paid $\(db.payTotalToDate)/\(db.payTotal) to others for \(db.payTotalCountToDate)/\(db.payTotalCount) bills."
+                self.paidOthersLabel.text = "You have paid $\(nf.string(for: db.payTotalToDate)!)/\(nf.string(for: db.payTotal)!) to others for \(db.payTotalCountToDate)/\(db.payTotalCount) bills."
                 self.unpaidBillLabel.text = "unpaid bills."
             },
             error: { err in

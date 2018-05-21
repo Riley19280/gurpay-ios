@@ -28,7 +28,8 @@ extension BillViewViewController : UITableViewDelegate, UITableViewDataSource
     
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 25;
+        
+        return 30;
     }
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {

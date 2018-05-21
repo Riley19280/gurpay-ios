@@ -105,6 +105,10 @@ class BillViewViewController: UIViewController {
        
     }
     
+    override func viewDidLayoutSubviews() {
+        self.payersTableView.invalidateIntrinsicContentSize()
+    }
+    
      override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -311,7 +315,7 @@ class BillViewViewController: UIViewController {
             datePaidField.text = Util.displayDate(date: bill!.date_paid)!
             dateDueField.text = Util.displayDate(date: bill!.date_due)!
             self.title = bill!.name;
-            payPerPersonLabel.text = "Amount per person: " + String(bill!.split_cost)
+            payPerPersonLabel.text = "Amount per person: $" + String(bill!.split_cost)
             
             
             Util.getUser(user_id: String(bill!.owner_id), success: {user in
