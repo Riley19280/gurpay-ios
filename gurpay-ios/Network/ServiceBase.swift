@@ -19,7 +19,7 @@ class ServiceBase {
     }
     
     //MARK: Properties
-    static let baseURL = "https://rileystech.com/gurpay/api/"
+    static let baseURL = "https://gurpay.com/api/"
     
     static var headers: HTTPHeaders = [
         "group-code": getGroupCode(),
@@ -176,6 +176,7 @@ class ServiceBase {
                 if Group.writeToDisk(group: gs) {
                     _ = reloadHeaders();
                     success();
+                    registerPush(push_id: "previous", success: {}, error: {err in})
                 }
                 else {
                     error(ApiError(string: "There was a problem joing the group."))
@@ -323,17 +324,29 @@ class ServiceBase {
         );
     }
     
+    private static var prevToken: String?;
     static func registerPush(push_id: String, success:@escaping () -> Void, error:@escaping (ApiError)->()){
+        var realPushID: String?;
+        if push_id == "previous" {
+            if prevToken != nil
+            {realPushID = prevToken}
+            else {error(ApiError(string: "Error setting push notification")); return;}
+            
+        }
+        else {
+            realPushID = push_id
+        }
         executeRequest(
             route: "user/push",
             method: .post,
             params: [
-                "push_id": push_id,
+                "push_id": realPushID,
                 ],
             success: { json in
                 success();
         },
             error: { err in
+                self.prevToken = push_id;
                 error(err);
         }
         );
