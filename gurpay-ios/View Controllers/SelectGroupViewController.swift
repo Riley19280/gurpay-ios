@@ -105,10 +105,13 @@ class SelectGroupViewController: UIViewController, UITextFieldDelegate {
         //called when the user creates a new group
         ServiceBase.JoinGroup(group_code: "", group_name: createGroupNameTextField.text!, user_name: createYourNameTextField.text!,
         success: {
-                                
+            let newViewController = UIStoryboard(name: "Dashboard", bundle: nil).instantiateInitialViewController()!
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.setRootViewController(controller: newViewController)
         },
         error: { err in
-                                
+             self.displayErrorMessage(msg: err.toString())
         })
     }
     

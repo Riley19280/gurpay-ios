@@ -72,7 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     //MARK: Push Notifications
     func registerForPushNotifications() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge, ]) {
             (granted, error) in
             print("Permission granted: \(granted)")
             

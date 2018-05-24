@@ -10,6 +10,7 @@ import UIKit
 
 class BillListTableViewController: UITableViewController {
 
+    @IBOutlet weak var noBillsLabel: UILabel!
     var bills: [Bill] = [];
     
     var isArchive = false;
@@ -39,6 +40,21 @@ class BillListTableViewController: UITableViewController {
             archived: isArchive,
             success: { bills in
                 self.bills = bills;
+                
+                if bills.count == 0 {
+                    self.noBillsLabel.isHidden = false;
+                    if self.isArchive {
+                        self.noBillsLabel.text = "No archived bills. You can archive bills when they are paid in full.";
+                    }
+                    else {
+                        
+                    }
+                }
+                else {
+                    self.noBillsLabel.isHidden = true;
+                }
+            
+                
                 self.tableView.reloadData();
                 self.refreshControl?.endRefreshing();
             },
